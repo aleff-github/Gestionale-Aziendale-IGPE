@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox fx:id="hBoxLibroGiornale" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imprenditore_package.ControllerDatiDaStampare">
+   <children>
+      <BorderPane fx:id="borderPaneLibroGiornale">
+         <center>
+            <GridPane fx:id="gridPaneLibroGiornale" prefHeight="400.0" prefWidth="518.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text fx:id="vociTotaliText" strokeType="OUTSIDE" strokeWidth="0.0" text="Voci Totali:" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Baskerville Old Face" size="48.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="numeroVociTotale" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Baskerville Old Face" size="48.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="dareTotaleText" strokeType="OUTSIDE" strokeWidth="0.0" text="Dare Totale:" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Baskerville Old Face" size="48.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="avereTotaleText" strokeType="OUTSIDE" strokeWidth="0.0" text="Avere Totale:" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Baskerville Old Face" size="48.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="numeroAvvereTotale" strokeType="OUTSIDE" strokeWidth="0.0" text="0.00" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Baskerville Old Face" size="48.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="numeroDareTotale" strokeType="OUTSIDE" strokeWidth="0.0" text="0.00" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Baskerville Old Face" size="48.0" />
+                     </font>
+                  </Text>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </center>
+         <top>
+            <HBox fx:id="hBoxTitoloLibroGiornale" alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="libroGiornaleIcon" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../../icons/libro_giornale.png" />
+                     </image>
+                  </ImageView>
+                  <VBox fx:id="vBoxTitoloEPulsante" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Text fx:id="libroGiornaleTitolo" strokeType="OUTSIDE" strokeWidth="0.0" text="Libro Giornale">
+                           <font>
+                              <Font name="Baskerville Old Face" size="48.0" />
+                           </font>
+                        </Text>
+                        <BorderPane fx:id="borderPanePulsante" prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Button fx:id="pulsanteVaiALibroGiornale" mnemonicParsing="false" onAction="#apriLibroGiornale" text="Apri" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="36.0" />
+                                 </font>
+                              </Button>
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
+   </children>
+</HBox>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPaneBase" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="catalogo_e_magazzino.ControllerCatalogoEMagazzino">
+   <children>
+      <BorderPane fx:id="borderPaneBase" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <SplitPane fx:id="splitPane" dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+               <items>
+                  <AnchorPane fx:id="anchorPaneSinistra" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+                     <children>
+                        <VBox fx:id="vBoxSinistra" layoutX="67.0" layoutY="42.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <BorderPane fx:id="borderPaneDiRicerca" layoutX="20.0" layoutY="20.0" prefHeight="100.0" prefWidth="100.0">
+                                 <top>
+                                    <Button fx:id="pulsanteCerca" mnemonicParsing="false" onAction="#effettuaRicercaDelProdotto" prefHeight="25.0" prefWidth="92.0" text="Cerca" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </BorderPane.margin>
+                                    </Button>
+                                 </top>
+                                 <center>
+                                    <TextField fx:id="cercaProdottoField" prefHeight="25.0" prefWidth="198.0" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </BorderPane.margin>
+                                    </TextField>
+                                 </center>
+                              </BorderPane>
+                              <BorderPane fx:id="borderPaneAggiungi" prefHeight="100.0" prefWidth="100.0">
+                                 <center>
+                                    <Button fx:id="pulsanteAggiungi" mnemonicParsing="false" onAction="#aggiungiUnProdotto" prefHeight="59.0" prefWidth="103.0" text="Aggiungi" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </center>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </BorderPane>
+                              <BorderPane fx:id="borderPaneModifica" prefHeight="100.0" prefWidth="100.0">
+                                 <center>
+                                    <Button fx:id="pulsanteModifica" mnemonicParsing="false" onAction="#modificaProdotto" prefHeight="59.0" prefWidth="103.0" text="Modifica" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </center>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </BorderPane>
+                              <BorderPane fx:id="borderPaneElimina" prefHeight="100.0" prefWidth="100.0">
+                                 <center>
+                                    <Button fx:id="pulsanteElimina" mnemonicParsing="false" onAction="#eliminaProdotto" prefHeight="59.0" prefWidth="103.0" text="Elimina" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </center>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </BorderPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="anchorPaneDiDestra" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+                     <children>
+                        <Label fx:id="prodottiTitolo" layoutX="10.0" layoutY="14.0" prefHeight="46.0" prefWidth="214.0" text="Prodotti" AnchorPane.bottomAnchor="420.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="460.0" AnchorPane.topAnchor="14.0">
+                           <font>
+                              <Font name="Baskerville Old Face" size="36.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tableViewProdotti" layoutX="21.0" layoutY="72.0" prefHeight="169.0" prefWidth="652.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                           <columns>
+                              <TableColumn fx:id="tableColumnIdProdotto" prefWidth="105.0" text="ID Prodotto" />
+                              <TableColumn fx:id="tableColumnNomeProdotto" prefWidth="160.0" text="Nome" />
+                              <TableColumn fx:id="tableColumnLivelloReparto" prefWidth="148.0" text="Reparto" />
+                              <TableColumn fx:id="tableColumnPrezzo" minWidth="8.0" prefWidth="152.0" text="Prezzo" />
+                           </columns>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </items>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </SplitPane>
+         </center>
+         <top>
+            <MenuBar fx:id="barraMenu" BorderPane.alignment="CENTER">
+              <menus>
+                <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem fx:id="menuHome" mnemonicParsing="false" onAction="#tornaAllaHome" text="Home" />
+                        <MenuItem fx:id="menuDatiAziendali" mnemonicParsing="false" onAction="#visualizzaDatiAziendali" text="Dati aziendali" />
+                        <MenuItem fx:id="menuEmailVeloce" mnemonicParsing="false" onAction="#mandaEmailVeloce" text="Email veloce" />
+                        <MenuItem fx:id="menuEsci" mnemonicParsing="false" onAction="#effettuaLogout" text="Esci" />
+                  </items>
+                </Menu>
+                <Menu fx:id="menuVisualizza" mnemonicParsing="false" text="Visualizza">
+                     <items>
+                        <MenuItem fx:id="menuLibroGiornale" mnemonicParsing="false" onAction="#apriLibroGiornale" text="Libro Giornale" />
+                        <MenuItem fx:id="menuRepartiDiProduzione" mnemonicParsing="false" onAction="#apriRepartoDiProduzione" text="Reparti di Produzione" />
+                        <MenuItem fx:id="menuCatalogoEMagazzino" mnemonicParsing="false" onAction="#apriCatalogoEMagazzino" text="Catalogo e Magazzino" />
+                        <MenuItem fx:id="menuStatistiche" mnemonicParsing="false" onAction="#apriStatistiche" text="Statistiche" />
+                     </items>
+                </Menu>
+                <Menu fx:id="menuOpzioni" mnemonicParsing="false" text="Opzioni">
+                  <items>
+                    <MenuItem fx:id="menuCerca" mnemonicParsing="false" onAction="#effettuaRicercaDelProdotto" text="Cerca" />
+                        <MenuItem fx:id="menuAggiungi" mnemonicParsing="false" onAction="#aggiungiUnProdotto" text="Aggiungi" />
+                        <MenuItem fx:id="menuModifica" mnemonicParsing="false" onAction="#modificaProdotto" text="Modifica" />
+                        <MenuItem fx:id="menuElimina" mnemonicParsing="false" onAction="#eliminaProdotto" text="Elimina" />
+                  </items>
+                </Menu>
+                  <Menu fx:id="menuAiuto" mnemonicParsing="false" text="Aiuto">
+                     <items>
+                        <MenuItem fx:id="menuCrediti" mnemonicParsing="false" onAction="#crediti" text="Crediti" />
+                        <MenuItem fx:id="menuContattaLAssistenza" mnemonicParsing="false" onAction="#contattaLAssistenza" text="Contatta assistenza" />
+                        <MenuItem fx:id="menuRiavviaIlProgramma" mnemonicParsing="false" onAction="#riavviaIlProgramma" text="Riavvia il programma" />
+                     </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

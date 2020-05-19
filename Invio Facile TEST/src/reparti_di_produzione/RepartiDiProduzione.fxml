@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPaneRepartiDiProduzione" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reparti_di_produzione.ControllerRepartiDiProduzione">
+   <children>
+      <BorderPane fx:id="baseBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <SplitPane fx:id="splitPane" dividerPositions="0.298" prefHeight="800.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+               <items>
+                  <AnchorPane fx:id="anchorPaneSinistro" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" SplitPane.resizableWithParent="false">
+                     <children>
+                        <VBox fx:id="vBoxMenu" layoutX="-25.0" layoutY="-50.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <BorderPane fx:id="borderPaneFabbricazioneEMontaggio" prefHeight="200.0" prefWidth="200.0">
+                                 <center>
+                                    <HBox fx:id="hBoxFabbricazioneEMontaggio" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <ImageView fx:id="iconaFabbricazioneEMontaggio" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../icons/fabbricazione_e_montaggio.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <BorderPane fx:id="borderPanePulsanteFabbricazioneEMontaggio" prefHeight="200.0" prefWidth="200.0">
+                                             <center>
+                                                <Button fx:id="pulsanteInformazioneFabbricazioneEMontaggio" mnemonicParsing="false" onAction="#visualizzaInformazioniFabbricazioneEMontaggio" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER">
+                                                   <BorderPane.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </BorderPane.margin>
+                                                </Button>
+                                             </center>
+                                          </BorderPane>
+                                       </children>
+                                    </HBox>
+                                 </center>
+                                 <top>
+                                    <Text fx:id="fabbricazioneEMontaggioTitolo" strokeType="OUTSIDE" strokeWidth="0.0" text="Fabbricazione e Montaggio" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="24.0" />
+                                       </font>
+                                       <BorderPane.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </BorderPane.margin>
+                                    </Text>
+                                 </top>
+                              </BorderPane>
+                              <Separator fx:id="separatoreUno" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Separator>
+                              <BorderPane fx:id="borderPaneTestDiResistenzaAmbientale" prefHeight="200.0" prefWidth="200.0">
+                                 <center>
+                                    <HBox fx:id="hBoxTestDiResistenzaAmbientale" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <ImageView fx:id="iconaTestDiResistenzaAmbientale" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../icons/resistenza_ambientale.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <BorderPane fx:id="borderPanePulsanteTestDiResistenzaEImballaggio" prefHeight="200.0" prefWidth="200.0">
+                                             <center>
+                                                <Button fx:id="pulsanteInformazioneTestDiResistenzaAmbientale" mnemonicParsing="false" onAction="#visualizzaInformazioniTestDiResistenzaAmbientale" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER">
+                                                   <BorderPane.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </BorderPane.margin>
+                                                </Button>
+                                             </center>
+                                          </BorderPane>
+                                       </children>
+                                    </HBox>
+                                 </center>
+                                 <top>
+                                    <Text fx:id="testDiResistenzaAmbientaleTitolo" strokeType="OUTSIDE" strokeWidth="0.0" text="Test di resistenza ambientale" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="24.0" />
+                                       </font>
+                                       <BorderPane.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </BorderPane.margin>
+                                    </Text>
+                                 </top>
+                              </BorderPane>
+                              <Separator fx:id="separatoreDue" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </Separator>
+                              <BorderPane fx:id="borderPanePulizziaEImballaggio" prefHeight="200.0" prefWidth="200.0">
+                                 <center>
+                                    <HBox fx:id="hBoxPulizziaEImballaggio" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <ImageView fx:id="iconaPulizziaEImballaggio" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../icons/pulizzia_e_imballaggio.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <BorderPane fx:id="borderPanePulsantePulizziaEImballaggio" prefHeight="200.0" prefWidth="200.0">
+                                             <center>
+                                                <Button fx:id="pulsanteInformazionePulizziaEImballaggio" mnemonicParsing="false" onAction="#visualizzaInformazioniPulizziaEImballaggio" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER">
+                                                   <BorderPane.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </BorderPane.margin>
+                                                </Button>
+                                             </center>
+                                          </BorderPane>
+                                       </children>
+                                    </HBox>
+                                 </center>
+                                 <top>
+                                    <Text fx:id="pulizziaEImballaggioTitolo" strokeType="OUTSIDE" strokeWidth="0.0" text="Pulizzia e imballaggio" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="24.0" />
+                                       </font>
+                                       <BorderPane.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </BorderPane.margin>
+                                    </Text>
+                                 </top>
+                              </BorderPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="anchorPaneDiDestra" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <BorderPane fx:id="borderPaneDiDestra" layoutX="229.0" layoutY="226.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </items>
+            </SplitPane>
+         </center>
+         <top>
+            <MenuBar fx:id="barraMenu" BorderPane.alignment="CENTER">
+               <menus>
+                  <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
+                     <items>
+                        <MenuItem fx:id="menuHome" mnemonicParsing="false" onAction="#vaiAllaHome" text="Home" />
+                        <MenuItem fx:id="menuDatiAziendali" mnemonicParsing="false" onAction="#vediDatiAziendali" text="Dati aziendali" />
+                        <MenuItem fx:id="menuEmailVeloce" mnemonicParsing="false" onAction="#mandaEmailVeloce" text="Email veloce" />
+                        <MenuItem fx:id="menuEsci" mnemonicParsing="false" onAction="#esci" text="Esci" />
+                     </items>
+                  </Menu>
+                  <Menu fx:id="menuApri" mnemonicParsing="false" text="Apri">
+                     <items>
+                        <MenuItem fx:id="menuLibroGiornale" mnemonicParsing="false" onAction="#vaiALibroGiornale" text="Libro Giornale" />
+                        <MenuItem fx:id="menuRepartiDiProduzione" mnemonicParsing="false" onAction="#vaiARepartiDiProduzione" text="Reparti Di Produzione" />
+                        <MenuItem fx:id="menuCatalogoEMagazzino" mnemonicParsing="false" onAction="#vaiACatalogoEMagazzino" text="Catalogo e Magazzino" />
+                        <MenuItem fx:id="menuStatistiche" mnemonicParsing="false" onAction="#vaiAStatistiche" text="Statistiche" />
+                     </items>
+                  </Menu>
+                  <Menu fx:id="menuVisualizza" mnemonicParsing="false" text="Visualizza">
+                     <items>
+                        <MenuItem fx:id="menuFabbricazioneEMontaggio" mnemonicParsing="false" onAction="#visualizzaInformazioniFabbricazioneEMontaggio" text="Fabbricazione e Montaggio" />
+                        <MenuItem fx:id="menuTestDiResistenzaAmbientale" mnemonicParsing="false" onAction="#visualizzaInformazioniTestDiResistenzaAmbientale" text="Test di residenza ambientale" />
+                        <MenuItem fx:id="menuPulizziaEImballaggio" mnemonicParsing="false" onAction="#visualizzaInformazioniPulizziaEImballaggio" text="Pulizzia e imballaggio" />
+                     </items>
+                  </Menu>
+                  <Menu fx:id="menuAiuto" mnemonicParsing="false" text="Aiuto">
+                     <items>
+                        <MenuItem fx:id="menuCrediti" mnemonicParsing="false" onAction="#visualizzaCrediti" text="Crediti" />
+                        <MenuItem fx:id="menuContattaLAssistenza" mnemonicParsing="false" onAction="#mandaEmailAllAssistenza" text="Contatta assistenza" />
+                        <MenuItem fx:id="menuRiavviaProgramma" mnemonicParsing="false" onAction="#riavviaIlProgramma" text="Riavvia il programma" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

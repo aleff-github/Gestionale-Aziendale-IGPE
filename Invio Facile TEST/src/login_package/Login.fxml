@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="loginAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login_package.LoginController">
+   <children>
+      <AnchorPane fx:id="quadratoDelLogin" layoutX="673.0" layoutY="259.0" minHeight="282.0" minWidth="288.0" prefHeight="350.0" prefWidth="350.0" AnchorPane.bottomAnchor="259.0" AnchorPane.rightAnchor="39.0">
+         <children>
+            <VBox fx:id="boxContenitoreDiBorderPane" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <BorderPane fx:id="borderPaneUsername" prefHeight="100.0" prefWidth="350.0">
+                     <left>
+                        <ImageView fx:id="iconaUsername" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="30.0" />
+                           </BorderPane.margin>
+                           <image>
+                              <Image url="@../icons/utente.png" />
+                           </image>
+                        </ImageView>
+                     </left>
+                     <center>
+                        <TextField fx:id="usernameField" prefHeight="63.0" prefWidth="236.0" promptText="Username" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="30.0" top="30.0" />
+                           </BorderPane.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextField>
+                     </center>
+                  </BorderPane>
+                  <BorderPane fx:id="borderPanePassword" prefHeight="100.0" prefWidth="350.0">
+                     <left>
+                        <ImageView fx:id="iconaPassword" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="30.0" />
+                           </BorderPane.margin>
+                           <image>
+                              <Image url="@../icons/password.png" />
+                           </image>
+                        </ImageView>
+                     </left>
+                     <center>
+                        <PasswordField fx:id="passwordField" prefHeight="63.0" prefWidth="236.0" promptText="Password" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="30.0" top="30.0" />
+                           </BorderPane.margin>
+                        </PasswordField>
+                     </center>
+                  </BorderPane>
+                  <HBox fx:id="hBoxPulsanti" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane fx:id="borderPaneEntra" prefHeight="100.0" prefWidth="200.0">
+                           <center>
+                              <Button fx:id="entraButton" mnemonicParsing="false" onAction="#pulsanteEntraPremuto" onKeyPressed="#pulsanteEntraPremutoInvio" prefHeight="50.0" prefWidth="70.0" style="-fx-background-color: transparent; -fx-text-fill: #1E90FF; -fx-border-width: 2px 2px 2px 2px; -fx-border-color: #1E90FF;" text="Entra" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="24.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <BorderPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </BorderPane.margin>
+                              </Button>
+                           </center>
+                        </BorderPane>
+                        <BorderPane fx:id="borderPaneAssistenza" prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Button fx:id="assistenzaButton" mnemonicParsing="false" onAction="#pulsanteContattaLAssistenzaPremuto" onKeyPressed="#pulsanteEntraPremutoInvio" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: transparent; -fx-text-fill: #1E90FF; -fx-border-width: 2px 2px 2px 2px; -fx-border-color: #1E90FF;" text="Assistenza" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="24.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <BorderPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </BorderPane.margin>
+                              </Button>
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
