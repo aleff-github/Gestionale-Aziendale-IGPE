@@ -6,92 +6,114 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="1307.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPaneBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="1307.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="statistiche_package.ControllerStatistiche">
    <children>
-      <BorderPane layoutX="97.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="borderPaneBase" layoutX="97.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <MenuBar BorderPane.alignment="CENTER">
+            <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
               <menus>
-                <Menu mnemonicParsing="false" text="Vai a...">
+                  <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
+                     <items>
+                        <MenuItem fx:id="menuHome" mnemonicParsing="false" onAction="#tornaAllaHome" text="Home" />
+                        <MenuItem fx:id="menuDatiAziendali" mnemonicParsing="false" onAction="#visualizzaDatiAziendali" text="Dati aziendali" />
+                        <MenuItem fx:id="menuEmailVeloce" mnemonicParsing="false" onAction="#mandaEmailVeloce" text="Email veloce" />
+                        <MenuItem fx:id="menuEsci" mnemonicParsing="false" onAction="#effettuaLogout" text="Esci" />
+                     </items>
+                  </Menu>
+                <Menu fx:id="menuVisualizza" mnemonicParsing="false" text="Visualizza">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Libro Giornale" />
-                        <MenuItem mnemonicParsing="false" text="Reparti di Produzione" />
-                        <MenuItem mnemonicParsing="false" text="Catalogo e Magazzino" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Esci" />
+                    <MenuItem fx:id="menuLibroGiornale" mnemonicParsing="false" onAction="#apriLibroGiornale" text="Libro Giornale" />
+                        <MenuItem fx:id="menuRepartiDiProduzione" mnemonicParsing="false" onAction="#apriRepartoDiProduzione" text="Reparti di Produzione" />
+                        <MenuItem fx:id="menuCatalogoEMagazzino" mnemonicParsing="false" onAction="#apriCatalogoEMagazzino" text="Catalogo e Magazzino" />
+                        <MenuItem fx:id="menuStatistiche" mnemonicParsing="false" onAction="#apriStatistiche" text="Statistiche" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Opzioni statistiche">
+                <Menu fx:id="menuOpzioni" mnemonicParsing="false" text="Opzioni">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Imposta tutto a 6 mesi" />
-                        <MenuItem mnemonicParsing="false" text="Imposta tutto a 12 mesi" />
-                        <MenuItem mnemonicParsing="false" text="Imposta tutto a 24 mesi" />
+                    <MenuItem fx:id="impostaTuttoA6Mesi" mnemonicParsing="false" onAction="#actionImpostaTuttoA6Mesi" text="Imposta tutto a 6 mesi" />
+                        <MenuItem fx:id="impostaTuttoA12Mesi" mnemonicParsing="false" onAction="#actionImpostaTuttoA12Mesi" text="Imposta tutto a 12 mesi" />
+                        <MenuItem fx:id="impostaTuttoA24Mesi" mnemonicParsing="false" onAction="#actionImpostaTuttoA24Mesi" text="Imposta tutto a 24 mesi" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Aiuto">
+                <Menu fx:id="menuAiuto" mnemonicParsing="false" text="Aiuto">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Crediti" />
-                        <MenuItem mnemonicParsing="false" text="Contatta l'assistenza" />
-                        <MenuItem mnemonicParsing="false" text="Riavvia il programma" />
+                    <MenuItem fx:id="menuCrediti" mnemonicParsing="false" onAction="#crediti" text="Crediti" />
+                        <MenuItem fx:id="menuContattaLAssistenza" mnemonicParsing="false" onAction="#contattaLAssistenza" text="Contatta l'assistenza" />
+                        <MenuItem fx:id="menuRiavviaIlProgramma" mnemonicParsing="false" onAction="#riavviaIlProgramma" text="Riavvia il programma" />
                   </items>
                 </Menu>
               </menus>
             </MenuBar>
          </top>
          <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox prefHeight="400.0" prefWidth="1000.0">
+            <ScrollPane fx:id="scrollBar" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <content>
+                <AnchorPane fx:id="anchorPaneScrollPane">
                      <children>
-                        <BarChart fx:id="andamentoAziendale" onMouseClicked="#visualizzaCommentoAndamentoAziendale" prefHeight="250.0" prefWidth="850.0" title="Andamento Aziendale">
-                          <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis side="LEFT" />
-                          </yAxis>
-                        </BarChart>
-                        <AnchorPane prefHeight="400.0" prefWidth="454.0">
+                        <VBox fx:id="vBoxScrollPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <ComboBox fx:id="periodoDiTempo" layoutX="64.0" layoutY="55.0" onAction="#periodoDiTempoSelezionato" prefWidth="150.0" promptText="Periodo di tempo" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="55.0" />
-                              <TextArea fx:id="areaDiTestoAdibitoAlCommento" editable="false" layoutX="127.0" layoutY="138.0" prefHeight="200.0" prefWidth="200.0" promptText="Per leggere il commento clicca su &quot;Leggi commento&quot; qua sopra." wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0" />
-                              <Text fx:id="funzionalitaText" layoutX="163.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funzionalità" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="10.0">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Text>
-                              <Button fx:id="pulsanteLeggiCommento" layoutX="341.0" layoutY="55.0" mnemonicParsing="false" onAction="#leggiCommentoPulsantePremuto" text="Leggi commento" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
+                              <HBox fx:id="hBoxScrollPane" prefHeight="400.0" prefWidth="1000.0">
+                                 <children>
+                                    <AnchorPane fx:id="anchorPaneAziendale" prefHeight="400.0" prefWidth="454.0">
+                                       <children>
+                                          <Text fx:id="funzionalitaTextAziendale" layoutX="163.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funzionalità" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="10.0">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Text>
+                                          <ComboBox fx:id="periodoDiTempoAzienda" layoutX="64.0" layoutY="55.0" onAction="#periodoDiTempoAziendaleSelezionato" prefWidth="150.0" promptText="Periodo di tempo" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="55.0" />
+                                          <Button fx:id="pulsanteLeggiCommentoAziendale" layoutX="341.0" layoutY="55.0" mnemonicParsing="false" onAction="#leggiCommentoAziendalePulsantePremuto" text="Leggi commento" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
+                                          <TextArea fx:id="areaDiTestoAdibitoAlCommentoAziendale" editable="false" layoutX="127.0" layoutY="138.0" prefHeight="200.0" prefWidth="200.0" promptText="Per leggere il commento clicca su &quot;Leggi commento&quot; qua sopra." wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+                                             <font>
+                                                <Font name="Baskerville Old Face" size="24.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <BarChart fx:id="andamentoAziendale" onMouseClicked="#visualizzaCommentoAndamentoAziendale" prefHeight="250.0" prefWidth="850.0" title="Andamento Aziendale">
+                                       <xAxis>
+                                          <CategoryAxis fx:id="categoryAzisAziendale" side="BOTTOM" />
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis fx:id="numberAxisAziendale" side="LEFT" />
+                                       </yAxis>
+                                    </BarChart>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="hBoxBitcoin" prefHeight="431.0" prefWidth="1307.0">
+                                 <children>
+                                    <AnchorPane fx:id="anchorPaneBitcoin" prefHeight="400.0" prefWidth="454.0">
+                                       <children>
+                                          <Text fx:id="funzionalitaTextBitcoin" layoutX="171.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funzionalità" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="10.0">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Text>
+                                          <ComboBox fx:id="periodoDiTempoBitcoin" layoutX="20.0" layoutY="56.0" onAction="#periodoDiTempoBitcoinSelezionato" prefWidth="150.0" promptText="Periodo di tempo" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="56.0" />
+                                          <Button fx:id="pulsanteLeggiCommentoBitcoind" layoutX="251.0" layoutY="84.0" mnemonicParsing="false" onAction="#leggiCommentoBitcoinPulsantePremuto" text="Leggi commento" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
+                                          <TextArea fx:id="areaDiTestoAdibitoAlCommentoBitcoin" editable="false" layoutX="132.0" layoutY="143.0" prefHeight="200.0" prefWidth="200.0" promptText="Per leggere il commento clicca su &quot;Leggi commento&quot; qua sopra." wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+                                             <font>
+                                                <Font name="Baskerville Old Face" size="24.0" />
+                                             </font>
+                                          </TextArea>
+                                       </children>
+                                    </AnchorPane>
+                                    <LineChart fx:id="andamentoBitcoin" prefWidth="850.0" title="Andamento Bitcoin">
+                                       <xAxis>
+                                          <CategoryAxis fx:id="categoryAzisBitcoin" side="BOTTOM" />
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis fx:id="numberAxisBitcoin" side="LEFT" />
+                                       </yAxis>
+                                    </LineChart>
+                                 </children>
+                              </HBox>
                            </children>
-                        </AnchorPane>
+                        </VBox>
                      </children>
-                  </HBox>
-                  <HBox prefHeight="431.0" prefWidth="1307.0">
-                     <children>
-                        <LineChart prefWidth="850.0" title="Andamento Bitcoin">
-                          <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis side="LEFT" />
-                          </yAxis>
-                        </LineChart>
-                        <AnchorPane prefHeight="400.0" prefWidth="454.0">
-                           <children>
-                              <ComboBox fx:id="periodoDiTempo1" layoutX="62.0" layoutY="83.0" onAction="#periodoDiTempoSelezionato" prefWidth="150.0" promptText="Periodo di tempo" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="55.0" />
-                              <Button fx:id="pulsanteLeggiCommento1" layoutX="251.0" layoutY="84.0" mnemonicParsing="false" onAction="#leggiCommentoPulsantePremuto" text="Leggi commento" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
-                              <TextArea fx:id="areaDiTestoAdibitoAlCommento1" editable="false" layoutX="132.0" layoutY="143.0" prefHeight="200.0" prefWidth="200.0" promptText="Per leggere il commento clicca su &quot;Leggi commento&quot; qua sopra." wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0" />
-                              <Text fx:id="funzionalitaText2" layoutX="171.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funzionalità" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="10.0">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
          </center>
       </BorderPane>
    </children>

@@ -11,7 +11,7 @@
    <children>
       <ScrollPane fx:id="scrollPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="850.0" prefWidth="1000.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+          <AnchorPane fx:id="anchorPaneBaseDatiRepartiDiProduzione">
                <children>
                   <BorderPane fx:id="borderPaneRepartiDiProduzione">
                      <center>

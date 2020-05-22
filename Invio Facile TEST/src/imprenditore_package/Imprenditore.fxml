@@ -14,26 +14,26 @@
         <menus>
             <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
               <items>
-                  <MenuItem fx:id="menuHome" mnemonicParsing="false" text="Home" />
-                  <MenuItem fx:id="menuDatiAziendali" mnemonicParsing="false" text="Dati aziendali" />
-                  <MenuItem fx:id="menuEmailVeloce" mnemonicParsing="false" text="Email veloce" />
-                  <MenuItem fx:id="menuEsci" mnemonicParsing="false" text="Esci" />
+                  <MenuItem fx:id="menuHome" mnemonicParsing="false" onAction="#tornaAllaHome" text="Home" />
+                  <MenuItem fx:id="menuDatiAziendali" mnemonicParsing="false" onAction="#visualizzaDatiAziendali" text="Dati aziendali" />
+                  <MenuItem fx:id="menuEmailVeloce" mnemonicParsing="false" onAction="#mandaEmailVeloce" text="Email veloce" />
+                  <MenuItem fx:id="menuEsci" mnemonicParsing="false" onAction="#effettuaLogout" text="Esci" />
               </items>
             </Menu>
           <Menu fx:id="menuVisualizza" mnemonicParsing="false" text="Visualizza">
             <items>
-              <MenuItem fx:id="menuLibroGiornale" mnemonicParsing="false" text="Libro Giornale" />
-                  <MenuItem fx:id="menuRepartiDiProduzione" mnemonicParsing="false" text="Reparti di Produzione" />
-                  <MenuItem fx:id="menuCatalogoEMagazzino" mnemonicParsing="false" text="Catalogo e Magazzino" />
-                  <MenuItem fx:id="menuStatistiche" mnemonicParsing="false" text="Statistiche" />
+              <MenuItem fx:id="menuLibroGiornale" mnemonicParsing="false" onAction="#apriLibroGiornale" text="Libro Giornale" />
+                  <MenuItem fx:id="menuRepartiDiProduzione" mnemonicParsing="false" onAction="#apriRepartoDiProduzione" text="Reparti di Produzione" />
+                  <MenuItem fx:id="menuCatalogoEMagazzino" mnemonicParsing="false" onAction="#apriCatalogoEMagazzino" text="Catalogo e Magazzino" />
+                  <MenuItem fx:id="menuStatistiche" mnemonicParsing="false" onAction="#apriStatistiche" text="Statistiche" />
             </items>
           </Menu>
           <Menu fx:id="menuOpzioni" mnemonicParsing="false" text="Opzioni">
             <items>
-              <MenuItem fx:id="menuDatiLibroGiornale" mnemonicParsing="false" text="Dati Libro Giornale" />
-                  <MenuItem fx:id="menuDatiRepartiDiProduzione" mnemonicParsing="false" text="Dati Reparti di Produzione" />
-                  <MenuItem fx:id="menuDatiCatalogoEMagazzino" mnemonicParsing="false" text="Dati Catalogo e del Magazzino" />
-                  <MenuItem fx:id="menuDatiStatistici" mnemonicParsing="false" text="Dati Statistiche" />
+              <MenuItem fx:id="menuDatiLibroGiornale" mnemonicParsing="false" onAction="#visualizzaDatiDelLibroGiornale" text="Dati Libro Giornale" />
+                  <MenuItem fx:id="menuDatiRepartiDiProduzione" mnemonicParsing="false" onAction="#visualizzaDatiDeiRepartiDiProduzione" text="Dati Reparti di Produzione" />
+                  <MenuItem fx:id="menuDatiCatalogoEMagazzino" mnemonicParsing="false" onAction="#visualizzaDatiDelCatalogoEDelMagazzino" text="Dati Catalogo e del Magazzino" />
+                  <MenuItem fx:id="menuDatiStatistici" mnemonicParsing="false" onAction="#visualizzaDatiDelleStatistiche" text="Dati Statistiche" />
             </items>
           </Menu>
           <Menu fx:id="menuAiuto" mnemonicParsing="false" text="Aiuto">
@@ -45,45 +45,11 @@
           </Menu>
         </menus>
       </MenuBar>
-      <SplitPane fx:id="splitPaneImprenditore" dividerPositions="0.3" layoutY="32.0" mouseTransparent="true" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
+      <SplitPane fx:id="splitPaneImprenditore" dividerPositions="0.3" layoutY="32.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
         <items>
-          <AnchorPane fx:id="anchorPaneSinistra" mouseTransparent="true" prefHeight="818.0" prefWidth="309.0">
+          <AnchorPane fx:id="anchorPaneSinistra" prefHeight="818.0" prefWidth="309.0" SplitPane.resizableWithParent="false">
                <children>
                   <Text fx:id="textLibroGiornale" layoutX="106.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libro Giornale">
-                     <font>
-                        <Font name="Bell MT" size="24.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="textRepartiDiProduzione" layoutX="73.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reparti di produzione">
-                     <font>
-                        <Font name="Bell MT" size="24.0" />
-                     </font>
-                  </Text>
-                  <Button fx:id="apriDatiLibroGiornale" layoutX="203.0" layoutY="124.0" mnemonicParsing="false" onAction="#visualizzaDatiDelLibroGiornale" onKeyPressed="#pulsanteEntraDatiLibroGiornalePremuto" onMouseClicked="#visualizzaDatiDelLibroGiornale" prefHeight="50.0" prefWidth="120.0" text="Informazioni" />
-                  <Separator fx:id="separatorUno" layoutX="1.0" layoutY="188.0" prefWidth="200.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" />
-                  <ImageView fx:id="iconaRepartiDiProduzione" fitHeight="100.0" fitWidth="100.0" layoutX="56.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/azienda.png" />
-                     </image>
-                  </ImageView>
-                  <Separator fx:id="separatorDue" layoutX="-1.0" layoutY="377.0" prefWidth="200.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
-                  <Separator fx:id="separatorTre" layoutX="1.0" layoutY="575.0" prefWidth="200.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" />
-                  <ImageView fx:id="iconaCatalogoEMagazzino" fitHeight="100.0" fitWidth="100.0" layoutX="70.0" layoutY="447.0" onMouseClicked="#visualizzaDatiDelCatalogoEDelMagazzino" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../Desktop/Computer/UNICAL/IGPE/Progetto/icons/magazzino.png" />
-                     </image>
-                  </ImageView>
-                  <Text fx:id="textCatalogoEMagazzino" layoutX="70.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catalogo e Magazzino">
-                     <font>
-                        <Font name="Bell MT" size="24.0" />
-                     </font>
-                  </Text>
-                  <ImageView fx:id="iconaStatistica" fitHeight="100.0" fitWidth="100.0" layoutX="78.0" layoutY="641.0" onMouseClicked="#visualizzaDatiDelleStatistiche" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../Desktop/Computer/UNICAL/IGPE/Progetto/icons/statistiche.png" />
-                     </image>
-                  </ImageView>
-                  <Text fx:id="textStatistiche" layoutX="128.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistiche">
                      <font>
                         <Font name="Bell MT" size="24.0" />
                      </font>
@@ -93,14 +59,48 @@
                         <Image url="@../icons/libro_giornale.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="apriDatiRepartiDiProduzione" layoutX="203.0" layoutY="303.0" mnemonicParsing="false" onAction="#visualizzaDatiDeiRepartiDiProduzione" onMouseClicked="#visualizzaDatiDeiRepartiDiProduzione" prefHeight="50.0" prefWidth="120.0" text="Informazioni" />
+                  <Button fx:id="apriDatiLibroGiornale" layoutX="203.0" layoutY="124.0" mnemonicParsing="false" onAction="#visualizzaDatiDelLibroGiornale" prefHeight="50.0" prefWidth="120.0" text="Informazioni" />
+                  <Separator fx:id="separatorUno" layoutX="1.0" layoutY="188.0" prefWidth="200.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" />
+                  <Text fx:id="textRepartiDiProduzione" layoutX="73.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reparti di produzione">
+                     <font>
+                        <Font name="Bell MT" size="24.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="iconaRepartiDiProduzione" fitHeight="100.0" fitWidth="100.0" layoutX="56.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/azienda.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="apriDatiRepartiDiProduzione" layoutX="203.0" layoutY="303.0" mnemonicParsing="false" onAction="#visualizzaDatiDeiRepartiDiProduzione" prefHeight="50.0" prefWidth="120.0" text="Informazioni" />
+                  <Separator fx:id="separatorDue" layoutX="-1.0" layoutY="377.0" prefWidth="200.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
+                  <Text fx:id="textCatalogoEMagazzino" layoutX="70.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catalogo e Magazzino">
+                     <font>
+                        <Font name="Bell MT" size="24.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="iconaCatalogoEMagazzino" fitHeight="100.0" fitWidth="100.0" layoutX="70.0" layoutY="447.0" onMouseClicked="#visualizzaDatiDelCatalogoEDelMagazzino" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../Documents/GitHub/GestionaleIGPE/Invio%20Facile%20TEST/src/icons/magazzino.png" />
+                     </image>
+                  </ImageView>
                   <Button fx:id="apriDatiCatalogoMagazzino" layoutX="203.0" layoutY="497.0" mnemonicParsing="false" onAction="#visualizzaDatiDelCatalogoEDelMagazzino" prefHeight="50.0" prefWidth="120.0" text="Informazioni" />
+                  <Separator fx:id="separatorTre" layoutX="1.0" layoutY="575.0" prefWidth="200.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" />
+                  <Text fx:id="textStatistiche" layoutX="128.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistiche">
+                     <font>
+                        <Font name="Bell MT" size="24.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="iconaStatistica" fitHeight="100.0" fitWidth="100.0" layoutX="78.0" layoutY="641.0" onMouseClicked="#visualizzaDatiDelleStatistiche" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../Documents/GitHub/GestionaleIGPE/Invio%20Facile%20TEST/src/icons/statistiche.png" />
+                     </image>
+                  </ImageView>
                   <Button fx:id="apriDatiStatistiche" layoutX="203.0" layoutY="691.0" mnemonicParsing="false" onAction="#visualizzaDatiDelleStatistiche" prefHeight="50.0" prefWidth="120.0" text="Informazioni" />
                </children>
             </AnchorPane>
           <AnchorPane fx:id="anchorPaneDestra" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <BorderPane fx:id="borderpaneDiDestra" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <BorderPane fx:id="borderpaneDiDestra" prefHeight="850.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>
