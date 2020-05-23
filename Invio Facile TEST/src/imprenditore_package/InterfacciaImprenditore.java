@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
@@ -15,10 +16,8 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Separator;
 import javafx.scene.control.SplitPane;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -59,7 +58,21 @@ private AnchorPane imprenditoreAnchorPane;
 			@FXML
 			private MenuItem menuDatiAziendali;
 				@FXML 
-	    		void visualizzaDatiAziendali(ActionEvent event) {}
+	    		void visualizzaDatiAziendali(ActionEvent event) {
+					Alert dialogo = new Alert(AlertType.INFORMATION); 
+					dialogo.setTitle("Dati aziendali");
+					dialogo.setResizable(true); 
+
+					try {
+						AnchorPane datiAziendali = (AnchorPane) FXMLLoader.load(getClass().getResource( "/util_package/DatiAziendali.fxml" ));
+						dialogo.getDialogPane().setContent(datiAziendali);
+						dialogo.showAndWait();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
 			@FXML
 			private MenuItem menuEmailVeloce;
 				@FXML
@@ -179,7 +192,6 @@ private AnchorPane imprenditoreAnchorPane;
 		private BorderPane borderpaneDiDestra;
 		    @FXML
 			void visualizzaDatiDelLibroGiornale(ActionEvent event) {
-		    	
 		    	visualizzaDati ("DatiLibroGiornale");
 		    }
 		    @FXML

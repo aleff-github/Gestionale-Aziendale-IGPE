@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPaneDatiAziendali" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="util_package.ControllerDatiAziendali">
+   <children>
+      <BorderPane fx:id="borderPaneDatiAziendali" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <HBox fx:id="hBoxDatiAziendali" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane fx:id="griPaneDatiAziendali" prefHeight="600.0" prefWidth="800.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label fx:id="ragioneSocialeLabel" alignment="CENTER" text="Ragione sociale" GridPane.halignment="CENTER">
+                           <font>
+                              <Font name="Baskerville Old Face" size="36.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="ragioneSocialeField" alignment="CENTER" promptText="Ragione socale dell'azienda" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label fx:id="partitaIvaLabel" alignment="CENTER" text="P.Iva" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Baskerville Old Face" size="36.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="partitaIvaField" alignment="CENTER" promptText="Partita iva aziendale" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label fx:id="codiceUnivocoLabel" alignment="CENTER" text="Cod. Univoco" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Baskerville Old Face" size="36.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="codiceUnivocoField" alignment="CENTER" promptText="Codice univoco aziendale" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label fx:id="titolareLabel" alignment="CENTER" text="Titolare" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Baskerville Old Face" size="36.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="titolareField" alignment="CENTER" promptText="Titolare dell'azienda" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label fx:id="emailLabel" alignment="CENTER" text="Email" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Baskerville Old Face" size="36.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="emailField" alignment="CENTER" promptText="Email aziendale" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label fx:id="capitaleSocialeLabel" alignment="CENTER" text="Cap. Sociale" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Baskerville Old Face" size="36.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="capitaleSocialeField" alignment="CENTER" promptText="Capitale sociale aziendale" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+         </center>
+         <top>
+            <HBox fx:id="hBoxMenuDatiAziendali" prefHeight="100.0" prefWidth="800.0" BorderPane.alignment="TOP_CENTER">
+               <children>
+                  <ImageView fx:id="logoAziendale" fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/logo_iPear.jpg" />
+                     </image>
+                  </ImageView>
+                  <VBox fx:id="vBoxTitoloAzienda" prefHeight="200.0" prefWidth="250.0">
+                     <children>
+                        <Label fx:id="labelDatiAziendali" alignment="CENTER" text="Dati Aziendali">
+                           <font>
+                              <Font name="Baskerville Old Face" size="36.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="labelIPear" alignment="CENTER" layoutX="10.0" layoutY="10.0" text="iPear">
+                           <font>
+                              <Font name="Baskerville Old Face" size="36.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <BorderPane fx:id="borderPanePulsanti" layoutX="360.0" layoutY="10.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="104.0" prefWidth="421.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <center>
+                        <Button fx:id="pulsanteSalvaEChiudi" mnemonicParsing="false" onAction="#salvaEChiudi" text="Salva" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </BorderPane.margin>
+                           <font>
+                              <Font name="Baskerville Old Face" size="20.0" />
+                           </font>
+                        </Button>
+                     </center>
+                     <left>
+                        <Button fx:id="pulsanteModifica" mnemonicParsing="false" onAction="#modificaDatiAziendali" text="Modifica" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="Baskerville Old Face" size="20.0" />
+                           </font>
+                           <BorderPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </BorderPane.margin>
+                        </Button>
+                     </left>
+                     <right>
+                        <Button fx:id="pulsanteAnnulla" mnemonicParsing="false" onAction="#annullaModifiche" text="Annulla" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="Baskerville Old Face" size="20.0" />
+                           </font>
+                        </Button>
+                     </right>
+                  </BorderPane>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </HBox>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>

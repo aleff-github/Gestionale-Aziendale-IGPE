@@ -97,8 +97,8 @@ public class ControllerVoceLibroGiornale {
 			try {
 				if (opzioneScelta.get() == buttonTypeAggiungi) {
 					//DATA
-					String data = dataPicker.getValue().toString();
-					System.out.println(dataPicker.getValue().toString());
+					String data = dataPicker.toString();
+					System.out.println(dataPicker.toString());
 					
 					//NUMERO DOCUMENTO
 					Integer documentoNumero;

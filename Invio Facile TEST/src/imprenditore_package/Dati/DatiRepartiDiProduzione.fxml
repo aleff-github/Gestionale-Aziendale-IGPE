@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox fx:id="hBoxRepartiDiProduzione" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imprenditore_package.ControllerDatiDaStampare">
+<HBox fx:id="hBoxRepartiDiProduzione" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imprenditore_package.ControllerDatiRepartiDiProduzione">
    <children>
       <ScrollPane fx:id="scrollPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="850.0" prefWidth="1000.0">
         <content>

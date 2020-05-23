@@ -17,27 +17,28 @@ import util_package.GestisciInterfacce;
 
 public class ControllerDatiDaStampare {
 	
-//	@FXML
-//	public void initialize() {
-////		LIBRO GIORNALE - SETTING
-////			try {
-////				String vociTotali = String.valueOf( ControllerLibroGiornale.getVociTotali() );
-////					numeroVociTotale.setText(vociTotali);
-////				String dareTotale = String.valueOf(ControllerLibroGiornale.getDareTotale());
-////					numeroDareTotale.setText(dareTotale);
-////				String avereTotale = String.valueOf(ControllerLibroGiornale.getAvereTotale());
-////				numeroAvvereTotale.setText(avereTotale);
-////			}catch(IllegalArgumentException ecc) {
-////				ecc.printStackTrace();
-////			}
-//	}
-	
 	/* * * * * * * * * * * **
 	 *                      *
 	 *    LIBRO GIORNALE    *
 	 *                      * 
 	 *                      *
 	 * * * * * * * * * * * */
+	
+	@FXML
+	public void initialize() {
+//		LIBRO GIORNALE - SETTING
+			try {
+				String vociTotali = String.valueOf( ControllerLibroGiornale.getVociTotali() );
+					numeroVociTotale.setText(vociTotali);
+				String dareTotale = String.valueOf(ControllerLibroGiornale.getDareTotale());
+					numeroDareTotale.setText(dareTotale);
+				String avereTotale = String.valueOf(ControllerLibroGiornale.getAvereTotale());
+				numeroAvvereTotale.setText(avereTotale);
+			}catch(IllegalArgumentException ecc) {
+				ecc.printStackTrace();
+			}
+	}
+
 	@FXML
     private HBox hBoxLibroGiornale;
 		@FXML
@@ -73,96 +74,4 @@ public class ControllerDatiDaStampare {
 					@FXML
 					private Text numeroAvvereTotale; //NUMERO AVERE TOTALE
 
-	/* * * * * * * * * * * **
-	 *                      *
-	 * REPARTI DI PRODUZIONE *
-	 *                      * 
-	 *                      *
-	 * * * * * * * * * * * */
-					
-	@FXML
-	private HBox hBoxRepartiDiProduzione;
-		@FXML
-	    private ScrollPane scrollPane;
-			@FXML
-			private AnchorPane anchorPaneBaseDatiRepartiDiProduzione;
-				@FXML
-			    private BorderPane borderPaneRepartiDiProduzione;
-					@FXML
-				    private HBox hBoxTitoloRepartiDiProduzione;
-						@FXML
-					    private ImageView repartiDiProduzioneIcon;
-						@FXML
-					    private VBox vBoxTitoloEPulsanteRepartiDiProduzione;
-							@FXML
-						    private Text repartiDiProduzioneTitolo;
-							@FXML
-						    private BorderPane borderPanePulsanteRepartiDiProduzione;
-								@FXML
-							    private Button pulsanteVaiARepartiDiProduzione;
-									@FXML
-									void apriRepartiDiProduzione(ActionEvent event) {
-										GestisciInterfacce.setFinestra("Reparti Di Produzione");
-								    }
-						@FXML
-						private GridPane gridPaneDatiRepartiDiProduzione;
-							@FXML
-						    private HBox hBoxDatiContenutiRepartoDiProduzione;
-								@FXML
-							    private BorderPane borderPaneDatiFabbricazioneEMontaggio;
-									@FXML
-								    private ImageView iconaDatiFabbricazioneEMontaggio;
-									@FXML
-								    private Text datiFabbricazioneEMontaggioTitolo;
-									@FXML
-								    private Button pulsanteGeneraCommentoDatiFabbricazioneEMontaggio;
-										@FXML
-									    void generaCommentoFabbricazioneEMontaggio(ActionEvent event) {
-			
-									    }
-								@FXML
-								private TextArea areaDiTestoCommentoFabbricazioneEMontaggio;
-								@FXML
-							    private BorderPane borderPaneDatiTestDiResistenzaAmbientale;
-									@FXML
-								    private ImageView iconaDatiTestDiResistenzaAmbientale;
-									@FXML
-								    private Text titoloDatiTestDiResistenzaAmbientale;
-									@FXML
-								    private Button pulsanteDatiTestDiResistenzaAmbientale;
-										@FXML
-									    void generaCommentoTestDiResistenzaAmbientale(ActionEvent event) {
-			
-									    }
-								@FXML
-								private TextArea textAreaDatiTestDiResistenzaAmbientale;
-								@FXML
-								private BorderPane borderPaneDatiPulizziaEImballaggio;
-									@FXML
-								    private ImageView iconaDatiPulizziaEImballaggio;
-									@FXML
-								    private Text titoloDatiPulizziaEImballaggio;
-									@FXML
-								    private Button pulsanteDatiPulizziaEImballaggio;
-									@FXML
-								    void generaCommentoPulizziaEImballaggio(ActionEvent event) {
-		
-								    }	
-								@FXML
-								private TextArea textAreaDatiPulizziaEImballaggio;
-	/* * * * * * * * * * * **
-	 *                      *
-	 * CATALOGO E MAGAZZINO *
-	 *                      * 
-	 *                      *
-	 * * * * * * * * * * * */
-							//TODO
-							
-	/* * * * * * * * * * * **
-	*                      *
-	*     STATISTICHE      *
-	*                      * 
-	*                      *
-	* * * * * * * * * * * */
-							//TODO
 }

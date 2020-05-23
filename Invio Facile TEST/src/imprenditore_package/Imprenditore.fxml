@@ -45,7 +45,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <SplitPane fx:id="splitPaneImprenditore" dividerPositions="0.3" layoutY="32.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
+      <SplitPane fx:id="splitPaneImprenditore" dividerPositions="0.3" layoutY="32.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
         <items>
           <AnchorPane fx:id="anchorPaneSinistra" prefHeight="818.0" prefWidth="309.0" SplitPane.resizableWithParent="false">
                <children>
@@ -98,7 +98,7 @@
                   <Button fx:id="apriDatiStatistiche" layoutX="203.0" layoutY="691.0" mnemonicParsing="false" onAction="#visualizzaDatiDelleStatistiche" prefHeight="50.0" prefWidth="120.0" text="Informazioni" />
                </children>
             </AnchorPane>
-          <AnchorPane fx:id="anchorPaneDestra" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane fx:id="anchorPaneDestra" prefHeight="850.0" prefWidth="1000.0">
                <children>
                   <BorderPane fx:id="borderpaneDiDestra" prefHeight="850.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children></AnchorPane>

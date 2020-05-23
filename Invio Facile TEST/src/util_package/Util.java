@@ -18,7 +18,8 @@ import libro_giornale.VoceLibroGiornale;
 public class Util {
 	private static Application app;
 	
-	public Util () {}
+	public Util () {
+	}
 	
 	public static void setApplication (Application app) {
 		Util.app = app;
@@ -36,6 +37,8 @@ public class Util {
 //		Platform.runLater(  );
 		//TODO
 	}
+	
+
 	
 	/* * * * * * * * **
 	 *                *
@@ -152,7 +155,6 @@ public class Util {
 	public static Double getAvere () {
 		return ultimaVoceAggiunta.getAvere();
 	}
-	
 	
 	
 }
