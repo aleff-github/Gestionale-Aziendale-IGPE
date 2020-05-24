@@ -103,18 +103,34 @@ public class ControllerLibroGiornale {
 			    private Button pulsanteAggiungi;
 			    
     @FXML
-    public void aggiungiVoceManualmente(ActionEvent event) throws IOException {
-    	ControllerVoceLibroGiornale a = new ControllerVoceLibroGiornale();
-    	
-    	if( a.popupAggiungiVoce() ) {
-    		tableView.getItems().clear();
-    		tableView.setItems(Util.tableViewAggiornata());
-    		vociTotali++;
-    	    dareTotale += Util.getDare();
-    	 	avereTotale += Util.getAvere();
-    	}
-    	
+    public void aggiungiVoceManualmente(ActionEvent event) {
+    	Alert dialogo = new Alert(AlertType.INFORMATION); 
+		dialogo.setTitle("Aggiungi voce");
+		dialogo.setHeaderText("Se riscontri problemi nell'inserimento dei dati contatta l'assistenza.");
+		dialogo.setResizable(true); 
+		
+		try {
+			AnchorPane aggiungiVoce = (AnchorPane) FXMLLoader.load(getClass().getResource( "PopupAggiungiVoce.fxml" ));
+			dialogo.getDialogPane().setContent(aggiungiVoce);
+			dialogo.showAndWait();
+			
+			if(Util.eStataAggiuntaUnaVoce) {
+//	    		tableView.getItems().clear();
+	    		tableView.setItems(Util.tableViewAggiornata());
+	    		vociTotali++;
+	    	    dareTotale += Util.getDare();
+	    	 	avereTotale += Util.getAvere();
+	    	 	Util.eStataAggiuntaUnaVoce = false;
+			}
+
+			dialogo.close();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+		
     }
+
 
     @FXML
     private Menu menuFile;

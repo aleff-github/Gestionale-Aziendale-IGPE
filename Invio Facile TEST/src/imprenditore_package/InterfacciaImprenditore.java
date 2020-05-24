@@ -61,12 +61,13 @@ private AnchorPane imprenditoreAnchorPane;
 	    		void visualizzaDatiAziendali(ActionEvent event) {
 					Alert dialogo = new Alert(AlertType.INFORMATION); 
 					dialogo.setTitle("Dati aziendali");
-					dialogo.setResizable(true); 
+					dialogo.setResizable(true);
 
 					try {
 						AnchorPane datiAziendali = (AnchorPane) FXMLLoader.load(getClass().getResource( "/util_package/DatiAziendali.fxml" ));
 						dialogo.getDialogPane().setContent(datiAziendali);
 						dialogo.showAndWait();
+						
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

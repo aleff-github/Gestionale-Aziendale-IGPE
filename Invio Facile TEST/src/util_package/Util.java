@@ -111,6 +111,7 @@ public class Util {
 	
 	private static ObservableList<VoceLibroGiornale> incastratoreDiLibri;
 	private static VoceLibroGiornale ultimaVoceAggiunta;
+	public static boolean eStataAggiuntaUnaVoce = false;
 	
 	public static ObservableList<VoceLibroGiornale> creaTableViewLibroGiornale (){
 		incastratoreDiLibri = FXCollections.observableArrayList(
@@ -142,6 +143,7 @@ public class Util {
 	public static void aggiungiVoce (VoceLibroGiornale v) {
 		incastratoreDiLibri.add(v);
 		ultimaVoceAggiunta = v;
+		eStataAggiuntaUnaVoce = true;
 	}
 	
 	public static ObservableList<VoceLibroGiornale> tableViewAggiornata (){

@@ -9,37 +9,150 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:id="gridPaneAggiungiVoce" hgap="14.0" maxHeight="+Infinity" maxWidth="+Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libro_giornale.ControllerVoceLibroGiornale">
-  <children>
-      <Text fx:id="textIva" strokeType="OUTSIDE" strokeWidth="0.0" text="IVA %" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-      <Text fx:id="textData" strokeType="OUTSIDE" strokeWidth="0.0" text="Data" GridPane.halignment="CENTER" />
-      <Text fx:id="textDocumentoNumero" strokeType="OUTSIDE" strokeWidth="0.0" text="Documento Numero" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <Text fx:id="textDescrizione" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrizione" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Text fx:id="textDare" strokeType="OUTSIDE" strokeWidth="0.0" text="Dare" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-      <Text fx:id="textAvere" strokeType="OUTSIDE" strokeWidth="0.0" text="Avere" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-      <TextField fx:id="textFieldNumero" promptText="Compreso tra 1 e 999" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <TextField fx:id="textFieldAvere" promptText="1,000.00" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-      <TextField fx:id="textFieldDare" promptText="1,000.00" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-      <TextField fx:id="textFieldDescrizione" promptText="Esempio: Merci c/Acquisto" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <Text fx:id="textReparto" strokeType="OUTSIDE" strokeWidth="0.0" text="Reparto" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-      <ComboBox fx:id="scegliReparto" prefWidth="150.0" promptText="Scegli" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-      <ComboBox fx:id="scegliIva" prefWidth="150.0" promptText="Scegli" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-      <DatePicker fx:id="dataPicker" promptText="Seleziona data" showWeekNumbers="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-  </children>
-  <columnConstraints>
-    <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" />
-    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="+Infinity" minWidth="-Infinity" />
-  </columnConstraints>
-  <padding>
-    <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
-  </padding>
-  <rowConstraints>
-      <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-  </rowConstraints>
-</GridPane>
+
+<AnchorPane fx:id="anchorPaneAggiungiVoceBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="libro_giornale.ControllerVoceLibroGiornale">
+   <children>
+      <BorderPane fx:id="borderPaneAggiungiVoce" layoutX="8.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <GridPane fx:id="gridPaneAggiungiVoce" hgap="14.0" maxHeight="+Infinity" maxWidth="+Infinity" vgap="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text fx:id="textData" strokeType="OUTSIDE" strokeWidth="0.0" text="Data" GridPane.halignment="CENTER">
+                     <font>
+                        <Font name="Baskerville Old Face" size="24.0" />
+                     </font>
+                  </Text>
+                  <DatePicker fx:id="dataPicker" promptText="Seleziona data" showWeekNumbers="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                  <Text fx:id="textDocumentoNumero" strokeType="OUTSIDE" strokeWidth="0.0" text="Documento Numero" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Baskerville Old Face" size="24.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="textFieldNumero" promptText="Compreso tra 1 e 999" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Text fx:id="textDescrizione" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrizione" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Baskerville Old Face" size="24.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="textFieldDescrizione" promptText="Esempio: Merci c/Acquisto" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Text fx:id="textReparto" strokeType="OUTSIDE" strokeWidth="0.0" text="Reparto" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Baskerville Old Face" size="24.0" />
+                     </font>
+                  </Text>
+                  <ComboBox fx:id="scegliReparto" prefWidth="150.0" promptText="Scegli" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <Text fx:id="textIva" strokeType="OUTSIDE" strokeWidth="0.0" text="IVA %" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Baskerville Old Face" size="24.0" />
+                     </font>
+                  </Text>
+                  <ComboBox fx:id="scegliIva" prefWidth="150.0" promptText="Scegli" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Text fx:id="textDare" strokeType="OUTSIDE" strokeWidth="0.0" text="Dare" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Baskerville Old Face" size="24.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="textFieldDare" promptText="1,000.00" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Text fx:id="textAvere" strokeType="OUTSIDE" strokeWidth="0.0" text="Avere" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Baskerville Old Face" size="24.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="textFieldAvere" promptText="1,000.00" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </GridPane.margin>
+                  </TextField>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="+Infinity" minWidth="-Infinity" />
+               </columnConstraints>
+               <padding>
+                  <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+               </padding>
+               <rowConstraints>
+                  <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints maxHeight="Infinity" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+               </rowConstraints>
+            </GridPane>
+         </center>
+         <top>
+            <HBox fx:id="hBoxMenuAggiungiVocePulsanti" prefHeight="100.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="logoAziendale" fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/logo_iPear.jpg" />
+                     </image>
+                  </ImageView>
+                  <VBox fx:id="vBoxTitoloAzienda" prefHeight="200.0" prefWidth="250.0">
+                     <children>
+                        <Label fx:id="labelAggiungiVoce" alignment="CENTER" text="Aggiungi Voce">
+                           <font>
+                              <Font name="Baskerville Old Face" size="36.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="labelIPear" alignment="CENTER" layoutX="10.0" layoutY="10.0" text="iPear">
+                           <font>
+                              <Font name="Baskerville Old Face" size="36.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <BorderPane fx:id="borderPanePulsanti" layoutX="360.0" layoutY="10.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="104.0" prefWidth="421.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <center>
+                        <HBox fx:id="hBoxPulsanti" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="TOP_CENTER">
+                           <children>
+                              <BorderPane fx:id="borderPaneAggiungi" prefHeight="200.0" prefWidth="200.0">
+                                 <center>
+                                    <Button fx:id="pulsanteAggiungi" alignment="CENTER" mnemonicParsing="false" onAction="#aggiungiVoce" text="Aggiungi" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="20.0" />
+                                       </font>
+                                    </Button>
+                                 </center>
+                              </BorderPane>
+                              <BorderPane fx:id="borderPaneAnnulla" prefHeight="200.0" prefWidth="200.0">
+                                 <center>
+                                    <Button fx:id="pulsanteAnnulla" alignment="CENTER" mnemonicParsing="false" onAction="#annullaVoce" text="Annulla" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="20.0" />
+                                       </font>
+                                    </Button>
+                                 </center>
+                              </BorderPane>
+                           </children>
+                        </HBox>
+                     </center>
+                  </BorderPane>
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>
