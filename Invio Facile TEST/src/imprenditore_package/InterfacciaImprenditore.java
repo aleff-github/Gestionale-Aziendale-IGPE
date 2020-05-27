@@ -31,18 +31,7 @@ import util_package.GestisciInterfacce;
 import util_package.Util;
 
 public class InterfacciaImprenditore  {
-	
-	@FXML
-	public void initialize () {
-		Image immagineSfondoPannelloLogin = new Image("/backgrounds/sfondo_generico.png"); //Prendo l'immagine
-		// BackgroundSize(width, height, widthAsPercentage, heightAsPercentage, contain, cover)
-		BackgroundSize backgroundPannelloSize = new BackgroundSize(100, 100, true, true, true, true); //Setto le impostazioni del background
-		// new BackgroundImage(image, repeatX, repeatY, position, size)
-		BackgroundImage backgroundPannelloLogin= new BackgroundImage(immagineSfondoPannelloLogin,	//Creo il background
-				BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER,
-				backgroundPannelloSize );
-		splitPaneImprenditore.setBackground(new Background(backgroundPannelloLogin)); //Setto il background
-	}
+
 	
 @FXML
 private AnchorPane imprenditoreAnchorPane;  

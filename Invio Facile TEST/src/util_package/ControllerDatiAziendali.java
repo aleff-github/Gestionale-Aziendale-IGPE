@@ -65,21 +65,16 @@ public class ControllerDatiAziendali {
 						@FXML
 					    private TextField capitaleSocialeField;
  
-	private String ragioneSocialeTemp = "iPear, azienda di produzione di oggetti tecnologici e informatici.";
-    private String partitaIvaTemp = "IT 11359591002";
-    private String codiceUnivocoTemp = "ZJ1UHX";
-	private String titolareTemp = "Stefano Mestieri";
-	private String emailTemp = "info@ipear.com";
-	private String capitaleSocialeTemp = "2.402.550.510,11";
+	
 	
 	@FXML
 	public void initialize() {
-		ragioneSocialeField.setText(ragioneSocialeTemp);
-		partitaIvaField.setText(partitaIvaTemp);
-		codiceUnivocoField.setText(codiceUnivocoTemp);
-		titolareField.setText(titolareTemp);
-		emailField.setText(emailTemp);
-		capitaleSocialeField.setText(capitaleSocialeTemp); //Data e morte di Steve Jobs
+		ragioneSocialeField.setText(Util.ragioneSociale);
+		partitaIvaField.setText(Util.partitaIva);
+		codiceUnivocoField.setText(Util.codiceUnivoco);
+		titolareField.setText(Util.titolare);
+		emailField.setText(Util.email);
+		capitaleSocialeField.setText(Util.capitaleSociale); 
 		
 		ragioneSocialeField.setEditable(false);
 		partitaIvaField.setEditable(false);
@@ -92,6 +87,13 @@ public class ControllerDatiAziendali {
 	
     @FXML
     void salvaEChiudi(ActionEvent event) {
+    	Util.datiAziendaliCambiati(ragioneSocialeField.getText(),	
+						    			partitaIvaField.getText(),	
+						    			codiceUnivocoField.getText(), 	
+						    			titolareField.getText(), 	
+						    			emailField.getText(), 	
+						    			capitaleSocialeField.getText());
+    	
     	ragioneSocialeField.setEditable(false);
 		partitaIvaField.setEditable(false);
 		codiceUnivocoField.setEditable(false);
@@ -102,13 +104,6 @@ public class ControllerDatiAziendali {
 
     @FXML
     void modificaDatiAziendali(ActionEvent event) {
-    	//ACUISISCO LE MODIFICHE INIZIALI
-    	ragioneSocialeTemp = ragioneSocialeField.getText();
-    	partitaIvaTemp = partitaIvaField.getText();
-    	codiceUnivocoTemp = codiceUnivocoField.getText();
-    	titolareTemp = titolareField.getText();
-    	emailTemp = emailField.getText();
-    	capitaleSocialeTemp = capitaleSocialeField.getText();
     	 
     	ragioneSocialeField.setEditable(true);
 		partitaIvaField.setEditable(true);
@@ -121,12 +116,12 @@ public class ControllerDatiAziendali {
     @FXML
     void annullaModifiche(ActionEvent event) {
     	//RIPRISTINO LE MODIFICHE
-    	ragioneSocialeField.setText(ragioneSocialeTemp);
-		partitaIvaField.setText(partitaIvaTemp);
-		codiceUnivocoField.setText(codiceUnivocoTemp);
-		titolareField.setText(titolareTemp);
-		emailField.setText(emailTemp);
-		capitaleSocialeField.setText(capitaleSocialeTemp);
+    	ragioneSocialeField.setText(Util.ragioneSociale);
+		partitaIvaField.setText(Util.partitaIva);
+		codiceUnivocoField.setText(Util.codiceUnivoco);
+		titolareField.setText(Util.titolare);
+		emailField.setText(Util.email);
+		capitaleSocialeField.setText(Util.capitaleSociale);
     	
     	ragioneSocialeField.setEditable(false);
 		partitaIvaField.setEditable(false);

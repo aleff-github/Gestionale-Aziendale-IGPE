@@ -1,5 +1,6 @@
 package libro_giornale;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,11 +106,15 @@ public class ControllerVoceLibroGiornale {
 		
 		
 	}
+    
+    public static boolean flag = true;
 
     @FXML
     void aggiungiVoce(ActionEvent event) {
+    	
 		//DATA
-		String data = dataPicker.toString().toString();
+		LocalDate localData = dataPicker.getValue();
+		String data = localData.toString();
 		
 		//NUMERO DOCUMENTO
 		Integer documentoNumero = -1;
@@ -122,6 +127,7 @@ public class ControllerVoceLibroGiornale {
 				alert.setContentText("Non puoi inserire un numero negativo come numero del documento.");
 
 				alert.showAndWait();
+				flag = false;
 			}
 			else if (documentoNumero > 10000) {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -130,6 +136,7 @@ public class ControllerVoceLibroGiornale {
 				alert.setContentText("Non puoi inserire un numero del documento superiore a 10000.");
 
 				alert.showAndWait();
+				flag = false;
 			}
 		}catch(NumberFormatException errore){
 			Alert alert = new Alert(AlertType.ERROR);
@@ -138,6 +145,7 @@ public class ControllerVoceLibroGiornale {
 			alert.setContentText("Puoi inserire solo un numero nel campo \"Documento N.\", non sono ammessi altri caratteri.");
 
 			alert.showAndWait();
+			flag = false;
 		}
 		//DESCRIZIONE
 		String descrizione = textFieldDescrizione.getText();
@@ -150,6 +158,7 @@ public class ControllerVoceLibroGiornale {
 			alert.setContentText("Per continuare devi necessariamente scegliare un reparto.");
 
 			alert.showAndWait();
+			flag = false;
 		}
 		
 		//REPARTO
@@ -160,6 +169,7 @@ public class ControllerVoceLibroGiornale {
 			alert.setContentText("Per continuare devi necessariamente scegliare un reparto.");
 
 			alert.showAndWait();
+			flag = false;
 		}
 		String repartoScelto = scegliReparto.getValue();
 		
@@ -171,6 +181,7 @@ public class ControllerVoceLibroGiornale {
 			alert.setContentText("Per continuare devi necessariamente scegliare un iva.");
 
 			alert.showAndWait();
+			flag = false;
 		}
 		Integer ivaScelta = scegliIva.getValue();
 
@@ -188,6 +199,7 @@ public class ControllerVoceLibroGiornale {
 				alert.setContentText("Non puoi inserire sia Dare che Avere");
 
 				alert.showAndWait();
+				flag = false;
 			}
 			else if(dare == 0.0 && avere == 0.0) {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -196,6 +208,7 @@ public class ControllerVoceLibroGiornale {
 				alert.setContentText("Devi inserire almeno un valore in Dare o in Avere");
 
 				alert.showAndWait();
+				flag = false;
 			}
 		}catch(NumberFormatException errore) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -204,10 +217,11 @@ public class ControllerVoceLibroGiornale {
 			alert.setContentText("Puoi inserire solo un numero sia nel campo \"Dare\" che nel campo \"Avere\", non sono ammessi altri caratteri e ricorda di usare il punto e non la virgola. \nSe inserisci un valore in Dare ricorda di mettere 0 in Avere (e viceversa)");
 
 			alert.showAndWait();
+			flag = false;
 		}
 //				public VoceLibroGiornale(String data, Integer documentoNumero, String descrizione, String reparto, Integer iva, Double dare, Double avere)
-		
-		Util.aggiungiVoce(new VoceLibroGiornale(data, documentoNumero, descrizione, repartoScelto, ivaScelta, dare, avere));
+		if(flag)
+			Util.aggiungiVoce(new VoceLibroGiornale(data, documentoNumero, descrizione, repartoScelto, ivaScelta, dare, avere));
     }
 
     @FXML

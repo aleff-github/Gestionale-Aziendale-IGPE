@@ -112,10 +112,31 @@ public class ControllerLibroGiornale {
 		try {
 			AnchorPane aggiungiVoce = (AnchorPane) FXMLLoader.load(getClass().getResource( "PopupAggiungiVoce.fxml" ));
 			dialogo.getDialogPane().setContent(aggiungiVoce);
-			dialogo.showAndWait();
+			
+			dialogo.getButtonTypes().clear();
+			ButtonType termina = new ButtonType("Termina");
+			dialogo.getButtonTypes().add(termina);
+			Optional<ButtonType> res1 = dialogo.showAndWait();
+			if (res1.get() == termina){
+				dialogo.close(); //NON CHIUDE IL POPUP
+				Alert alert = new Alert(AlertType.WARNING); 
+				alert.setTitle("Attenzione!");
+				alert.setHeaderText("Sei sicuro di voler chiudere? I dati non salvati andranno persi.");
+				alert.setResizable(true); 
+				
+				ButtonType conferma = new ButtonType("Conferma");
+				ButtonType annulla = new ButtonType("Annulla");
+				alert.getButtonTypes().clear();
+				alert.getButtonTypes().addAll(conferma, annulla);
+				
+				Optional<ButtonType> res2 = alert.showAndWait();
+				if(res2.get() == annulla) {
+					aggiungiVoceManualmente(event);
+				}
+				else {/*CHIUDI*/}
+			} else {/*CHIUDI*/}
 			
 			if(Util.eStataAggiuntaUnaVoce) {
-//	    		tableView.getItems().clear();
 	    		tableView.setItems(Util.tableViewAggiornata());
 	    		vociTotali++;
 	    	    dareTotale += Util.getDare();
@@ -123,7 +144,6 @@ public class ControllerLibroGiornale {
 	    	 	Util.eStataAggiuntaUnaVoce = false;
 			}
 
-			dialogo.close();
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

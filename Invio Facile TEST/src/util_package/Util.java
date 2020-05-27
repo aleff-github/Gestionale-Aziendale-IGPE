@@ -37,24 +37,37 @@ public class Util {
 //		Platform.runLater(  );
 		//TODO
 	}
-	
 
 	
 	/* * * * * * * * **
 	 *                *
-	 *SFONDO GENERICO *
+	 * DATI AZIENDALI *
 	 *                *
 	 * * * * * * * * */
 	
-	public static void sfondoGenerico (Pane a) {
-		Image immagineSfondoPannelloLogin = new Image("/backgrounds/sfondo_generico.png");
-		// BackgroundSize(width, height, widthAsPercentage, heightAsPercentage, contain, cover)
-		BackgroundSize backgroundPannelloSize = new BackgroundSize(100, 100, true, true, true, true);
-		// new BackgroundImage(image, repeatX, repeatY, position, size)
-		BackgroundImage backgroundPannelloLogin= new BackgroundImage(immagineSfondoPannelloLogin,	
-				BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER,
-				backgroundPannelloSize );
-		a.setBackground(new Background(backgroundPannelloLogin));
+	public static String ragioneSociale;
+	public static String partitaIva;
+	public static String codiceUnivoco;
+	public static String titolare;
+	public static String email;
+	public static String capitaleSociale; 
+	
+	public static void settaDatiPrimitiviAziendali () {
+		ragioneSociale = "iPear, azienda di produzione di oggetti tecnologici e informatici.";
+		partitaIva = "IT 11359591002";
+		codiceUnivoco = "ZJ1UHX";
+		titolare = "Stefano Mestieri";
+		email = "info@ipear.com";
+		capitaleSociale = "2.402.550.510,11"; //Data e morte di Steve Jobs 
+	}
+	
+	public static void datiAziendaliCambiati (String ragioneSociale_, String partitaIva_, String codiceUnivoco_, String titolare_, String email_, String capitaleSociale_) {
+		ragioneSociale = ragioneSociale_;
+		partitaIva = partitaIva_;
+		codiceUnivoco = codiceUnivoco_;
+		titolare = titolare_;
+		email = email_;
+		capitaleSociale = capitaleSociale_;
 	}
 	
 	/* * * * * * * * **
@@ -112,6 +125,7 @@ public class Util {
 	private static ObservableList<VoceLibroGiornale> incastratoreDiLibri;
 	private static VoceLibroGiornale ultimaVoceAggiunta;
 	public static boolean eStataAggiuntaUnaVoce = false;
+	
 	
 	public static ObservableList<VoceLibroGiornale> creaTableViewLibroGiornale (){
 		incastratoreDiLibri = FXCollections.observableArrayList(

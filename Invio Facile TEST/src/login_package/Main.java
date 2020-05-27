@@ -16,6 +16,8 @@ public class Main extends Application{
 		Util.setApplication(this);
 //		Setto gli utenti registrati
 		LoginController.init("admin", "admin");
+//		Dati aziendali iniziali
+		Util.settaDatiPrimitiviAziendali();
 		
 //		Schermata login
 		FXMLLoader login = new FXMLLoader (getClass().getResource("/login_package/Login.fxml"));
