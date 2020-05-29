@@ -118,7 +118,6 @@ public class ControllerLibroGiornale {
 			dialogo.getButtonTypes().add(termina);
 			Optional<ButtonType> res1 = dialogo.showAndWait();
 			if (res1.get() == termina){
-				dialogo.close(); //NON CHIUDE IL POPUP
 				Alert alert = new Alert(AlertType.WARNING); 
 				alert.setTitle("Attenzione!");
 				alert.setHeaderText("Sei sicuro di voler chiudere? I dati non salvati andranno persi.");
@@ -171,7 +170,6 @@ public class ControllerLibroGiornale {
 					dialogo.getDialogPane().setContent(datiAziendali);
 					dialogo.showAndWait();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
     		}

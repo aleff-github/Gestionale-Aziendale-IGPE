@@ -1,10 +1,12 @@
 package catalogo_e_magazzino;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -185,7 +187,42 @@ public class ControllerCatalogoEMagazzino {
 
     @FXML
     void aggiungiUnProdotto(ActionEvent event) {
-
+    	Alert dialogo = new Alert(AlertType.INFORMATION); 
+		dialogo.setTitle("Aggiungi prodotto");
+		dialogo.setHeaderText("Se riscontri problemi nell'inserimento dei dati contatta l'assistenza.");
+		dialogo.setResizable(true); 
+		
+		try {
+			System.out.println("CIao");
+			AnchorPane aggiungiProdotto = (AnchorPane) FXMLLoader.load(getClass().getResource( "AggiungiProdotto.fxml" ));
+			System.out.println("CIao" + aggiungiProdotto);
+			dialogo.getDialogPane().setContent(aggiungiProdotto);
+			
+			dialogo.getButtonTypes().clear();
+			ButtonType termina = new ButtonType("Termina");
+			dialogo.getButtonTypes().add(termina);
+			Optional<ButtonType> res1 = dialogo.showAndWait();
+			if (res1.get() == termina){
+				Alert alert = new Alert(AlertType.WARNING); 
+				alert.setTitle("Attenzione!");
+				alert.setHeaderText("Sei sicuro di voler chiudere? I dati non salvati andranno persi.");
+				alert.setResizable(true); 
+				
+				ButtonType conferma = new ButtonType("Conferma");
+				ButtonType annulla = new ButtonType("Annulla");
+				alert.getButtonTypes().clear();
+				alert.getButtonTypes().addAll(conferma, annulla);
+				
+				Optional<ButtonType> res2 = alert.showAndWait();
+				if(res2.get() == annulla) {
+					aggiungiUnProdotto(event);
+				}
+				else {/*CHIUDI*/}
+			} else {/*CHIUDI*/}
+		}catch (IOException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
     }
 
     @FXML

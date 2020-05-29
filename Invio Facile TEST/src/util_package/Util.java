@@ -1,17 +1,13 @@
 package util_package;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import catalogo_e_magazzino.Prodotto;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import libro_giornale.VoceLibroGiornale;
 
@@ -37,6 +33,8 @@ public class Util {
 //		Platform.runLater(  );
 		//TODO
 	}
+	
+	public static Random random = new Random();
 
 	
 	/* * * * * * * * **
@@ -78,31 +76,32 @@ public class Util {
 	
 	private static ObservableList<Prodotto> incastratoreDiProdotti;
 	private static Prodotto ultimoProdottoAggiunto;
+	private static ArrayList<Integer> listaId = new ArrayList<Integer>();
 	
 	public static ObservableList<Prodotto> creaTableViewProdotti (){
 		incastratoreDiProdotti = FXCollections.observableArrayList(
-				new Prodotto(1, "iPear 8", "Smartphone", 220.0),
-				new Prodotto(2, "iPear 9", "Smartphone", 550.0),
-				new Prodotto(3, "iPear 6", "Smartphone", 680.0),
-				new Prodotto(4, "iPear 4", "Smartphone", 500.0),
-				new Prodotto(5, "iPear 6s", "Smartphone", 460.0),
-				new Prodotto(6, "Capsula D'Aria", "Gadget", 480.0),
-				new Prodotto(7, "Cuffie P46", "Gadget", 670.0),
-				new Prodotto(8, "ACR 37", "Gadget", 860.0),
-				new Prodotto(9, "Kan 92", "Gadget", 850.0),
-				new Prodotto(10, "Piffh", "Gadget", 440.0),
-				new Prodotto(11, "Ginfix", "Gadget", 610.0),
-				new Prodotto(12, "Pinous", "Gadget", 420.0),
-				new Prodotto(13, "Trinky", "Gadget", 190.0),
-				new Prodotto(14, "Franchi", "Computer", 280.0),
-				new Prodotto(15, "ACERbo", "Computer", 250.0),
-				new Prodotto(16, "asusina", "Computer", 340.0),
-				new Prodotto(17, "pinononpino", "Computer", 250.0),
-				new Prodotto(18, "cose non cose", "Computer", 430.0),
-				new Prodotto(19, "computer stupendo", "Computer", 540.0),
-				new Prodotto(20, "Computer della asan", "Computer", 960.0),
-				new Prodotto(21, "gianna nannini", "Computer", 770.0),
-				new Prodotto(22, "pino loricato", "Computer", 300.0)
+				new Prodotto(1, "iPear 8", "Smartphone", 220.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(2, "iPear 9", "Smartphone", 550.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(3, "iPear 6", "Smartphone", 680.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(4, "iPear 4", "Smartphone", 500.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(5, "iPear 6s", "Smartphone", 460.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(6, "Capsula D'Aria", "Gadget", 480.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(7, "Cuffie P46", "Gadget", 670.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(8, "ACR 37", "Gadget", 860.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(9, "Kan 92", "Gadget", 850.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(10, "Piffh", "Gadget", 440.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(11, "Ginfix", "Gadget", 610.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(12, "Pinous", "Gadget", 420.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(13, "Trinky", "Gadget", 190.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(14, "Franchi", "Computer", 280.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(15, "ACERbo", "Computer", 250.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(16, "asusina", "Computer", 340.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(17, "pinononpino", "Computer", 250.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(18, "cose non cose", "Computer", 430.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(19, "computer stupendo", "Computer", 540.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(20, "Computer della asan", "Computer", 960.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(21, "gianna nannini", "Computer", 770.0, 22, null, "Descrizione prodotto"),
+				new Prodotto(22, "pino loricato", "Computer", 300.0, 22, null, "Descrizione prodotto")
 				);
 		return incastratoreDiProdotti;
 	}
@@ -110,10 +109,25 @@ public class Util {
 	public static void aggiungiVoceProdotto (Prodotto v) {
 		incastratoreDiProdotti.add(v);
 		ultimoProdottoAggiunto = v;
+		listaId.add(v.getId());
 	}
 	
 	public static ObservableList<Prodotto> tableViewProdottiAggiornata (){
 		return incastratoreDiProdotti;
+	}
+	
+	public static void aggiungiProdotto (Prodotto p) {
+		incastratoreDiProdotti.add(p);
+	}
+	
+	public static Integer gestisciIdPerUnNuovoProdotto (Integer id) {
+		if(id == null) 
+			do
+				id = random.nextInt();
+			while(listaId.contains(id));
+		else if (listaId.contains(id))
+			return -1;
+		return id;
 	}
 	
 	/* * * * * * * * **

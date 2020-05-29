@@ -138,7 +138,7 @@ public class ControllerVoceLibroGiornale {
 				alert.showAndWait();
 				flag = false;
 			}
-		}catch(NumberFormatException errore){
+		}catch(NumberFormatException errore){ //TODO eccezione void
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Errore d'inserimento in Documento N.");
 			alert.setHeaderText(null);
@@ -147,19 +147,9 @@ public class ControllerVoceLibroGiornale {
 			alert.showAndWait();
 			flag = false;
 		}
+		
 		//DESCRIZIONE
 		String descrizione = textFieldDescrizione.getText();
-		
-		//REPARTO
-		if (scegliReparto.getValue() == null) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Errore in scegli reparto");
-			alert.setHeaderText(null);
-			alert.setContentText("Per continuare devi necessariamente scegliare un reparto.");
-
-			alert.showAndWait();
-			flag = false;
-		}
 		
 		//REPARTO
 		if(scegliReparto.getValue() == null) {
@@ -174,7 +164,9 @@ public class ControllerVoceLibroGiornale {
 		String repartoScelto = scegliReparto.getValue();
 		
 		//IVA
-		if (scegliIva.getValue() == null) {
+
+		Integer ivaScelta = scegliIva.getValue();
+		if (ivaScelta == null) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Errore in scegli iva");
 			alert.setHeaderText(null);
@@ -183,7 +175,6 @@ public class ControllerVoceLibroGiornale {
 			alert.showAndWait();
 			flag = false;
 		}
-		Integer ivaScelta = scegliIva.getValue();
 
 		//DARE && AVERE
 		//String dareString = dareField.getText(), avereString = avereField.getText();
@@ -233,161 +224,6 @@ public class ControllerVoceLibroGiornale {
 
 		alert.showAndWait();
     }
-	
-	
 
-//	public boolean popupAggiungiVoce () throws IOException { 
-//		Alert dialogo = new Alert(AlertType.INFORMATION); 
-//		dialogo.setTitle("Aggiungi voce");
-//		dialogo.setHeaderText("Se riscontri problemi nell'inserimento dei dati contatta l'assistenza.");
-//		dialogo.setResizable(true); 
-//		
-//		try {
-//			GridPane rootAggiungiVoce = (GridPane) FXMLLoader.load(getClass().getResource( "PopupAggiungiVoce.fxml" )); 
-//			dialogo.getDialogPane().setContent(rootAggiungiVoce); 
-//			
-//			dialogo.getButtonTypes().clear();
-//			ButtonType buttonTypeAggiungi = new ButtonType("Aggiungi");
-//			dialogo.getButtonTypes().add(buttonTypeAggiungi);
-//			ButtonType buttonTypeAnnulla = new ButtonType("Annulla");
-//			dialogo.getButtonTypes().add(buttonTypeAnnulla);
-//
-//			Optional<ButtonType> opzioneScelta = dialogo.showAndWait(); 
-//			try {
-//				if (opzioneScelta.get() == buttonTypeAggiungi) {
-//					//DATA
-//					String data = dataPicker.toString();
-//					System.out.println(dataPicker.toString());
-//					
-//					//NUMERO DOCUMENTO
-//					Integer documentoNumero;
-//					try {
-//						documentoNumero = Integer.parseInt(textFieldNumero.getText());
-//						if(documentoNumero < 0) {
-//							Alert alert = new Alert(AlertType.ERROR);
-//							alert.setTitle("Errore d'inserimento in Documento N.");
-//							alert.setHeaderText(null);
-//							alert.setContentText("Non puoi inserire un numero negativo come numero del documento.");
-//	
-//							alert.showAndWait();
-//							return false;
-//						}
-//						else if (documentoNumero > 10000) {
-//							Alert alert = new Alert(AlertType.ERROR);
-//							alert.setTitle("Errore d'inserimento in Documento N.");
-//							alert.setHeaderText(null);
-//							alert.setContentText("Non puoi inserire un numero del documento superiore a 10000.");
-//	
-//							alert.showAndWait();
-//							return false;
-//						}
-//					}catch(NumberFormatException errore){
-//						Alert alert = new Alert(AlertType.ERROR);
-//						alert.setTitle("Errore d'inserimento in Documento N.");
-//						alert.setHeaderText(null);
-//						alert.setContentText("Puoi inserire solo un numero nel campo \"Documento N.\", non sono ammessi altri caratteri.");
-//	
-//						alert.showAndWait();
-//						return false;
-//					}
-//					//DESCRIZIONE
-//					String descrizione = textFieldDescrizione.getText();
-//					
-//					//REPARTO
-//					if (scegliReparto.getValue() == null) {
-//						Alert alert = new Alert(AlertType.ERROR);
-//						alert.setTitle("Errore in scegli reparto");
-//						alert.setHeaderText(null);
-//						alert.setContentText("Per continuare devi necessariamente scegliare un reparto.");
-//	
-//						alert.showAndWait();
-//						return false;
-//					}
-//					
-//					//REPARTO
-//					if(scegliReparto.getValue() == null) {
-//						Alert alert = new Alert(AlertType.ERROR);
-//						alert.setTitle("Errore in scegli reparto");
-//						alert.setHeaderText(null);
-//						alert.setContentText("Per continuare devi necessariamente scegliare un reparto.");
-//	
-//						alert.showAndWait();
-//						return false;
-//					}
-//					//else - non lo metto in un else perché altrimenti non viene visualizzato dopo
-//					String repartoScelto = scegliReparto.getValue();
-//					
-//					//IVA
-//					if (scegliIva.getValue() == null) {
-//						Alert alert = new Alert(AlertType.ERROR);
-//						alert.setTitle("Errore in scegli iva");
-//						alert.setHeaderText(null);
-//						alert.setContentText("Per continuare devi necessariamente scegliare un iva.");
-//	
-//						alert.showAndWait();
-//						return false;
-//					}
-//					//else - non lo metto in un else perché altrimenti non viene visualizzato dopo
-//					Integer ivaScelta = scegliIva.getValue();
-//	
-//					//DARE && AVERE
-//					//String dareString = dareField.getText(), avereString = avereField.getText();
-//					Double dare = 0.0, avere = 0.0;
-//					try {
-//						dare = Double.parseDouble(textFieldDare.getText());
-//						avere = Double.parseDouble(textFieldAvere.getText());
-//	
-//						if(dare != 0.0 && avere != 0.0) {
-//							Alert alert = new Alert(AlertType.ERROR);
-//							alert.setTitle("Errore d'inserimento in Dare o Avere");
-//							alert.setHeaderText(null);
-//							alert.setContentText("Non puoi inserire sia Dare che Avere");
-//	
-//							alert.showAndWait();
-//							return false;
-//						}
-//						else if(dare == 0.0 && avere == 0.0) {
-//							Alert alert = new Alert(AlertType.ERROR);
-//							alert.setTitle("Errore d'inserimento in Dare o Avere");
-//							alert.setHeaderText(null);
-//							alert.setContentText("Devi inserire almeno un valore in Dare o in Avere");
-//	
-//							alert.showAndWait();
-//							return false;
-//						}
-//					}catch(NumberFormatException errore) {
-//						Alert alert = new Alert(AlertType.ERROR);
-//						alert.setTitle("Errore d'inserimento in Dare o Avere");
-//						alert.setHeaderText(null);
-//						alert.setContentText("Puoi inserire solo un numero sia nel campo \"Dare\" che nel campo \"Avere\", non sono ammessi altri caratteri e ricorda di usare il punto e non la virgola. \nSe inserisci un valore in Dare ricorda di mettere 0 in Avere (e viceversa)");
-//	
-//						alert.showAndWait();
-//						return false;
-//					}
-//	//				public VoceLibroGiornale(String data, Integer documentoNumero, String descrizione, String reparto, Integer iva, Double dare, Double avere)
-//					
-//					Util.aggiungiVoce(new VoceLibroGiornale(data, documentoNumero, descrizione, repartoScelto, ivaScelta, dare, avere));
-//					return true;
-//				}
-//				else if (opzioneScelta.get() == buttonTypeAnnulla){
-//						dialogo.close();
-//						return false;
-//					}
-//			}catch(Exception eccPulsanti) {
-//				System.out.println("000");
-//				eccPulsanti.printStackTrace();
-//				System.out.println("000");
-//				return false;
-//			}
-//
-//		} catch (NullPointerException eccFile) {
-//			System.out.println("----");
-//			eccFile.printStackTrace();
-//			System.out.println("----");
-//			return false;
-//	
-//		}
-//		return true;
-//	}
 
 }

@@ -38,9 +38,9 @@
           </Menu>
           <Menu fx:id="menuAiuto" mnemonicParsing="false" text="Aiuto">
             <items>
-              <MenuItem fx:id="menuCrediti" mnemonicParsing="false" text="Crediti" />
-                  <MenuItem fx:id="menuContattaLAssistenza" mnemonicParsing="false" text="Contatta assistenza" />
-                  <MenuItem fx:id="menuRiavviaIlProgramma" mnemonicParsing="false" text="Riavvia il programma" />
+              <MenuItem fx:id="menuCrediti" mnemonicParsing="false" onAction="#crediti" text="Crediti" />
+                  <MenuItem fx:id="menuContattaLAssistenza" mnemonicParsing="false" onAction="#contattaLAssistenza" text="Contatta assistenza" />
+                  <MenuItem fx:id="menuRiavviaIlProgramma" mnemonicParsing="false" onAction="#riavviaIlProgramma" text="Riavvia il programma" />
             </items>
           </Menu>
         </menus>
