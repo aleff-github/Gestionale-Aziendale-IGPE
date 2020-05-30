@@ -1,25 +1,18 @@
 package catalogo_e_magazzino;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
-import javax.imageio.ImageIO;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -31,80 +24,73 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import util_package.Util;
 
-public class ControllerAggiungiProdotto {
-
+public class ControllerVisualizzaProdotto {
+	
 	@FXML
-	private AnchorPane anchorPaneAggiungiProdotto;
+    private AnchorPane anchorPaneVisualizzaProdotto;
 		@FXML
-	    private BorderPane borderPaneAggiungiProdotto;
+	    private BorderPane borderPaneVisualizzaProdotto;
 			@FXML
-		    private HBox hBoxMenuAggiungiProdotto;
+		    private HBox hBoxGrigliaVisualizzaProdotto;
 				@FXML
 			    private ImageView logoAziendale;
 				@FXML
-				private VBox vBoxTitoloAzienda;
+			    private VBox vBoxTitoloAzienda;
 					@FXML
-				    private Label labelAggiungiProdotto;
-					@FXML
+				    private Label visualizzaProdottoLabel;
+				    @FXML
 				    private Label labelIPear;
-				@FXML
+			    @FXML
 			    private BorderPane borderPanePulsanti;
-					@FXML
-					private HBox hBoxPulsanti;
-						@FXML
-					    private Button pulsanteAggiungi;
-						@FXML
+				    @FXML
+				    private HBox hBoxPulsanti;
+					    @FXML
+					    private Button pulsanteModifica;
+					    @FXML
 					    private Button pulsanteAnnulla;
+		    @FXML
+		    private HBox hBoxMenuVisualizzaProdotto;
+			    @FXML
+			    private GridPane griPaneVisualizzaProdotto;
+			    @FXML
+			    private Label idProdottoLabel; @FXML private TextField idProdottoField;
+			    @FXML
+			    private Label nomeLabel; @FXML private TextField nomeField;
+			    @FXML
+			    private Label repartoLabel; @FXML private ComboBox<String> scegliReparto;
+			    @FXML
+			    private Label prezzoLabel; @FXML private TextField prezzoField;
+			    @FXML
+			    private Label ivaLabel; @FXML private ComboBox<Integer> scegliIva;
+			    @FXML
+			    private Label fotoDelProdottoLabel; @FXML private ImageView fotoDelProdotto;
+				    @FXML
+				    private BorderPane borderPaneFoto; @FXML private Button pulsanteCaricaFoto;
 				@FXML
-			    private HBox hBoxGrigliaAggiungiProdotto;
-					@FXML
-				    private GridPane griPaneAggiungiProdotto;
-						@FXML private Label idProdottoLabel; @FXML private TextField idProdottoField;
-						
-						@FXML private Label nomeLabel; @FXML private TextField nomeField;
-						
-						@FXML private Label repartoLabel; @FXML private ComboBox<String> scegliReparto;
-						
-						@FXML private Label prezzoLabel; @FXML private TextField prezzoField;
-						
-						@FXML private Label ivaLabel; @FXML private ComboBox<Integer> scegliIva;
-						
-						@FXML private Label fotoDelProdottoLabel; @FXML private ImageView fotoDelProdotto;
-							@FXML private BorderPane borderPaneFoto; @FXML private Button pulsanteCaricaFoto;
-						
-						@FXML private Label descrizioneLabel; @FXML private TextArea descrizioneTextArea;
-						
+				private Label descrizioneLabel; @FXML private TextArea descrizioneTextArea;
 
 
-    
     @FXML
-	protected void initialize () {
-		
-		List<Integer> iva = new ArrayList<Integer>();
-		iva.add(4);
-		iva.add(10);
-		iva.add(22);
-		ObservableList o1 = FXCollections.observableArrayList(iva);
-		scegliIva.getItems().clear();
-		scegliIva.setItems(o1);
-		scegliIva.setPromptText("Scegli");
-		
-		List<String> reparti = new ArrayList<String>();
-		reparti.add("Fabbricazione e Montaggio");
-		reparti.add("Test di Resistenza Ambientale");
-		reparti.add("Pulizia e Imballaggio");
-		ObservableList o2 = FXCollections.observableArrayList(reparti);
-		scegliReparto.getItems().clear();
-		scegliReparto.setItems(o2);
-		scegliReparto.setPromptText("Scegli");
-		
-		
-	}
+    void caricaFoto(ActionEvent event) {
+      	FileChooser scegliFoto = new FileChooser();
+    	scegliFoto.setTitle("Seleziona immagine");
+    	scegliFoto.getExtensionFilters().addAll(	
+    	       new ExtensionFilter("Immagine in formato PNG", "*.png")
+    	       );
+	    File fileSelezionato = scegliFoto.showOpenDialog(null);
+	    
+	    Image immagine = new Image(fileSelezionato.toURI().toString());
+	    
+	    if(fileSelezionato != null) {
+	    	
+	    	fotoDelProdotto.setImage(immagine);
+	    }
+    }
     
     public static boolean flag = true;
 
     @FXML
-    void aggiungiProdotto(ActionEvent event) {
+    Prodotto modificaProdotto(ActionEvent event) {
     	
     	//ID PRODOTTO
     	Integer id = -1;
@@ -207,7 +193,7 @@ public class ControllerAggiungiProdotto {
 			flag = false;
 		}
 		
-		Util.aggiungiProdotto(new Prodotto (id, nome, repartoScelto, prezzo, ivaScelta, fotoDelProdotto, descrizioneProdotto));
+		return new Prodotto (id, nome, repartoScelto, prezzo, ivaScelta, fotoDelProdotto, descrizioneProdotto);
 		
     }
 
@@ -220,30 +206,5 @@ public class ControllerAggiungiProdotto {
 
 		alert.showAndWait();
     }
-    
-    @FXML
-    void caricaFoto(ActionEvent event) {
-    	FileChooser scegliFoto = new FileChooser();
-    	scegliFoto.setTitle("Seleziona immagine");
-    	scegliFoto.getExtensionFilters().addAll(	
-    	       new ExtensionFilter("Immagine in formato PNG", "*.png")
-    	       );
-	    File fileSelezionato = scegliFoto.showOpenDialog(null);
-	    
-	    Image immagine = new Image(fileSelezionato.toURI().toString());
-	    
-	    if(fileSelezionato != null) {
-	    	
-	    	fotoDelProdotto.setImage(immagine);
-	    }
-    
-    }   
 
 }
-
-
-
-
-
-
-

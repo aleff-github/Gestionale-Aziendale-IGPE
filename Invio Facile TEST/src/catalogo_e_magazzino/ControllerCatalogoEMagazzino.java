@@ -43,15 +43,27 @@ public class ControllerCatalogoEMagazzino {
 					@FXML
 					private MenuItem menuDatiAziendali;
 						@FXML 
-			    		void visualizzaDatiAziendali(ActionEvent event) {}
+			    		void visualizzaDatiAziendali(ActionEvent event) {
+							Alert dialogo = new Alert(AlertType.INFORMATION); 
+							dialogo.setTitle("Dati aziendali");
+							dialogo.setResizable(true); 
+
+							try {
+								AnchorPane datiAziendali = (AnchorPane) FXMLLoader.load(getClass().getResource( "/util_package/DatiAziendali.fxml" ));
+								dialogo.getDialogPane().setContent(datiAziendali);
+								dialogo.showAndWait();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
 					@FXML
 					private MenuItem menuEmailVeloce;
-		    		@FXML
-		    		void mandaEmailVeloce(ActionEvent event) { Util.inviaEmailVeloce(); }
+			    		@FXML
+			    		void mandaEmailVeloce(ActionEvent event) { Util.inviaEmailVeloce(); }
 					@FXML
 				    private MenuItem menuEsci;
-				    @FXML
-				    void effettuaLogout(ActionEvent event) { GestisciInterfacce.setFinestra("Login"); }
+					    @FXML
+					    void effettuaLogout(ActionEvent event) { GestisciInterfacce.setFinestra("Login"); }
 				@FXML
 				private Menu menuVisualizza;
 					@FXML

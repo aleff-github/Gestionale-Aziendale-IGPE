@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fx:id="scrollPaneBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="reparti_di_produzione.reparti.ControllerFabbricazioneEMontaggio">
+  <content>
+    <AnchorPane fx:id="anchorPaneBase" prefHeight="800.0" prefWidth="700.0">
+         <children>
+            <BorderPane fx:id="borderPaneBase" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <center>
+                  <VBox fx:id="vBoxContenuto" BorderPane.alignment="CENTER">
+                     <children>
+                        <BorderPane fx:id="borderPaneDescrizioneReparto">
+                           <center>
+                              <TextArea fx:id="textAreaDescrizione" editable="false" prefHeight="200.0" promptText="Descrizione del reparto Fabbricazione e Montaggio..." text="Il reparto di produzione dell'azienda iPear gestisce l'arrivo della materia prima e la produzione effettiva del prodotto finito o semi lavorato. Rappresenta il cuore dell'azienda dal momento che è il luogo dove avviene la creazione del prodotto che poi verrà trasferito al reparto di Test ambientale per verificarne la resistenza. Attualmente è gestito da Timoteo Don Aldo Cucina (Timothy Donald Cook) il quale ha il compito di amministrare gli aspetti economici e finanziari dell'azienda. Sono attualmente assunti 123 000 persone tra dipendenti e operai." wrapText="true" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+                                 </BorderPane.margin>
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="24.0" />
+                                 </font>
+                              </TextArea>
+                           </center>
+                           <top>
+                              <Label fx:id="labelDescrizioneReparto" text="Descrizione Reparto" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="36.0" />
+                                 </font>
+                                 <BorderPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </top>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </BorderPane>
+                        <BorderPane fx:id="borderPaneDipendentiEOperai">
+                           <center>
+                              <GridPane fx:id="gridPaneDipendentiEOperai" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label fx:id="titolareRepartoLabel" text="Titolare Reparto" textAlignment="CENTER" GridPane.halignment="CENTER">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="titolareReparto" text="Timoteo Don Aldo Cucina" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="dipendentiLabel" text="Dipendenti" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="dipendenti" text="77 731" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="operaiLabel" text="Operai" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="operai" text="45 269" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="24.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="30.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="30.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="30.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <BorderPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </BorderPane.margin>
+                              </GridPane>
+                           </center>
+                           <top>
+                              <Label fx:id="labelDipendentiEOperai" text="Dipendenti e Operai" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="36.0" />
+                                 </font>
+                              </Label>
+                           </top>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </BorderPane>
+                        <BorderPane fx:id="borderPaneAspettoEconomicoEFinanziario" prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <GridPane fx:id="gridPaneAspettoEconomicoEFinanziario" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label fx:id="totaleCostiLabel" text="Totale Costi" textAlignment="CENTER" GridPane.halignment="CENTER">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="totaleCosti" text="0,00" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="vociTotaliLabel" text="Voci Totali" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="vociTotali" text="0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="24.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="30.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="30.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </center>
+                           <top>
+                              <Label fx:id="aspettoEconomicoEFinanziarioLabel" text="Aspetto Economico e Finanziario" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="36.0" />
+                                 </font>
+                              </Label>
+                           </top>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </BorderPane>
+                     </children>
+                  </VBox>
+               </center>
+               <top>
+                  <HBox fx:id="hBoxFabbricazioneEMontaggio" alignment="TOP_CENTER" prefHeight="110.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fx:id="immagineFabbricazioneEMontaggio" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/fabbricazione_e_montaggio.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <BorderPane fx:id="borderPaneTitolo">
+                           <center>
+                              <Label fx:id="labelFabbricazioneEMontaggio" text="Fabbricazione e Montaggio" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="42.0" />
+                                 </font>
+                                 <BorderPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </HBox>
+               </top>
+            </BorderPane>
+         </children></AnchorPane>
+  </content>
+</ScrollPane>

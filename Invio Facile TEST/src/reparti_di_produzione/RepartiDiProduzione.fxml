@@ -155,7 +155,7 @@
                         <MenuItem fx:id="menuEsci" mnemonicParsing="false" onAction="#esci" text="Esci" />
                      </items>
                   </Menu>
-                  <Menu fx:id="menuApri" mnemonicParsing="false" text="Apri">
+                  <Menu fx:id="menuVisualizza" mnemonicParsing="false" text="Visualizza">
                      <items>
                         <MenuItem fx:id="menuLibroGiornale" mnemonicParsing="false" onAction="#vaiALibroGiornale" text="Libro Giornale" />
                         <MenuItem fx:id="menuRepartiDiProduzione" mnemonicParsing="false" onAction="#vaiARepartiDiProduzione" text="Reparti Di Produzione" />
@@ -163,7 +163,7 @@
                         <MenuItem fx:id="menuStatistiche" mnemonicParsing="false" onAction="#vaiAStatistiche" text="Statistiche" />
                      </items>
                   </Menu>
-                  <Menu fx:id="menuVisualizza" mnemonicParsing="false" text="Visualizza">
+                  <Menu fx:id="menuOpzioni" mnemonicParsing="false" text="Opzioni">
                      <items>
                         <MenuItem fx:id="menuFabbricazioneEMontaggio" mnemonicParsing="false" onAction="#visualizzaInformazioniFabbricazioneEMontaggio" text="Fabbricazione e Montaggio" />
                         <MenuItem fx:id="menuTestDiResistenzaAmbientale" mnemonicParsing="false" onAction="#visualizzaInformazioniTestDiResistenzaAmbientale" text="Test di residenza ambientale" />
