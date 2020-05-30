@@ -73,19 +73,26 @@ public class ControllerRepartiDiProduzione {
 					@FXML
 				    private MenuItem menuLibroGiornale;
 						@FXML
-					    void vaiALibroGiornale(ActionEvent event) {}
+					    void vaiALibroGiornale(ActionEvent event) {GestisciInterfacce.setFinestra("Libro Giornale");} 
 					@FXML
 				    private MenuItem menuRepartiDiProduzione;
 						@FXML
-					    void vaiARepartiDiProduzione(ActionEvent event) { }
+					    void vaiARepartiDiProduzione(ActionEvent event) {
+							Alert alert = new Alert (AlertType.INFORMATION);
+				  			alert.setTitle("Apri reparto di produzione");
+				  			alert.setHeaderText("Stai cercando di accedere al reparto di produzione.");
+				  			alert.setContentText("Sei già all'interno del Reparto di Produzione, se desideri uscire puoi andare alla Home oppure, cliccando il tasto esci, tornerai alla schermata di Login.");
+				  			
+				  			alert.showAndWait();
+						}
 					@FXML
 				    private MenuItem menuCatalogoEMagazzino;
 						@FXML
-					    void vaiACatalogoEMagazzino(ActionEvent event) {}
+					    void vaiACatalogoEMagazzino(ActionEvent event) {GestisciInterfacce.setFinestra("Catalogo E Magazzino");}
 					@FXML
 				    private MenuItem menuStatistiche;
 						@FXML
-					    void vaiAStatistiche(ActionEvent event) { }
+					    void vaiAStatistiche(ActionEvent event) { GestisciInterfacce.setFinestra("Statistiche"); }
 				@FXML
 			    private Menu menuOpzioni;
 					@FXML
@@ -189,7 +196,9 @@ public class ControllerRepartiDiProduzione {
 	    }
 	
 	    @FXML
-	    void visualizzaInformazioniTestDiResistenzaAmbientale(ActionEvent event) {}
+	    void visualizzaInformazioniTestDiResistenzaAmbientale(ActionEvent event) {
+	    	visualizzaDati("Test_di_Resistenza_Ambientale");
+	    }
 	
 	    @FXML
 	    void visualizzaInformazioniPulizziaEImballaggio(ActionEvent event) { }
