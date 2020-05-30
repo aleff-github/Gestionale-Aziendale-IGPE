@@ -39,8 +39,8 @@ public class ControllerDatiDaStampare {
 			}
 	}
 
-	@FXML
-    private HBox hBoxLibroGiornale;
+//	@FXML
+//    private HBox hBoxLibroGiornale;
 		@FXML
 	    private BorderPane borderPaneLibroGiornale;
 			@FXML

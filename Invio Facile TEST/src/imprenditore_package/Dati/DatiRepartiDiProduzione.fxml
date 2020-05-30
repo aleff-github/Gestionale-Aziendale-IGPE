@@ -7,69 +7,20 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox fx:id="hBoxRepartiDiProduzione" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imprenditore_package.ControllerDatiRepartiDiProduzione">
-   <children>
-      <ScrollPane fx:id="scrollPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="850.0" prefWidth="1000.0">
-        <content>
-          <AnchorPane fx:id="anchorPaneBaseDatiRepartiDiProduzione">
-               <children>
-                  <BorderPane fx:id="borderPaneRepartiDiProduzione">
-                     <center>
-                        <GridPane fx:id="gridPaneDatiRepartiDiProduzione" BorderPane.alignment="CENTER">
+
+<ScrollPane fx:id="scrollPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="850.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imprenditore_package.ControllerDatiRepartiDiProduzione">
+  <content>
+    <AnchorPane fx:id="anchorPaneBaseDatiRepartiDiProduzione">
+         <children>
+            <BorderPane fx:id="borderPaneRepartiDiProduzione">
+               <center>
+                  <GridPane fx:id="gridPaneDatiRepartiDiProduzione" BorderPane.alignment="CENTER">
+                     <children>
+                        <HBox fx:id="hBoxDatiContenutiRepartoDiProduzione">
                            <children>
-                              <HBox fx:id="hBoxDatiContenutiRepartoDiProduzione">
-                                 <children>
-                                    <BorderPane fx:id="borderPaneDatiFabbricazioneEMontaggio" prefHeight="200.0" prefWidth="200.0">
-                                       <bottom>
-                                          <Button fx:id="pulsanteGeneraCommentoDatiFabbricazioneEMontaggio" mnemonicParsing="false" onAction="#generaCommentoFabbricazioneEMontaggio" text="Genera commento statistico" BorderPane.alignment="CENTER">
-                                             <font>
-                                                <Font name="Baskerville Old Face" size="18.0" />
-                                             </font>
-                                             <BorderPane.margin>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </BorderPane.margin>
-                                          </Button>
-                                       </bottom>
-                                       <center>
-                                          <Text fx:id="datiFabbricazioneEMontaggioTitolo" strokeType="OUTSIDE" strokeWidth="0.0" text="Fabbricazione e Montaggio:" BorderPane.alignment="CENTER">
-                                             <font>
-                                                <Font name="Baskerville Old Face" size="36.0" />
-                                             </font>
-                                          </Text>
-                                       </center>
-                                       <left>
-                                          <ImageView fx:id="iconaDatiFabbricazioneEMontaggio" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                             <image>
-                                                <Image url="@../../icons/fabbricazione_e_montaggio.png" />
-                                             </image>
-                                          </ImageView>
-                                       </left>
-                                       <HBox.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </HBox.margin>
-                                    </BorderPane>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <GridPane.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </GridPane.margin>
-                              </HBox>
-                              <TextArea fx:id="areaDiTestoCommentoFabbricazioneEMontaggio" editable="false" promptText="Il reparto di fabbricazione e montaggio rappresenta tutti i dati relativi alla produzone da parte dell'azienda riportando dati economici, lavorativi e statistici." wrapText="true" GridPane.columnIndex="1">
-                                 <font>
-                                    <Font name="Baskerville Old Face" size="24.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <GridPane.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </GridPane.margin>
-                              </TextArea>
-                              <BorderPane fx:id="borderPaneDatiTestDiResistenzaAmbientale" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                              <BorderPane fx:id="borderPaneDatiFabbricazioneEMontaggio" prefHeight="200.0" prefWidth="200.0">
                                  <bottom>
-                                    <Button fx:id="pulsanteDatiTestDiResistenzaAmbientale" mnemonicParsing="false" onAction="#generaCommentoTestDiResistenzaAmbientale" text="Genera commento statistico" BorderPane.alignment="CENTER">
+                                    <Button fx:id="pulsanteGeneraCommentoDatiFabbricazioneEMontaggio" mnemonicParsing="false" onAction="#generaCommentoFabbricazioneEMontaggio" text="Genera commento statistico" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font name="Baskerville Old Face" size="18.0" />
                                        </font>
@@ -79,128 +30,174 @@
                                     </Button>
                                  </bottom>
                                  <center>
-                                    <Text fx:id="titoloDatiTestDiResistenzaAmbientale" strokeType="OUTSIDE" strokeWidth="0.0" text="Test di resistenza ambientale:" BorderPane.alignment="CENTER">
+                                    <Text fx:id="datiFabbricazioneEMontaggioTitolo" strokeType="OUTSIDE" strokeWidth="0.0" text="Fabbricazione e Montaggio:" BorderPane.alignment="CENTER">
                                        <font>
                                           <Font name="Baskerville Old Face" size="36.0" />
                                        </font>
                                     </Text>
                                  </center>
                                  <left>
-                                    <ImageView fx:id="iconaDatiTestDiResistenzaAmbientale" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                    <ImageView fx:id="iconaDatiFabbricazioneEMontaggio" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                        <image>
-                                          <Image url="@../../icons/resistenza_ambientale.png" />
+                                          <Image url="@../../icons/fabbricazione_e_montaggio.png" />
                                        </image>
                                     </ImageView>
                                  </left>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <GridPane.margin>
+                                 <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </GridPane.margin>
-                              </BorderPane>
-                              <TextArea fx:id="textAreaDatiTestDiResistenzaAmbientale" editable="false" layoutX="520.0" layoutY="20.0" promptText="In questo reparto viene testata la resistenza ambientale dei prodotti portandoli fino a 85° per ben 500 ore (oppure -40°)." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font name="Baskerville Old Face" size="24.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <GridPane.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </GridPane.margin>
-                              </TextArea>
-                              <TextArea fx:id="textAreaDatiPulizziaEImballaggio" editable="false" layoutX="510.0" layoutY="210.0" promptText="In questo reparto vengono svolte funzioni di pulizzia del prodotto al fine di imballarlo e spadirlo in magazzino, pronto per la vendita." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font name="Baskerville Old Face" size="24.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <GridPane.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </GridPane.margin>
-                              </TextArea>
-                              <BorderPane fx:id="borderPaneDatiPulizziaEImballaggio" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-                                 <bottom>
-                                    <Button fx:id="pulsanteDatiPulizziaEImballaggio" mnemonicParsing="false" onAction="#generaCommentoPulizziaEImballaggio" text="Genera commento statistico" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Baskerville Old Face" size="18.0" />
-                                       </font>
-                                       <BorderPane.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </BorderPane.margin>
-                                    </Button>
-                                 </bottom>
-                                 <center>
-                                    <Text fx:id="titoloDatiPulizziaEImballaggio" strokeType="OUTSIDE" strokeWidth="0.0" text="Pulizzia e imballaggio:" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Baskerville Old Face" size="36.0" />
-                                       </font>
-                                    </Text>
-                                 </center>
-                                 <left>
-                                    <ImageView fx:id="iconaDatiPulizziaEImballaggio" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                       <image>
-                                          <Image url="@../../icons/pulizzia_e_imballaggio.png" />
-                                       </image>
-                                    </ImageView>
-                                 </left>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <GridPane.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </GridPane.margin>
+                                 </HBox.margin>
                               </BorderPane>
                            </children>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="500.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="500.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="-Infinity" prefHeight="200.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="-Infinity" prefHeight="200.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="-Infinity" prefHeight="200.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                     </center>
-                     <top>
-                        <HBox fx:id="hBoxTitoloRepartiDiProduzione" alignment="TOP_CENTER" BorderPane.alignment="CENTER">
-                           <children>
-                              <ImageView fx:id="repartiDiProduzioneIcon" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </HBox>
+                        <TextArea fx:id="areaDiTestoCommentoFabbricazioneEMontaggio" editable="false" promptText="Il reparto di fabbricazione e montaggio rappresenta tutti i dati relativi alla produzone da parte dell'azienda riportando dati economici, lavorativi e statistici." wrapText="true" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Baskerville Old Face" size="24.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </TextArea>
+                        <BorderPane fx:id="borderPaneDatiTestDiResistenzaAmbientale" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                           <bottom>
+                              <Button fx:id="pulsanteDatiTestDiResistenzaAmbientale" mnemonicParsing="false" onAction="#generaCommentoTestDiResistenzaAmbientale" text="Genera commento statistico" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="18.0" />
+                                 </font>
+                                 <BorderPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </BorderPane.margin>
+                              </Button>
+                           </bottom>
+                           <center>
+                              <Text fx:id="titoloDatiTestDiResistenzaAmbientale" strokeType="OUTSIDE" strokeWidth="0.0" text="Test di resistenza ambientale:" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="36.0" />
+                                 </font>
+                              </Text>
+                           </center>
+                           <left>
+                              <ImageView fx:id="iconaDatiTestDiResistenzaAmbientale" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                  <image>
-                                    <Image url="@../../icons/azienda.png" />
+                                    <Image url="@../../icons/resistenza_ambientale.png" />
                                  </image>
                               </ImageView>
-                              <VBox fx:id="vBoxTitoloEPulsanteRepartiDiProduzione" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Text fx:id="repartiDiProduzioneTitolo" strokeType="OUTSIDE" strokeWidth="0.0" text="Reparti di Produzione">
-                                       <font>
-                                          <Font name="Baskerville Old Face" size="48.0" />
-                                       </font>
-                                    </Text>
-                                    <BorderPane fx:id="borderPanePulsanteRepartiDiProduzione" prefHeight="200.0" prefWidth="200.0">
-                                       <center>
-                                          <Button fx:id="pulsanteVaiARepartiDiProduzione" mnemonicParsing="false" onAction="#apriRepartiDiProduzione" text="Apri" BorderPane.alignment="CENTER">
-                                             <font>
-                                                <Font name="Baskerville Old Face" size="36.0" />
-                                             </font>
-                                          </Button>
-                                       </center>
-                                    </BorderPane>
-                                 </children>
-                              </VBox>
-                           </children>
-                           <BorderPane.margin>
+                           </left>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </BorderPane.margin>
-                        </HBox>
-                     </top>
-                  </BorderPane>
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
-   </children>
-</HBox>
+                           </GridPane.margin>
+                        </BorderPane>
+                        <TextArea fx:id="textAreaDatiTestDiResistenzaAmbientale" editable="false" layoutX="520.0" layoutY="20.0" promptText="In questo reparto viene testata la resistenza ambientale dei prodotti portandoli fino a 85° per ben 500 ore (oppure -40°)." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Baskerville Old Face" size="24.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </TextArea>
+                        <TextArea fx:id="textAreaDatiPulizziaEImballaggio" editable="false" layoutX="510.0" layoutY="210.0" promptText="In questo reparto vengono svolte funzioni di pulizzia del prodotto al fine di imballarlo e spadirlo in magazzino, pronto per la vendita." wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Baskerville Old Face" size="24.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </TextArea>
+                        <BorderPane fx:id="borderPaneDatiPulizziaEImballaggio" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                           <bottom>
+                              <Button fx:id="pulsanteDatiPulizziaEImballaggio" mnemonicParsing="false" onAction="#generaCommentoPulizziaEImballaggio" text="Genera commento statistico" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="18.0" />
+                                 </font>
+                                 <BorderPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </BorderPane.margin>
+                              </Button>
+                           </bottom>
+                           <center>
+                              <Text fx:id="titoloDatiPulizziaEImballaggio" strokeType="OUTSIDE" strokeWidth="0.0" text="Pulizzia e imballaggio:" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="36.0" />
+                                 </font>
+                              </Text>
+                           </center>
+                           <left>
+                              <ImageView fx:id="iconaDatiPulizziaEImballaggio" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../../icons/pulizzia_e_imballaggio.png" />
+                                 </image>
+                              </ImageView>
+                           </left>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </BorderPane>
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="500.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" prefWidth="500.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="-Infinity" prefHeight="200.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="-Infinity" prefHeight="200.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="-Infinity" prefHeight="200.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </center>
+               <top>
+                  <HBox fx:id="hBoxTitoloRepartiDiProduzione" alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fx:id="repartiDiProduzioneIcon" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/azienda.png" />
+                           </image>
+                        </ImageView>
+                        <VBox fx:id="vBoxTitoloEPulsanteRepartiDiProduzione" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Text fx:id="repartiDiProduzioneTitolo" strokeType="OUTSIDE" strokeWidth="0.0" text="Reparti di Produzione">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="48.0" />
+                                 </font>
+                              </Text>
+                              <BorderPane fx:id="borderPanePulsanteRepartiDiProduzione" prefHeight="200.0" prefWidth="200.0">
+                                 <center>
+                                    <Button fx:id="pulsanteVaiARepartiDiProduzione" mnemonicParsing="false" onAction="#apriRepartiDiProduzione" text="Apri" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="36.0" />
+                                       </font>
+                                    </Button>
+                                 </center>
+                              </BorderPane>
+                           </children>
+                        </VBox>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </BorderPane.margin>
+                  </HBox>
+               </top>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+  </content>
+</ScrollPane>

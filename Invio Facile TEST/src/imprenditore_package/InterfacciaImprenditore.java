@@ -14,18 +14,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.control.SplitPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import util_package.GestisciInterfacce;
 import util_package.Util;
@@ -190,7 +184,7 @@ private AnchorPane imprenditoreAnchorPane;
 		    }
 		    @FXML
 		    void visualizzaDatiDelCatalogoEDelMagazzino(ActionEvent event) {
-		    	visualizzaDati ("Catalogo E Magazzino");
+		    	visualizzaDati ("DatiCatalogoEMagazzino");
 		    }
 		
 		    @FXML
@@ -203,7 +197,7 @@ private AnchorPane imprenditoreAnchorPane;
 					Parent root = null;
 					FXMLLoader loader=new FXMLLoader(getClass().getResource ("/imprenditore_package/Dati/" + url + ".fxml"));
 					root = loader.load(); //Carico il file
-					borderpaneDiDestra.setCenter((HBox) root); //Il primo elemento è un HBox per ogni file di Dati
+					borderpaneDiDestra.setCenter((ScrollPane) root); //Il primo elemento è un HBox per ogni file di Dati
 				} catch (IOException ecc) {
 					System.out.println("---");
 					ecc.printStackTrace();

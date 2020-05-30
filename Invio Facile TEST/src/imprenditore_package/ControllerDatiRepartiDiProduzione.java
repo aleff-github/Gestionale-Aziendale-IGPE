@@ -23,8 +23,8 @@ public class ControllerDatiRepartiDiProduzione {
 	 * * * * * * * * * * * */
 
 					
-	@FXML
-	private HBox hBoxRepartiDiProduzione;
+//	@FXML
+//	private HBox hBoxRepartiDiProduzione;
 		@FXML
 	    private ScrollPane scrollPane;
 			@FXML

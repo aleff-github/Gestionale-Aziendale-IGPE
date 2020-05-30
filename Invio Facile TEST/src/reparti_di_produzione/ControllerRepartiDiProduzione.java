@@ -174,17 +174,17 @@ public class ControllerRepartiDiProduzione {
 					@FXML
 					private Separator separatoreDue;
 					@FXML
-				    private BorderPane borderPanePulizziaEImballaggio;
+				    private BorderPane borderPanePuliziaEImballaggio;
 						@FXML
-					    private Text pulizziaEImballaggioTitolo;
+					    private Text puliziaEImballaggioTitolo;
 						@FXML
-					    private HBox hBoxPulizziaEImballaggio;
+					    private HBox hBoxPuliziaEImballaggio;
 							@FXML
-						    private ImageView iconaPulizziaEImballaggio;
+						    private ImageView iconaPuliziaEImballaggio;
 						@FXML
-						private BorderPane borderPanePulsantePulizziaEImballaggio;
+						private BorderPane borderPanePulsantePuliziaEImballaggio;
 							@FXML
-						    private Button pulsanteInformazionePulizziaEImballaggio;
+						    private Button pulsanteInformazionePuliziaEImballaggio;
 		
 				@FXML
 				private AnchorPane anchorPaneDiDestra;
@@ -201,7 +201,9 @@ public class ControllerRepartiDiProduzione {
 	    }
 	
 	    @FXML
-	    void visualizzaInformazioniPulizziaEImballaggio(ActionEvent event) { }
+	    void visualizzaInformazioniPuliziaEImballaggio(ActionEvent event) {
+	    	visualizzaDati("Pulizia_e_Imballaggio");
+	    }
 
 	    void visualizzaDati (String url) {
 	    	
