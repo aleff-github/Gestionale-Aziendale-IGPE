@@ -23,74 +23,72 @@ public class ControllerDatiRepartiDiProduzione {
 	 * * * * * * * * * * * */
 
 					
-//	@FXML
-//	private HBox hBoxRepartiDiProduzione;
+	@FXML
+    private ScrollPane scrollPane;
 		@FXML
-	    private ScrollPane scrollPane;
+		private AnchorPane anchorPaneBaseDatiRepartiDiProduzione;
 			@FXML
-			private AnchorPane anchorPaneBaseDatiRepartiDiProduzione;
+		    private BorderPane borderPaneRepartiDiProduzione;
 				@FXML
-			    private BorderPane borderPaneRepartiDiProduzione;
+			    private HBox hBoxTitoloRepartiDiProduzione;
 					@FXML
-				    private HBox hBoxTitoloRepartiDiProduzione;
+				    private ImageView repartiDiProduzioneIcon;
+					@FXML
+				    private VBox vBoxTitoloEPulsanteRepartiDiProduzione;
 						@FXML
-					    private ImageView repartiDiProduzioneIcon;
+					    private Text repartiDiProduzioneTitolo;
 						@FXML
-					    private VBox vBoxTitoloEPulsanteRepartiDiProduzione;
+					    private BorderPane borderPanePulsanteRepartiDiProduzione;
 							@FXML
-						    private Text repartiDiProduzioneTitolo;
-							@FXML
-						    private BorderPane borderPanePulsanteRepartiDiProduzione;
+						    private Button pulsanteVaiARepartiDiProduzione;
 								@FXML
-							    private Button pulsanteVaiARepartiDiProduzione;
-									@FXML
-									void apriRepartiDiProduzione(ActionEvent event) {
-										GestisciInterfacce.setFinestra("Reparti Di Produzione");
-								    }
+								void apriRepartiDiProduzione(ActionEvent event) {
+									GestisciInterfacce.setFinestra("Reparti Di Produzione");
+							    }
+					@FXML
+					private GridPane gridPaneDatiRepartiDiProduzione;
 						@FXML
-						private GridPane gridPaneDatiRepartiDiProduzione;
+					    private HBox hBoxDatiContenutiRepartoDiProduzione;
 							@FXML
-						    private HBox hBoxDatiContenutiRepartoDiProduzione;
+						    private BorderPane borderPaneDatiFabbricazioneEMontaggio;
 								@FXML
-							    private BorderPane borderPaneDatiFabbricazioneEMontaggio;
-									@FXML
-								    private ImageView iconaDatiFabbricazioneEMontaggio;
-									@FXML
-								    private Text datiFabbricazioneEMontaggioTitolo;
-									@FXML
-								    private Button pulsanteGeneraCommentoDatiFabbricazioneEMontaggio;
-										@FXML
-									    void generaCommentoFabbricazioneEMontaggio(ActionEvent event) {
-			
-									    }
+							    private ImageView iconaDatiFabbricazioneEMontaggio;
 								@FXML
-								private TextArea areaDiTestoCommentoFabbricazioneEMontaggio;
+							    private Text datiFabbricazioneEMontaggioTitolo;
 								@FXML
-							    private BorderPane borderPaneDatiTestDiResistenzaAmbientale;
+							    private Button pulsanteGeneraCommentoDatiFabbricazioneEMontaggio;
 									@FXML
-								    private ImageView iconaDatiTestDiResistenzaAmbientale;
-									@FXML
-								    private Text titoloDatiTestDiResistenzaAmbientale;
-									@FXML
-								    private Button pulsanteDatiTestDiResistenzaAmbientale;
-										@FXML
-									    void generaCommentoTestDiResistenzaAmbientale(ActionEvent event) {
-			
-									    }
-								@FXML
-								private TextArea textAreaDatiTestDiResistenzaAmbientale;
-								@FXML
-								private BorderPane borderPaneDatiPulizziaEImballaggio;
-									@FXML
-								    private ImageView iconaDatiPulizziaEImballaggio;
-									@FXML
-								    private Text titoloDatiPulizziaEImballaggio;
-									@FXML
-								    private Button pulsanteDatiPulizziaEImballaggio;
-									@FXML
-								    void generaCommentoPulizziaEImballaggio(ActionEvent event) {
+								    void generaCommentoFabbricazioneEMontaggio(ActionEvent event) {
 		
-								    }	
+								    }
+							@FXML
+							private TextArea areaDiTestoCommentoFabbricazioneEMontaggio;
+							@FXML
+						    private BorderPane borderPaneDatiTestDiResistenzaAmbientale;
 								@FXML
-								private TextArea textAreaDatiPulizziaEImballaggio;
+							    private ImageView iconaDatiTestDiResistenzaAmbientale;
+								@FXML
+							    private Text titoloDatiTestDiResistenzaAmbientale;
+								@FXML
+							    private Button pulsanteDatiTestDiResistenzaAmbientale;
+									@FXML
+								    void generaCommentoTestDiResistenzaAmbientale(ActionEvent event) {
+		
+								    }
+							@FXML
+							private TextArea textAreaDatiTestDiResistenzaAmbientale;
+							@FXML
+							private BorderPane borderPaneDatiPulizziaEImballaggio;
+								@FXML
+							    private ImageView iconaDatiPulizziaEImballaggio;
+								@FXML
+							    private Text titoloDatiPulizziaEImballaggio;
+								@FXML
+							    private Button pulsanteDatiPulizziaEImballaggio;
+								@FXML
+							    void generaCommentoPulizziaEImballaggio(ActionEvent event) {
+	
+							    }	
+							@FXML
+							private TextArea textAreaDatiPulizziaEImballaggio;
 }

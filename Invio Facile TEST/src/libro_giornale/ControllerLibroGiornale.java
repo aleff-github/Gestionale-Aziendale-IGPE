@@ -20,138 +20,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import util_package.GestisciInterfacce;
 import util_package.Util;
 
 public class ControllerLibroGiornale {
-//	ROOT
+	
 	@FXML
-    private AnchorPane rootLibroGiornale;
-
-//	DATI LIBRO GIORNALE
-	//VOCI
-	private static int vociTotali;
-	public static int getVociTotali () { return vociTotali; }
-	//DARE
-	private static double dareTotale;
-	public static double getDareTotale() { return dareTotale; }
-	private double calcolaTotaleDare() {
-		double sommaDaTornare = 0.0;
-		for(int i = 0 ; i < getVociTotali() ; i++) {
-			sommaDaTornare += tableView.getItems().get(i).getDare();
-		}
-		return sommaDaTornare;
-	}
-	//AVERE
-	private static double avereTotale; 
-	private double calcolaTotaleAvere() {
-		double sommaDaTornare = 0.0;
-		for(int i = 0 ; i < getVociTotali() ; i++) {
-			sommaDaTornare += tableView.getItems().get(i).getAvere();
-		}
-		return sommaDaTornare;
-	}
-	public static double getAvereTotale() {return avereTotale;}
-	
-//	VOCI
-    @FXML
-    private TableView<VoceLibroGiornale> tableView;
-    @FXML
-    private TableColumn<VoceLibroGiornale, String> tableColumnData = new TableColumn<VoceLibroGiornale, String>("Data"); 
-    @FXML
-    private TableColumn<VoceLibroGiornale, Integer> tableColumnDocumento = new TableColumn<VoceLibroGiornale, Integer>("Documento"); 
-    @FXML
-    private TableColumn<VoceLibroGiornale, String> tableColumnDescrizione = new TableColumn<VoceLibroGiornale, String>("Descrizione"); 
-    @FXML
-    private TableColumn<VoceLibroGiornale, String> tableColumnReparto = new TableColumn<VoceLibroGiornale, String>("Reparto");
-    @FXML
-    private TableColumn<VoceLibroGiornale, Integer> tableColumnIva = new TableColumn<VoceLibroGiornale, Integer>("IVA"); 
-    @FXML
-    private TableColumn<VoceLibroGiornale, Double> tableColumnDare = new TableColumn<VoceLibroGiornale, Double>("Dare"); 
-    @FXML
-    private TableColumn<VoceLibroGiornale, Double> tableColumnAvere = new TableColumn<VoceLibroGiornale, Double>("Avere"); 
-
-    @FXML
-	public void initialize() {
-//    	TABLEVIEW - UTIL
-    	ObservableList<VoceLibroGiornale> incastratoreDiLibri = Util.creaTableViewLibroGiornale();
-	
-		tableColumnData.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, String>("data"));
-		tableColumnDocumento.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, Integer>("documentoNumero"));
-		tableColumnDescrizione.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, String>("descrizione"));
-		tableColumnReparto.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, String>("reparto"));
-		tableColumnIva.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, Integer>("iva"));
-		tableColumnDare.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, Double>("dare"));
-		tableColumnAvere.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, Double>("avere"));
-	
-		tableView.setItems(incastratoreDiLibri);
-		
-		vociTotali = tableView.getItems().size();
-		dareTotale = calcolaTotaleDare();
-		avereTotale = calcolaTotaleAvere();
-		
-	}
-    
-//AGGIUNGI VOCE MANUALMENTE
-    @FXML
-    private AnchorPane anchorPaneAggiungiVoce;
-	    @FXML
-	    private Text testoAggiungiVoce;
-			    @FXML
-			    private Button pulsanteAggiungi;
-			    
-    @FXML
-    public void aggiungiVoceManualmente(ActionEvent event) {
-    	Alert dialogo = new Alert(AlertType.INFORMATION); 
-		dialogo.setTitle("Aggiungi voce");
-		dialogo.setHeaderText("Se riscontri problemi nell'inserimento dei dati contatta l'assistenza.");
-		dialogo.setResizable(true); 
-		
-		try {
-			AnchorPane aggiungiVoce = (AnchorPane) FXMLLoader.load(getClass().getResource( "PopupAggiungiVoce.fxml" ));
-			dialogo.getDialogPane().setContent(aggiungiVoce);
-			
-			dialogo.getButtonTypes().clear();
-			ButtonType termina = new ButtonType("Termina");
-			dialogo.getButtonTypes().add(termina);
-			Optional<ButtonType> res1 = dialogo.showAndWait();
-			if (res1.get() == termina){
-				Alert alert = new Alert(AlertType.WARNING); 
-				alert.setTitle("Attenzione!");
-				alert.setHeaderText("Sei sicuro di voler chiudere? I dati non salvati andranno persi.");
-				alert.setResizable(true); 
-				
-				ButtonType conferma = new ButtonType("Conferma");
-				ButtonType annulla = new ButtonType("Annulla");
-				alert.getButtonTypes().clear();
-				alert.getButtonTypes().addAll(conferma, annulla);
-				
-				Optional<ButtonType> res2 = alert.showAndWait();
-				if(res2.get() == annulla) {
-					aggiungiVoceManualmente(event);
-				}
-				else {/*CHIUDI*/}
-			} else {/*CHIUDI*/}
-			
-			if(Util.eStataAggiuntaUnaVoce) {
-	    		tableView.setItems(Util.tableViewAggiornata());
-	    		vociTotali++;
-	    	    dareTotale += Util.getDare();
-	    	 	avereTotale += Util.getAvere();
-	    	 	Util.eStataAggiuntaUnaVoce = false;
-			}
-
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-		
-    }
-
-
-    @FXML
     private Menu menuFile;
     	@FXML 
     	private MenuItem menuHome;
@@ -372,5 +249,140 @@ public class ControllerLibroGiornale {
 		    	//TODO
 				//CREARE UN COLLEGAMENTO CON IL MAIN
 		    }
+	
+//	ROOT
+	@FXML
+    private AnchorPane rootLibroGiornale;
+
+//	DATI LIBRO GIORNALE
+	//VOCI
+	private static int vociTotali;
+	public static int getVociTotali () { return vociTotali; }
+	//DARE
+	private static double dareTotale;
+	public static double getDareTotale() { return dareTotale; }
+	private double calcolaTotaleDare() {
+		double sommaDaTornare = 0.0;
+		for(int i = 0 ; i < getVociTotali() ; i++) {
+			sommaDaTornare += tableView.getItems().get(i).getDare();
+		}
+		return sommaDaTornare;
+	}
+	//AVERE
+	private static double avereTotale; 
+	private double calcolaTotaleAvere() {
+		double sommaDaTornare = 0.0;
+		for(int i = 0 ; i < getVociTotali() ; i++) {
+			sommaDaTornare += tableView.getItems().get(i).getAvere();
+		}
+		return sommaDaTornare;
+	}
+	public static double getAvereTotale() {return avereTotale;}
+	
+//	VOCI
+    @FXML
+    private TableView<VoceLibroGiornale> tableView;
+    @FXML
+    private TableColumn<VoceLibroGiornale, String> tableColumnData = new TableColumn<VoceLibroGiornale, String>("Data"); 
+    @FXML
+    private TableColumn<VoceLibroGiornale, Integer> tableColumnDocumento = new TableColumn<VoceLibroGiornale, Integer>("Documento"); 
+    @FXML
+    private TableColumn<VoceLibroGiornale, String> tableColumnDescrizione = new TableColumn<VoceLibroGiornale, String>("Descrizione"); 
+    @FXML
+    private TableColumn<VoceLibroGiornale, String> tableColumnReparto = new TableColumn<VoceLibroGiornale, String>("Reparto");
+    @FXML
+    private TableColumn<VoceLibroGiornale, Integer> tableColumnIva = new TableColumn<VoceLibroGiornale, Integer>("IVA"); 
+    @FXML
+    private TableColumn<VoceLibroGiornale, Double> tableColumnDare = new TableColumn<VoceLibroGiornale, Double>("Dare"); 
+    @FXML
+    private TableColumn<VoceLibroGiornale, Double> tableColumnAvere = new TableColumn<VoceLibroGiornale, Double>("Avere"); 
+
+    @FXML
+	public void initialize() {
+//    	TABLEVIEW - UTIL
+    	ObservableList<VoceLibroGiornale> incastratoreDiLibri = Util.creaTableViewLibroGiornale();
+
+		tableColumnData.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, String>("data"));
+		tableColumnDocumento.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, Integer>("documentoNumero"));
+		tableColumnDescrizione.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, String>("descrizione"));
+		tableColumnReparto.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, String>("reparto"));
+		tableColumnIva.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, Integer>("iva"));
+		tableColumnDare.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, Double>("dare"));
+		tableColumnAvere.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, Double>("avere"));
+		
+		tableView.setItems(incastratoreDiLibri);
+		
+		vociTotali = tableView.getItems().size();
+		dareTotale = calcolaTotaleDare();
+		avereTotale = calcolaTotaleAvere();
+		
+	}
+    
+//AGGIUNGI VOCE MANUALMENTE
+    @FXML
+    private AnchorPane anchorPaneAggiungiVoce;
+	    @FXML
+	    private Text testoAggiungiVoce;
+			    @FXML
+			    private Button pulsanteAggiungi;
+			    
+    @FXML
+    public void aggiungiVoceManualmente(ActionEvent event) {
+    	Alert dialogo = new Alert(AlertType.INFORMATION); 
+		dialogo.setTitle("Aggiungi voce");
+		dialogo.setHeaderText("Se riscontri problemi nell'inserimento dei dati contatta l'assistenza.");
+		dialogo.setResizable(true); 
+		
+		try {
+			AnchorPane aggiungiVoce = (AnchorPane) FXMLLoader.load(getClass().getResource( "PopupAggiungiVoce.fxml" ));
+			dialogo.getDialogPane().setContent(aggiungiVoce);
+			
+			dialogo.getButtonTypes().clear();
+			ButtonType termina = new ButtonType("Termina");
+			dialogo.getButtonTypes().add(termina);
+			Optional<ButtonType> res1 = dialogo.showAndWait();
+			if (res1.get() == termina){
+				Alert alert = new Alert(AlertType.WARNING); 
+				alert.setTitle("Attenzione!");
+				alert.setHeaderText("Sei sicuro di voler chiudere? I dati non salvati andranno persi.");
+				alert.setResizable(true); 
+				
+				ButtonType conferma = new ButtonType("Conferma");
+				ButtonType annulla = new ButtonType("Annulla");
+				alert.getButtonTypes().clear();
+				alert.getButtonTypes().addAll(conferma, annulla);
+				
+				Optional<ButtonType> res2 = alert.showAndWait();
+				if(res2.get() == annulla) {
+					aggiungiVoceManualmente(event);
+				}
+				else {/*CHIUDI*/}
+			} else {/*CHIUDI*/}
+			
+			if(Util.eStataAggiuntaUnaVoce) {
+	    		tableView.setItems(Util.tableViewAggiornata());
+	    		vociTotali++;
+	    	    dareTotale += Util.getDare();
+	    	 	avereTotale += Util.getAvere();
+	    	 	Util.eStataAggiuntaUnaVoce = false;
+			}
+
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+		
+    }
+    
+//    MODIFICA VOCE
+    @FXML
+    private BorderPane borderPaneModificaVoce;
+    @FXML 
+    private Button pulsanteModificaVoce;
+    @FXML
+    public void modificaVoce(ActionEvent event) {
+//    	tableView.getItems().
+    }
+    
 	    
 }

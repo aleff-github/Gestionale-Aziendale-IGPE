@@ -1,5 +1,8 @@
 package util_package;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -136,35 +139,40 @@ public class Util {
 	 *                *
 	 * * * * * * * * */
 	
-	private static ObservableList<VoceLibroGiornale> incastratoreDiLibri;
+	private static ObservableList<VoceLibroGiornale> incastratoreDiLibri = FXCollections.observableArrayList();
 	private static VoceLibroGiornale ultimaVoceAggiunta;
 	public static boolean eStataAggiuntaUnaVoce = false;
 	
+	public static Connection con;
+	public static ResultSet rs;
+	
 	
 	public static ObservableList<VoceLibroGiornale> creaTableViewLibroGiornale (){
-		incastratoreDiLibri = FXCollections.observableArrayList(
-				new VoceLibroGiornale ( "11-01-2020", 123, "Merci c/Acquisti", "Fabbricazione e Montaggio" , 22, 150.0, 0.0),
-				new VoceLibroGiornale ( "02-01-2020", 321, "Merci c/Acquisti", "Fabbricazione e Montaggio" , 22, 130.0, 0.0),
-				new VoceLibroGiornale ( "23-01-2020", 1223, "Merci c/Acquisti", "Fabbricazione e Montaggio" , 22, 210.0, 0.0),
-				new VoceLibroGiornale ( "04-01-2020", 4321, "Merci c/Acquisti", "Fabbricazione e Montaggio" , 22, 3120.0, 0.0),
-				new VoceLibroGiornale ( "15-01-2020", 321, "Merci c/Acquisti", "Fabbricazione e Montaggio" , 22, 310.0, 0.0),
-				new VoceLibroGiornale ( "06-01-2020", 532, "Merci c/Acquisti", "Fabbricazione e Montaggio" , 22, 3210.0, 0.0),
-				new VoceLibroGiornale ( "27-01-2020", 312, "Merci c/Acquisti", "Fabbricazione e Montaggio" , 22, 2130.0, 0.0),
-				new VoceLibroGiornale ( "08-01-2020", 412, "Merci c/Acquisti", "Test di Resistenza Ambientale", 22, 120.0, 0.0),
-				new VoceLibroGiornale ( "19-01-2020", 1234, "Merci c/Acquisti", "Test di Resistenza Ambientale", 22, 1250.0, 0.0),
-				new VoceLibroGiornale ( "14-01-2020", 512, "Merci c/Acquisti", "Test di Resistenza Ambientale", 22, 30.0, 0.0),
-				new VoceLibroGiornale ( "21-01-2020", 142, "Merci c/Acquisti", "Test di Resistenza Ambientale", 22, 10.0, 0.0),
-				new VoceLibroGiornale ( "11-01-2020", 532, "Merci c/Vendite", "Test di Resistenza Ambientale", 22, 50.0, 0.0),
-				new VoceLibroGiornale ( "31-01-2020", 34, "Merci c/Vendite", "Test di Resistenza Ambientale", 22, 13120.0, 0.0),
-				new VoceLibroGiornale ( "21-01-2020", 567, "Merci c/Vendite", "Test di Resistenza Ambientale", 22, 120.0, 0.0),
-				new VoceLibroGiornale ( "27-01-2020", 967, "Merci c/Vendite", "Pulizzia e Imballaggio", 22, 1320.0, 0.0),
-				new VoceLibroGiornale ( "31-01-2020", 235, "Merci c/Vendite", "Pulizzia e Imballaggio", 22, 14210.0, 0.0),
-				new VoceLibroGiornale ( "17-01-2020", 321, "Merci c/Vendite", "Pulizzia e Imballaggio", 22, 13420.0, 0.0),
-				new VoceLibroGiornale ( "23-01-2020", 643, "Merci c/Vendite", "Pulizzia e Imballaggio", 22, 430.0, 0.0),
-				new VoceLibroGiornale ( "24-01-2020", 532, "Merci c/Vendite", "Pulizzia e Imballaggio", 22, 650.0, 0.0),
-				new VoceLibroGiornale ( "15-01-2020", 856, "Merci c/Vendite", "Pulizzia e Imballaggio", 22, 430.0, 0.0)
-				
-			);
+		
+		try {
+            con = DatabaseConnector.getConnection(); // Acquisisco la connessione
+            PreparedStatement statement = con.prepareStatement("SELECT * FROM data");//Preparo la query
+            rs = statement.executeQuery(); //Eseguo la query salvando i dati in rs
+            
+            while(rs.next()) { //Finché ci sono righe da analizzare
+            	String dataX = rs.getString("data");
+            	Integer documentoX = Integer.parseInt(rs.getString("numeroDocumento"));
+            	String descrizioneX = rs.getString("descrizione");
+            	String repartoX = rs.getString("reparto");
+            	Integer ivaX = Integer.parseInt(rs.getString("iva"));
+            	Double dareX = Double.parseDouble(rs.getString("dare"));
+            	Double avereX = Double.parseDouble(rs.getString("avere"));
+            	
+//            	new VoceLibroGiornale(data, documentoNumero, descrizione, reparto, iva, dare, avere)
+            	incastratoreDiLibri.add(new VoceLibroGiornale(dataX,documentoX,descrizioneX,repartoX,ivaX,dareX,avereX));
+            	//Creo e aggiungo gli oggetti che popoleranno la TableView
+            }
+            
+		} catch (Exception e) {
+			e.printStackTrace();
+	    }
+		//TableView popolata
+	 
 		return incastratoreDiLibri;
 	}
 	
