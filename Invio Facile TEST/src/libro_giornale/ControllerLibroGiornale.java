@@ -24,6 +24,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import util_package.GestisciInterfacce;
+import util_package.Messaggi;
 import util_package.Util;
 
 public class ControllerLibroGiornale {
@@ -66,12 +67,7 @@ public class ControllerLibroGiornale {
 	   	private MenuItem menuVisualizzaLibroGiornale;
 	  		@FXML
 	  		void apriLibroGiornale(ActionEvent event) { 
-	  			Alert alert = new Alert (AlertType.INFORMATION);
-	  			alert.setTitle("Apri libro giornale");
-	  			alert.setHeaderText("Stai cercando di accedere il libro giornale.");
-	  			alert.setContentText("Sei già all'interno del Libro Giornale, se desideri uscire puoi andare alla Home oppure, cliccando il tasto esci, tornerai alla schermata di Login.");
-	  			
-	  			alert.showAndWait();
+	  			Messaggi.erroreApriLibroGiornale();
 	  		}
 	   	@FXML 
 	   	private MenuItem menuVisualizzaRepartiDiProduzione;
@@ -139,7 +135,7 @@ public class ControllerLibroGiornale {
 		    void scaricaInFormatoEXCEL(ActionEvent event) {
 		    	FileChooser acquisisciPosizione = new FileChooser();
 		    	FileChooser.ExtensionFilter filtriDiSalvataggio = 	
-		    			new FileChooser.ExtensionFilter("File Excel (*.xlsx)", "*.xlsx");
+		    			new FileChooser.ExtensionFilter("File Excel (*.xlsx)", "*.xlxs");
 		    	acquisisciPosizione.getExtensionFilters().add(filtriDiSalvataggio);
 		    	creaFileDiTesto(acquisisciPosizione);
 		    }
@@ -167,6 +163,7 @@ public class ControllerLibroGiornale {
 	    		contenuto.append(tableView.getItems().get(i).getDare() + ";");
 	    		contenuto.append(tableView.getItems().get(i).getAvere() + ";" );
 	    		contenuto.append("\n");
+	    		System.out.println(i);
 	    	}
 	    	File fileDaSalvare = posizioneEdEstensione.showSaveDialog(null);
 	    	if(fileDaSalvare != null) {
@@ -185,12 +182,7 @@ public class ControllerLibroGiornale {
 	    		
 	    	}
 	    	else {
-	    		Alert alert = new Alert(AlertType.ERROR);
-		    	alert.setTitle("Errore nel salvataggio");
-		    	alert.setHeaderText(null);
-		    	alert.setContentText("Scegli una cartella correttamente, se credi di averne scelta una correttamente contatta l'assistenza.");
-		
-		    	alert.showAndWait();
+	    		Messaggi.erroreSalvataggio();
 	    	}
 	    	
 	    	return fileDaSalvare;
@@ -218,29 +210,13 @@ public class ControllerLibroGiornale {
 	    private MenuItem pulsanteCrediti;
 	    @FXML
 	    void crediti(ActionEvent event) {
-	    	Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Invio Facile!");
-			alert.setHeaderText(null);
-			alert.setContentText("Questo software è stato creato al fine del superamento dell'esame di IGPE da Alessandro Greco.\nUniversità Della Calabria - UNICAL");
-		
-			alert.showAndWait();
+	    	Messaggi.crediti();
 		}
 	    @FXML
 	    private MenuItem pulsanteContattaLAssistenza;
 		    @FXML
 		    void contattaLAssistenza(ActionEvent event) {
-		    	Alert alert = new Alert(AlertType.INFORMATION);
-		    	alert.setTitle("Contatta l'assistenza");
-		    	alert.setHeaderText(null);
-		    	alert.setContentText("Stai contattando l'assistenza, se desideri un consulto immediato contatta il numero:\n+39 327 83 21 517");
-		    	ButtonType inviaUnaEmail = new ButtonType ("Invia una email");
-		    	alert.getButtonTypes().setAll(inviaUnaEmail);
-		    	
-		    	Optional<ButtonType> opzioneScelta = alert.showAndWait();
-		    	if(opzioneScelta.get() == inviaUnaEmail) {
-		    		//TODO
-		    		Util.inviaEmail();
-		    	}
+		    	Messaggi.contattaAssistenza();
 		    }
 	    @FXML
 	    private MenuItem pulsanteRiavviaIlProgramma;
@@ -281,7 +257,7 @@ public class ControllerLibroGiornale {
 	
 //	VOCI
     @FXML
-    private TableView<VoceLibroGiornale> tableView;
+    public static TableView<VoceLibroGiornale> tableView = new TableView<VoceLibroGiornale>();
     @FXML
     private TableColumn<VoceLibroGiornale, String> tableColumnData = new TableColumn<VoceLibroGiornale, String>("Data"); 
     @FXML
@@ -301,6 +277,7 @@ public class ControllerLibroGiornale {
 	public void initialize() {
 //    	TABLEVIEW - UTIL
     	ObservableList<VoceLibroGiornale> incastratoreDiLibri = Util.creaTableViewLibroGiornale();
+    	
 
 		tableColumnData.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, String>("data"));
 		tableColumnDocumento.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, Integer>("documentoNumero"));
@@ -368,7 +345,6 @@ public class ControllerLibroGiornale {
 			}
 
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 		

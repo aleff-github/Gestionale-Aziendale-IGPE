@@ -1,5 +1,7 @@
 package libro_giornale;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -22,7 +22,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import util_package.Util;
+import util_package.DatabaseConnector;
+import util_package.Messaggi;
 
 public class ControllerVoceLibroGiornale {
 	
@@ -121,30 +122,15 @@ public class ControllerVoceLibroGiornale {
 		try {
 			documentoNumero = Integer.parseInt(textFieldNumero.getText());
 			if(documentoNumero < 0) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Errore d'inserimento in Documento N.");
-				alert.setHeaderText(null);
-				alert.setContentText("Non puoi inserire un numero negativo come numero del documento.");
-
-				alert.showAndWait();
+				Messaggi.erroreDocumentoNegativo();
 				flag = false;
 			}
 			else if (documentoNumero > 10000) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Errore d'inserimento in Documento N.");
-				alert.setHeaderText(null);
-				alert.setContentText("Non puoi inserire un numero del documento superiore a 10000.");
-
-				alert.showAndWait();
+				Messaggi.erroreDocumentoSuperiore();
 				flag = false;
 			}
 		}catch(NumberFormatException errore){ //TODO eccezione void
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Errore d'inserimento in Documento N.");
-			alert.setHeaderText(null);
-			alert.setContentText("Puoi inserire solo un numero nel campo \"Documento N.\", non sono ammessi altri caratteri.");
-
-			alert.showAndWait();
+			Messaggi.erroreDocumentoGenerico();
 			flag = false;
 		}
 		
@@ -153,12 +139,7 @@ public class ControllerVoceLibroGiornale {
 		
 		//REPARTO
 		if(scegliReparto.getValue() == null) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Errore in scegli reparto");
-			alert.setHeaderText(null);
-			alert.setContentText("Per continuare devi necessariamente scegliare un reparto.");
-
-			alert.showAndWait();
+			Messaggi.erroreRepartoGenerico();
 			flag = false;
 		}
 		String repartoScelto = scegliReparto.getValue();
@@ -167,12 +148,7 @@ public class ControllerVoceLibroGiornale {
 
 		Integer ivaScelta = scegliIva.getValue();
 		if (ivaScelta == null) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Errore in scegli iva");
-			alert.setHeaderText(null);
-			alert.setContentText("Per continuare devi necessariamente scegliare un iva.");
-
-			alert.showAndWait();
+			Messaggi.erroreIvaGenerico();
 			flag = false;
 		}
 
@@ -184,45 +160,37 @@ public class ControllerVoceLibroGiornale {
 			avere = Double.parseDouble(textFieldAvere.getText());
 
 			if(dare != 0.0 && avere != 0.0) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Errore d'inserimento in Dare o Avere");
-				alert.setHeaderText(null);
-				alert.setContentText("Non puoi inserire sia Dare che Avere");
-
-				alert.showAndWait();
+				Messaggi.erroreDareEAvere();
 				flag = false;
 			}
 			else if(dare == 0.0 && avere == 0.0) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Errore d'inserimento in Dare o Avere");
-				alert.setHeaderText(null);
-				alert.setContentText("Devi inserire almeno un valore in Dare o in Avere");
-
-				alert.showAndWait();
+				Messaggi.erroreAlmenoUnValoreDareEAvere();
 				flag = false;
 			}
 		}catch(NumberFormatException errore) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Errore d'inserimento in Dare o Avere");
-			alert.setHeaderText(null);
-			alert.setContentText("Puoi inserire solo un numero sia nel campo \"Dare\" che nel campo \"Avere\", non sono ammessi altri caratteri e ricorda di usare il punto e non la virgola. \nSe inserisci un valore in Dare ricorda di mettere 0 in Avere (e viceversa)");
-
-			alert.showAndWait();
+			Messaggi.erroreGenericoDareEAvere();
 			flag = false;
 		}
 //				public VoceLibroGiornale(String data, Integer documentoNumero, String descrizione, String reparto, Integer iva, Double dare, Double avere)
-		if(flag)
-			Util.aggiungiVoce(new VoceLibroGiornale(data, documentoNumero, descrizione, repartoScelto, ivaScelta, dare, avere));
+		if(flag) {
+			//TODO
+			String query = "INSERT INTO `invio_facile`.`data` 	"
+					+ "(`data`, `descrizione`, `reparto`, `iva`, `dare`, `avere`) 	"
+					+ "VALUES ('" + data + "', '" + descrizione + "', 	"
+							+ "'" + repartoScelto + "', '" + ivaScelta + "', 	"
+									+ "'" + dare + "', '" + avere + "');";
+			try {
+				Connection con = DatabaseConnector.getConnection();
+				con.createStatement().executeUpdate(query);			
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
     }
 
     @FXML
     void annullaVoce(ActionEvent event) {
-    	Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Annullamento");
-		alert.setHeaderText(null);
-		alert.setContentText("Hai annullato l'inserimento della nuova voce, non sono stati applicati ulteriori cambiamenti.");
-
-		alert.showAndWait();
+    	Messaggi.annullaVoce();
     }
 
 

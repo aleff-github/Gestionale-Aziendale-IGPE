@@ -205,15 +205,14 @@ public class ControllerCatalogoEMagazzino {
 		dialogo.setResizable(true); 
 		
 		try {
-			System.out.println("CIao");
 			AnchorPane aggiungiProdotto = (AnchorPane) FXMLLoader.load(getClass().getResource( "AggiungiProdotto.fxml" ));
-			System.out.println("CIao" + aggiungiProdotto);
 			dialogo.getDialogPane().setContent(aggiungiProdotto);
 			
 			dialogo.getButtonTypes().clear();
 			ButtonType termina = new ButtonType("Termina");
 			dialogo.getButtonTypes().add(termina);
 			Optional<ButtonType> res1 = dialogo.showAndWait();
+			
 			if (res1.get() == termina){
 				Alert alert = new Alert(AlertType.WARNING); 
 				alert.setTitle("Attenzione!");

@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import util_package.DatabaseConnector;
+import util_package.Util;
 
 public class CatalogoEMagazzino extends Application {
 

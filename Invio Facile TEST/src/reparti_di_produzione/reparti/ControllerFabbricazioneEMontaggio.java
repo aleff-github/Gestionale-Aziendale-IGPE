@@ -10,8 +10,20 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import util_package.Util;
 
 public class ControllerFabbricazioneEMontaggio {
+	
+	@FXML
+	public void initialize() {
+//		DATI FABBRICAZIONE E MONTAGGIO
+		String totaleCostiNow = String.valueOf( Util.costiTotaliFabbricazioneEMontaggio() );
+		totaleCosti.setText(totaleCostiNow);
+		String totaleRicaviNow = String.valueOf( Util.ricaviTotaliFabbricazioneEMontaggio() );
+		totaleRicavi.setText(totaleRicaviNow);
+		String totaleVociNow = String.valueOf( Util.vociTotaliFabbricazioneEMontaggio());
+		vociTotali.setText(totaleVociNow);
+	}
 	
 	@FXML
     private ScrollPane scrollPaneBase;
@@ -51,6 +63,7 @@ public class ControllerFabbricazioneEMontaggio {
 						@FXML
 					    private GridPane gridPaneAspettoEconomicoEFinanziario;
 							@FXML private Label totaleCostiLabel; @FXML private Label totaleCosti;
+							@FXML private Label totaleRicaviLabel; @FXML private Label totaleRicavi;
 							@FXML private Label vociTotaliLabel; @FXML private Label vociTotali;
 							
 

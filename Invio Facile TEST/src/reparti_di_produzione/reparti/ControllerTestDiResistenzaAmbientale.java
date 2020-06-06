@@ -10,8 +10,20 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import util_package.Util;
 
 public class ControllerTestDiResistenzaAmbientale {
+	
+	@FXML
+	public void initialize() {
+//		DATI FABBRICAZIONE E MONTAGGIO
+		String totaleCostiNow = String.valueOf( Util.costiTotaliTestDiResistenzaAmbientale() );
+		totaleCosti.setText(totaleCostiNow);
+		String totaleAvereNow = String.valueOf( Util.ricaviTotaliTestDiResistenzaAmbientale());
+		totaleRicavi.setText(totaleAvereNow);
+		String totaleVociNow = String.valueOf( Util.vociTotaliTestDiResistenzaAmbientale());
+		vociTotali.setText(totaleVociNow);
+	}
 
     @FXML
     private ScrollPane scrollPaneTestDIResistenzaAmbientale;
@@ -51,6 +63,7 @@ public class ControllerTestDiResistenzaAmbientale {
 						@FXML
 					    private GridPane gridPaneAspettoEconomicoEFinanziario;
 							@FXML private Label totaleCostiLabel; @FXML private Label totaleCosti;
+							@FXML private Label totaleRicaviLabel; @FXML private Label totaleRicavi;
 							@FXML private Label vociTotaliLabel; @FXML private Label vociTotali;
 							
 

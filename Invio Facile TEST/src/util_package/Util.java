@@ -3,6 +3,7 @@ package util_package;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -12,6 +13,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
+import libro_giornale.ControllerLibroGiornale;
 import libro_giornale.VoceLibroGiornale;
 
 public class Util {
@@ -71,48 +73,142 @@ public class Util {
 		capitaleSociale = capitaleSociale_;
 	}
 	
+	/* * * * * * * * * * * *
+	 *                     *
+	 *REPARTI DI PRODUZIONE*
+	 *                     *
+	 * * * * * * * * * * * */
+	
+//	FABBRICAZIONE E MONTAGGIO
+	public static Double costiTotaliFabbricazioneEMontaggio() {
+		Double toReturn = 0.0;
+		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Fabbricazione e Montaggio")) 
+				toReturn += ControllerLibroGiornale.tableView.getItems().get(i).getDare();
+		return toReturn;
+	}
+	public static Double ricaviTotaliFabbricazioneEMontaggio() {
+		Double toReturn = 0.0;
+		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Fabbricazione e Montaggio")) 
+				toReturn += ControllerLibroGiornale.tableView.getItems().get(i).getAvere();
+		return toReturn;
+	}
+	public static Integer vociTotaliFabbricazioneEMontaggio() {
+		Integer toReturn = 0;
+		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Fabbricazione e Montaggio")) 
+				toReturn ++;
+		return toReturn;
+	}
+	
+//	TEST DI RESISTENZA AMBIENTALE
+	public static Double costiTotaliTestDiResistenzaAmbientale() {
+		Double toReturn = 0.0;
+		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Test di Resistenza Ambientale")) 
+				toReturn += ControllerLibroGiornale.tableView.getItems().get(i).getDare();
+		return toReturn;
+	}
+	public static Double ricaviTotaliTestDiResistenzaAmbientale() {
+		Double toReturn = 0.0;
+		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Test di Resistenza Ambientale")) 
+				toReturn += ControllerLibroGiornale.tableView.getItems().get(i).getAvere();
+		return toReturn;
+	}
+	public static Integer vociTotaliTestDiResistenzaAmbientale() {
+		Integer toReturn = 0;
+		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Test di Resistenza Ambientale")) 
+				toReturn ++;
+		return toReturn;
+	}
+	
+//	TEST DI RESISTENZA AMBIENTALE
+	public static Double costiTotaliPuliziaEImballaggio() {
+		Double toReturn = 0.0;
+		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Pulizia e Imballaggio")) 
+				toReturn += ControllerLibroGiornale.tableView.getItems().get(i).getDare();
+		return toReturn;
+	}
+	public static Double ricaviTotaliPuliziaEImballaggio() {
+		Double toReturn = 0.0;
+		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Pulizia e Imballaggio")) 
+				toReturn += ControllerLibroGiornale.tableView.getItems().get(i).getAvere();
+		return toReturn;
+	}
+	public static Integer vociTotaliPuliziaEImballaggio() {
+		Integer toReturn = 0;
+		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Pulizia e Imballaggio")) 
+				toReturn ++;
+		return toReturn;
+	}
+	
 	/* * * * * * * * **
 	 *                *
 	 *    PRODOTTO    *
 	 *                *
 	 * * * * * * * * */
 	
-	private static ObservableList<Prodotto> incastratoreDiProdotti;
+	private static ObservableList<Prodotto> incastratoreDiProdotti = FXCollections.observableArrayList();;
 	private static Prodotto ultimoProdottoAggiunto;
-	private static ArrayList<Integer> listaId = new ArrayList<Integer>();
 	
 	public static ObservableList<Prodotto> creaTableViewProdotti (){
-		incastratoreDiProdotti = FXCollections.observableArrayList(
-				new Prodotto(1, "iPear 8", "Smartphone", 220.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(2, "iPear 9", "Smartphone", 550.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(3, "iPear 6", "Smartphone", 680.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(4, "iPear 4", "Smartphone", 500.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(5, "iPear 6s", "Smartphone", 460.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(6, "Capsula D'Aria", "Gadget", 480.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(7, "Cuffie P46", "Gadget", 670.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(8, "ACR 37", "Gadget", 860.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(9, "Kan 92", "Gadget", 850.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(10, "Piffh", "Gadget", 440.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(11, "Ginfix", "Gadget", 610.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(12, "Pinous", "Gadget", 420.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(13, "Trinky", "Gadget", 190.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(14, "Franchi", "Computer", 280.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(15, "ACERbo", "Computer", 250.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(16, "asusina", "Computer", 340.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(17, "pinononpino", "Computer", 250.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(18, "cose non cose", "Computer", 430.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(19, "computer stupendo", "Computer", 540.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(20, "Computer della asan", "Computer", 960.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(21, "gianna nannini", "Computer", 770.0, 22, null, "Descrizione prodotto"),
-				new Prodotto(22, "pino loricato", "Computer", 300.0, 22, null, "Descrizione prodotto")
-				);
+		try {
+            con = DatabaseConnector.getConnectionCatalogoProdotti(); 
+            PreparedStatement statement = con.prepareStatement("SELECT * FROM 'prodotti'");
+            rs = statement.executeQuery(); 
+            
+            while(rs.next()) { 
+            	Integer id = Integer.parseInt(rs.getString("id"));
+            	String nome = rs.getString("nome");
+            	String reparto = rs.getString("reparto");
+            	Double prezzo = Double.parseDouble(rs.getString("prezzo"));
+            	Integer iva = Integer.parseInt(rs.getString("iva"));
+            	String descrizione = rs.getString("descrizione");
+            	
+            	incastratoreDiProdotti.add(new Prodotto(id,nome,reparto,prezzo,iva,descrizione));
+            }
+            
+		} catch (Exception e) {
+			e.printStackTrace();
+	    }
 		return incastratoreDiProdotti;
 	}
 	
 	public static void aggiungiVoceProdotto (Prodotto v) {
+		System.out.println("Util 1");
+		try {
+			String query = "INSERT INTO 'prodotti' ('nome', 'reparto', 'prezzo', 'iva', 'descrizione') 	"
+					+ "VALUES ('" + v.getNome() + "', '" 	
+					+ v.getReparto() + "', '"	
+					+ v.getPrezzo() + "', '"	
+					+ v.getIva() + "', '"	
+					+ v.getDescrizione() + "');";
+			Connection con = DatabaseConnector.getConnectionCatalogoProdotti();
+			con.createStatement().executeUpdate(query);
+			
+			System.out.println("Util 2");
+			
+			String queryLastId = "SELECT * FROM prodotti WHERE id =(SELECT MAX(id) FROM prodotti);";
+			PreparedStatement statement = con.prepareStatement(queryLastId);
+			
+			System.out.println(rs.getInt("id"));
+			rs = statement.executeQuery(queryLastId);
+			v.setId(rs.getInt("id"));
+			
+			System.out.println("Util 3");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("QUA");
 		incastratoreDiProdotti.add(v);
 		ultimoProdottoAggiunto = v;
-		listaId.add(v.getId());
 	}
 	
 	public static ObservableList<Prodotto> tableViewProdottiAggiornata (){
@@ -121,16 +217,6 @@ public class Util {
 	
 	public static void aggiungiProdotto (Prodotto p) {
 		incastratoreDiProdotti.add(p);
-	}
-	
-	public static Integer gestisciIdPerUnNuovoProdotto (Integer id) {
-		if(id == null) 
-			do
-				id = random.nextInt();
-			while(listaId.contains(id));
-		else if (listaId.contains(id))
-			return -1;
-		return id;
 	}
 	
 	/* * * * * * * * **
@@ -150,7 +236,7 @@ public class Util {
 	public static ObservableList<VoceLibroGiornale> creaTableViewLibroGiornale (){
 		
 		try {
-            con = DatabaseConnector.getConnection(); // Acquisisco la connessione
+            con = DatabaseConnector.getConnectionLibroGiornale(); // Acquisisco la connessione
             PreparedStatement statement = con.prepareStatement("SELECT * FROM data");//Preparo la query
             rs = statement.executeQuery(); //Eseguo la query salvando i dati in rs
             
@@ -163,7 +249,6 @@ public class Util {
             	Double dareX = Double.parseDouble(rs.getString("dare"));
             	Double avereX = Double.parseDouble(rs.getString("avere"));
             	
-//            	new VoceLibroGiornale(data, documentoNumero, descrizione, reparto, iva, dare, avere)
             	incastratoreDiLibri.add(new VoceLibroGiornale(dataX,documentoX,descrizioneX,repartoX,ivaX,dareX,avereX));
             	//Creo e aggiungo gli oggetti che popoleranno la TableView
             }
