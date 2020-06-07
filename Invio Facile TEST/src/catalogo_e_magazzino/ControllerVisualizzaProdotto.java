@@ -102,7 +102,7 @@ public class ControllerVisualizzaProdotto {
 			Messaggi.erroreDescrizioneProdotto();
 			flag = false;
 		}
-		return new Prodotto (nome, repartoScelto, prezzo, ivaScelta, descrizioneProdotto);
+		return new Prodotto (0, nome, repartoScelto, prezzo, ivaScelta, descrizioneProdotto);
     }
 
     @FXML

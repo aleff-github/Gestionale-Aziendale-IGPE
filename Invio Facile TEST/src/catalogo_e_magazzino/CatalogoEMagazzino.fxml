@@ -8,22 +8,15 @@
 
 <AnchorPane fx:id="anchorPaneBase" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="catalogo_e_magazzino.ControllerCatalogoEMagazzino">
    <children>
-      <BorderPane fx:id="borderPaneBase" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="borderPaneBase" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <SplitPane fx:id="splitPane" dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <SplitPane fx:id="splitPane" dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
                <items>
-                  <AnchorPane fx:id="anchorPaneSinistra" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+                  <AnchorPane fx:id="anchorPaneSinistra" minHeight="-Infinity" minWidth="-Infinity" SplitPane.resizableWithParent="false">
                      <children>
-                        <VBox fx:id="vBoxSinistra" layoutX="67.0" layoutY="42.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox fx:id="vBoxSinistra" layoutX="67.0" layoutY="42.0" prefHeight="480.0" prefWidth="236.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <BorderPane fx:id="borderPaneDiRicerca" layoutX="20.0" layoutY="20.0" prefHeight="100.0" prefWidth="100.0">
-                                 <top>
-                                    <Button fx:id="pulsanteCerca" mnemonicParsing="false" onAction="#effettuaRicercaDelProdotto" prefHeight="25.0" prefWidth="92.0" text="Cerca" BorderPane.alignment="CENTER">
-                                       <BorderPane.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </BorderPane.margin>
-                                    </Button>
-                                 </top>
                                  <center>
                                     <TextField fx:id="cercaProdottoField" prefHeight="25.0" prefWidth="198.0" promptText="Nome dell'oggetto da cercare" BorderPane.alignment="CENTER">
                                        <BorderPane.margin>
@@ -31,6 +24,28 @@
                                        </BorderPane.margin>
                                     </TextField>
                                  </center>
+                                 <top>
+                                    <HBox fx:id="hBoxCercaPulsanti" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <BorderPane fx:id="borderPanePulsantiCerca">
+                                             <left>
+                                                <Button fx:id="pulsanteCerca" mnemonicParsing="false" onAction="#effettuaRicercaDelProdotto" prefHeight="25.0" prefWidth="92.0" text="Cerca" BorderPane.alignment="CENTER">
+                                                   <BorderPane.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </BorderPane.margin>
+                                                </Button>
+                                             </left>
+                                             <right>
+                                                <Button fx:id="pulsanteAnnulla" mnemonicParsing="false" onAction="#ripristinaTableView" prefHeight="25.0" prefWidth="92.0" text="Annulla" BorderPane.alignment="CENTER">
+                                                   <BorderPane.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </BorderPane.margin>
+                                                </Button>
+                                             </right>
+                                          </BorderPane>
+                                       </children>
+                                    </HBox>
+                                 </top>
                               </BorderPane>
                               <BorderPane fx:id="borderPaneAggiungi" prefHeight="100.0" prefWidth="100.0">
                                  <center>
@@ -72,19 +87,22 @@
                         </VBox>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="anchorPaneDiDestra" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+                  <AnchorPane fx:id="anchorPaneDiDestra" minHeight="-Infinity" minWidth="-Infinity" SplitPane.resizableWithParent="false">
                      <children>
-                        <Label fx:id="prodottiTitolo" layoutX="10.0" layoutY="14.0" prefHeight="46.0" prefWidth="214.0" text="Prodotti" AnchorPane.bottomAnchor="420.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="460.0" AnchorPane.topAnchor="14.0">
+                        <Label fx:id="prodottiTitolo" layoutX="10.0" layoutY="14.0" text="Prodotti" AnchorPane.bottomAnchor="420.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="460.0" AnchorPane.topAnchor="14.0">
                            <font>
                               <Font name="Baskerville Old Face" size="36.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="tableViewProdotti" layoutX="21.0" layoutY="72.0" prefHeight="169.0" prefWidth="652.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                        <TableView fx:id="tableViewProdotti" layoutX="21.0" layoutY="72.0" minHeight="-Infinity" minWidth="-Infinity" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
                            <columns>
                               <TableColumn fx:id="tableColumnIdProdotto" prefWidth="105.0" text="ID Prodotto" />
                               <TableColumn fx:id="tableColumnNomeProdotto" prefWidth="160.0" text="Nome" />
+                              <TableColumn fx:id="tableColumnDescrizione" prefWidth="75.0" text="Descrizione" />
                               <TableColumn fx:id="tableColumnLivelloReparto" prefWidth="148.0" text="Reparto" />
                               <TableColumn fx:id="tableColumnPrezzo" minWidth="8.0" prefWidth="152.0" text="Prezzo" />
+                              <TableColumn fx:id="tableColumnIva" prefWidth="75.0" text="Iva" />
+                              <TableColumn fx:id="tableColumnPrezzoFinale" prefWidth="75.0" text="Prezzo Finale" />
                            </columns>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

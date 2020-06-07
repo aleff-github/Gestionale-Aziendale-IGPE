@@ -21,48 +21,47 @@ import javafx.scene.layout.VBox;
 import util_package.Messaggi;
 import util_package.Util;
 
-public class ControllerAggiungiProdotto {
-
+public class ControllerModificaProdotto {
+	
 	@FXML
-	private AnchorPane anchorPaneAggiungiProdotto;
+    private AnchorPane anchorPaneModificaProdotto;
 		@FXML
-	    private BorderPane borderPaneAggiungiProdotto;
+	    private BorderPane borderPaneModificaProdotto;
 			@FXML
-		    private HBox hBoxMenuAggiungiProdotto;
+		    private HBox hBoxMenuModificaProdotto;
 				@FXML
 			    private ImageView logoAziendale;
 				@FXML
-				private VBox vBoxTitoloAzienda;
+			    private VBox vBoxTitoloAzienda;
 					@FXML
-				    private Label labelAggiungiProdotto;
+				    private Label labelModificaProdotto;
 					@FXML
 				    private Label labelIPear;
 				@FXML
 			    private BorderPane borderPanePulsanti;
 					@FXML
-					private HBox hBoxPulsanti;
+				    private HBox hBoxPulsanti;
 						@FXML
-					    private Button pulsanteAggiungi;
+					    private Button pulsanteModificaProdotto;
 						@FXML
 					    private Button pulsanteAnnulla;
-				@FXML
-			    private HBox hBoxGrigliaAggiungiProdotto;
 					@FXML
-				    private GridPane griPaneAggiungiProdotto;
-						@FXML private Label nomeLabel; @FXML private TextField nomeField;
+				    private HBox hBoxGrigliaModificaProdotto;
+						@FXML
+					    private GridPane griPaneModificaProdotto;
+							private Integer id;
 						
-						@FXML private Label repartoLabel; @FXML private ComboBox<String> scegliReparto;
-						
-						@FXML private Label prezzoLabel; @FXML private TextField prezzoField;
-						
-						@FXML private Label ivaLabel; @FXML private ComboBox<Integer> scegliIva;
-						
-						@FXML private Label descrizioneLabel; @FXML private TextArea descrizioneTextArea;
-						
+							@FXML private Label nomeLabel; @FXML private TextField nomeField;
+							
+							@FXML private Label repartoLabel; @FXML private ComboBox<String> scegliReparto;
+							
+							@FXML private Label prezzoLabel; @FXML private TextField prezzoField;
+							
+							@FXML private Label ivaLabel; @FXML private ComboBox<Integer> scegliIva;
+							
+							@FXML private Label descrizioneLabel; @FXML private TextArea descrizioneTextArea;
 
-
-    
-    @FXML
+	@FXML
 	protected void initialize () {
 		
 		List<Integer> iva = new ArrayList<Integer>();
@@ -83,23 +82,25 @@ public class ControllerAggiungiProdotto {
 		scegliReparto.setItems(o2);
 		scegliReparto.setPromptText("Scegli");
 		
-		
+		Prodotto prodottoSelezionato = Util.prodottoDaModificare;
+		id = prodottoSelezionato.getId();
+		nomeField.setText(prodottoSelezionato.getNome());
+		scegliReparto.setValue(prodottoSelezionato.getReparto());
+		prezzoField.setText( "" + prodottoSelezionato.getPrezzo() );
+		scegliIva.setValue(prodottoSelezionato.getIva());
+		descrizioneTextArea.setText(prodottoSelezionato.getDescrizione());
 	}
-    
-    public static boolean flag = true;
 
     @FXML
-    void aggiungiProdotto(ActionEvent event) {
+    void modificaProdotto(ActionEvent event) {
     	//NOME
     	String nome = nomeField.getText();
     	if(nome.equals(null)) {
     		Messaggi.erroreNomeProdotto();
-			flag = false;
     	}
     	//REPARTO
     	if(scegliReparto.getValue() == null) {
 			Messaggi.erroreSceltaRepartoProdotto();
-			flag = false;
 		}
 		String repartoScelto = scegliReparto.getValue();
     	
@@ -110,33 +111,28 @@ public class ControllerAggiungiProdotto {
 			prezzo = Double.valueOf(valoreInserito);
 			if(prezzo <= 0) {
 				Messaggi.errorePrezzoNegativoProdotto();
-				flag = false;
 			}
 		}catch(NumberFormatException errore) {
 			Messaggi.erroreGenericoPrezzoProdotto();
-			flag = false;
 		}
 		//IVA
 		Integer ivaScelta = scegliIva.getValue();
 		if (ivaScelta == null) {
 			Messaggi.erroreIvaSceltaProdotto();
-			flag = false;
 		}
 		
     	//DESCRIZIONE
 		String descrizioneProdotto = descrizioneTextArea.getText();
 		if(descrizioneProdotto.equals(null)) {
 			Messaggi.erroreDescrizioneProdotto();
-			flag = false;
 		}
 		
-		Util.aggiungiVoceProdotto(new Prodotto (0, nome, repartoScelto, prezzo, ivaScelta, descrizioneProdotto));
+		Util.modificaVoceProdotto(new Prodotto(id, nome, repartoScelto, prezzo, ivaScelta, descrizioneProdotto));
     }
 
     @FXML
     void annullaModifiche(ActionEvent event) {
-    	Messaggi.annullaModifiche();
+
     }
-    
 
 }

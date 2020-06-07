@@ -192,4 +192,31 @@ public class Messaggi {
 		alert.showAndWait();
 	}
 	
+	public static void prodottoNonSelezionato() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Prodotto non selezionato");
+		alert.setHeaderText(null);
+		alert.setContentText("Prima di proseguire assicurati di aver selezionato (cliccandoci sopra) un prodotto");
+
+		alert.showAndWait();
+	}
+	
+	public static void campoDiRicercaVuota() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Campo di ricerca vuoto");
+		alert.setHeaderText(null);
+		alert.setContentText("Per effettuare una ricerca tra i prodotti inserisci qualcosa nel campo di ricerca.");
+
+		alert.showAndWait();
+	}
+	
+	public static void erroreDiConnessioneAlDataBaseGenerico() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Errore generico - Database");
+		alert.setHeaderText(null);
+		alert.setContentText("E' stato riscontato un problema generico nel caricare il database, contatta l'assistenza.");
+
+		alert.showAndWait();
+	}
+	
 }

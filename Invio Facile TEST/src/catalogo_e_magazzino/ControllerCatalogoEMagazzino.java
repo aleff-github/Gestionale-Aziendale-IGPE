@@ -22,8 +22,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import util_package.GestisciInterfacce;
+import util_package.Messaggi;
 import util_package.Util;
 
 public class ControllerCatalogoEMagazzino {
@@ -139,14 +141,19 @@ public class ControllerCatalogoEMagazzino {
 				
 	@FXML
 	private TableView<Prodotto> tableViewProdotti;
-		@FXML
-		private TableColumn<Prodotto, Integer> tableColumnIdProdotto = new TableColumn<Prodotto, Integer>("Id Prodotto");
-		@FXML
-		private TableColumn<Prodotto, String> tableColumnNomeProdotto = new TableColumn<Prodotto, String>("Nome");
-		@FXML
-	    private TableColumn<Prodotto, String> tableColumnLivelloReparto = new TableColumn<Prodotto, String>("Reparto");
-		@FXML
-		private TableColumn<Prodotto, Double> tableColumnPrezzo = new TableColumn<Prodotto, Double>("Prezzo");
+		@FXML private TableColumn<Prodotto, Integer> tableColumnIdProdotto = new TableColumn<Prodotto, Integer>("Id Prodotto");
+		
+		@FXML private TableColumn<Prodotto, String> tableColumnNomeProdotto = new TableColumn<Prodotto, String>("Nome");
+		
+		@FXML private TableColumn<Prodotto, String> tableColumnDescrizione = new TableColumn<Prodotto, String>("Descrizione");
+		
+		@FXML private TableColumn<Prodotto, String> tableColumnLivelloReparto = new TableColumn<Prodotto, String>("Reparto");
+		
+		@FXML private TableColumn<Prodotto, Double> tableColumnPrezzo = new TableColumn<Prodotto, Double>("Prezzo");
+		
+		@FXML private TableColumn<Prodotto, Integer> tableColumnIva = new TableColumn<Prodotto, Integer>("Iva");
+		
+		@FXML private TableColumn<Prodotto, Double> tableColumnPrezzoFinale = new TableColumn<Prodotto, Double>("Prezzo Finale");
 		
 	@FXML
 	public void initialize() {
@@ -154,8 +161,11 @@ public class ControllerCatalogoEMagazzino {
 		
 		tableColumnIdProdotto.setCellValueFactory(new PropertyValueFactory<Prodotto, Integer>("id"));
 		tableColumnNomeProdotto.setCellValueFactory(new PropertyValueFactory<Prodotto, String>("nome"));
+		tableColumnDescrizione.setCellValueFactory(new PropertyValueFactory<Prodotto, String>("descrizione"));
 		tableColumnLivelloReparto.setCellValueFactory(new PropertyValueFactory<Prodotto, String>("reparto"));
 		tableColumnPrezzo.setCellValueFactory(new PropertyValueFactory<Prodotto, Double>("prezzo"));
+		tableColumnIva.setCellValueFactory(new PropertyValueFactory<Prodotto, Integer>("iva"));
+		tableColumnPrezzoFinale.setCellValueFactory(new PropertyValueFactory<Prodotto, Double>("prezzoFinale"));
 		
 		tableViewProdotti.setItems(incastratoreDiProdotti);
 		
@@ -170,9 +180,12 @@ public class ControllerCatalogoEMagazzino {
 				@FXML
 			    private BorderPane borderPaneDiRicerca;
 					@FXML
-				    private Button pulsanteCerca;
-					@FXML
-				    private TextField cercaProdottoField;
+					private HBox hBoxCercaPulsanti;
+						@FXML
+						private BorderPane borderPanePulsantiCerca;
+							@FXML private Button pulsanteCerca; @FXML private Button pulsanteAnnulla;
+							@FXML
+						    private TextField cercaProdottoField;
 				@FXML
 			    private BorderPane borderPaneAggiungi;
 					@FXML
@@ -194,7 +207,17 @@ public class ControllerCatalogoEMagazzino {
 
     @FXML
     void effettuaRicercaDelProdotto(ActionEvent event) {
-
+    	if(cercaProdottoField.getText().equals(""))
+    		Messaggi.campoDiRicercaVuota();
+    	String ricerca = cercaProdottoField.getText();
+    	ObservableList<Prodotto> incastratoreDiProdotti = Util.effettuaRicerca(ricerca);
+    }
+    
+    @FXML
+    void ripristinaTableView(ActionEvent event) {
+    	tableViewProdotti.getItems().clear();
+    	initialize();
+    	cercaProdottoField.setText("");
     }
 
     @FXML
@@ -231,19 +254,59 @@ public class ControllerCatalogoEMagazzino {
 				else {/*CHIUDI*/}
 			} else {/*CHIUDI*/}
 		}catch (IOException e) {
-			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
     }
 
     @FXML
     void modificaProdotto(ActionEvent event) {
-
+    	//Acquisisco la selezione
+    	Prodotto prodottoSelezionato = tableViewProdotti.getSelectionModel().getSelectedItem();
+    	if(prodottoSelezionato == null)
+    		Messaggi.prodottoNonSelezionato();
+    	//Mi salvo i dati del prodotto selezionato
+   		Util.modificaProdotto(prodottoSelezionato);
+   		
+   		Alert dialogo = new Alert(AlertType.INFORMATION); 
+		dialogo.setTitle("Modifica prodotto");
+		dialogo.setHeaderText("Se riscontri problemi nell'inserimento dei dati contatta l'assistenza.");
+		dialogo.setResizable(true); 
+		
+		try {
+			AnchorPane modificaProdotto = (AnchorPane) FXMLLoader.load(getClass().getResource( "ModificaProdotto.fxml" ));
+			dialogo.getDialogPane().setContent(modificaProdotto);
+			
+			dialogo.getButtonTypes().clear();
+			ButtonType termina = new ButtonType("Termina");
+			dialogo.getButtonTypes().add(termina);
+			Optional<ButtonType> res1 = dialogo.showAndWait();
+			
+			if (res1.get() == termina){
+				Alert alert = new Alert(AlertType.WARNING); 
+				alert.setTitle("Attenzione!");
+				alert.setHeaderText("Sei sicuro di voler chiudere? I dati non salvati andranno persi.");
+				alert.setResizable(true); 
+				
+				ButtonType conferma = new ButtonType("Conferma");
+				ButtonType annulla = new ButtonType("Annulla");
+				alert.getButtonTypes().clear();
+				alert.getButtonTypes().addAll(conferma, annulla);
+				
+				Optional<ButtonType> res2 = alert.showAndWait();
+				if(res2.get() == annulla) {
+					aggiungiUnProdotto(event);
+				}
+				else {/*CHIUDI*/}
+			} else {/*CHIUDI*/}
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     @FXML
     void eliminaProdotto(ActionEvent event) {
-
+    	Integer id = tableViewProdotti.getSelectionModel().getSelectedItem().getId();
+    	Util.eliminaProdotto(id, tableViewProdotti.getSelectionModel().getSelectedItem());
     }
 
 }

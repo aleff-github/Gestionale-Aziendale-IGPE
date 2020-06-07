@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.Statement;
 import java.util.Random;
 
 import catalogo_e_magazzino.Prodotto;
@@ -156,20 +156,26 @@ public class Util {
 	
 	private static ObservableList<Prodotto> incastratoreDiProdotti = FXCollections.observableArrayList();;
 	private static Prodotto ultimoProdottoAggiunto;
+	public static Prodotto prodottoDaModificare;
+	
+	private static PreparedStatement preparedStatementProdotto;
+	private static Statement statementProdotto;
+    private static ResultSet resultProdotto;
+    private static Connection connectionProdotto;
 	
 	public static ObservableList<Prodotto> creaTableViewProdotti (){
 		try {
-            con = DatabaseConnector.getConnectionCatalogoProdotti(); 
-            PreparedStatement statement = con.prepareStatement("SELECT * FROM 'prodotti'");
-            rs = statement.executeQuery(); 
+			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti(); 
+			preparedStatementProdotto = connectionProdotto.prepareStatement("SELECT * FROM 'prodotti'");
+            resultProdotto = preparedStatementProdotto.executeQuery(); 
             
-            while(rs.next()) { 
-            	Integer id = Integer.parseInt(rs.getString("id"));
-            	String nome = rs.getString("nome");
-            	String reparto = rs.getString("reparto");
-            	Double prezzo = Double.parseDouble(rs.getString("prezzo"));
-            	Integer iva = Integer.parseInt(rs.getString("iva"));
-            	String descrizione = rs.getString("descrizione");
+            while(resultProdotto.next()) { 
+            	Integer id = Integer.parseInt(resultProdotto.getString("id"));
+            	String nome = resultProdotto.getString("nome");
+            	String reparto = resultProdotto.getString("reparto");
+            	Double prezzo = Double.parseDouble(resultProdotto.getString("prezzo"));
+            	Integer iva = Integer.parseInt(resultProdotto.getString("iva"));
+            	String descrizione = resultProdotto.getString("descrizione");
             	
             	incastratoreDiProdotti.add(new Prodotto(id,nome,reparto,prezzo,iva,descrizione));
             }
@@ -180,35 +186,29 @@ public class Util {
 		return incastratoreDiProdotti;
 	}
 	
-	public static void aggiungiVoceProdotto (Prodotto v) {
-		System.out.println("Util 1");
+	//Comunicazione con il database
+	public static void aggiungiVoceProdotto (Prodotto p) {
 		try {
 			String query = "INSERT INTO 'prodotti' ('nome', 'reparto', 'prezzo', 'iva', 'descrizione') 	"
-					+ "VALUES ('" + v.getNome() + "', '" 	
-					+ v.getReparto() + "', '"	
-					+ v.getPrezzo() + "', '"	
-					+ v.getIva() + "', '"	
-					+ v.getDescrizione() + "');";
-			Connection con = DatabaseConnector.getConnectionCatalogoProdotti();
-			con.createStatement().executeUpdate(query);
-			
-			System.out.println("Util 2");
+					+ "VALUES ('" + p.getNome() + "', '" 	
+					+ p.getReparto() + "', '"	
+					+ p.getPrezzo() + "', '"	
+					+ p.getIva() + "', '"	
+					+ p.getDescrizione() + "');";
+			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti(); //creo la connessione con il database
+			connectionProdotto.createStatement().executeUpdate(query); //eseguo la queri -> Aggiungi prodotto
 			
 			String queryLastId = "SELECT * FROM prodotti WHERE id =(SELECT MAX(id) FROM prodotti);";
-			PreparedStatement statement = con.prepareStatement(queryLastId);
+			statementProdotto = connectionProdotto.createStatement(); //acquisisco la connesione con lo statement
+			resultProdotto = statementProdotto.executeQuery(queryLastId); //eseguo la query -> Seleziona prodotto
 			
-			System.out.println(rs.getInt("id"));
-			rs = statement.executeQuery(queryLastId);
-			v.setId(rs.getInt("id"));
-			
-			System.out.println("Util 3");
+			p.setId(resultProdotto.getInt("id"));
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("QUA");
-		incastratoreDiProdotti.add(v);
-		ultimoProdottoAggiunto = v;
+		incastratoreDiProdotti.add(p);
+		ultimoProdottoAggiunto = p;
 	}
 	
 	public static ObservableList<Prodotto> tableViewProdottiAggiornata (){
@@ -218,6 +218,124 @@ public class Util {
 	public static void aggiungiProdotto (Prodotto p) {
 		incastratoreDiProdotti.add(p);
 	}
+	
+	public static void eliminaProdotto (Integer id, Prodotto p) {
+		try {
+    	String queryCancellaVoce = "DELETE FROM prodotti WHERE id = " + id + "";
+	    	incastratoreDiProdotti.remove(p);
+	    	connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti();
+	    	connectionProdotto.createStatement().executeUpdate(queryCancellaVoce);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void modificaProdotto (Prodotto p) {
+		prodottoDaModificare = p;
+	}
+	
+	public static void modificaVoceProdotto(Prodotto p) {
+//		new Prodotto(id, nome, reparto, prezzo, iva, descrizione)
+//		UPDATE prodotti SET nome = 'cambiato' WHERE id = 23
+		try {
+			String queryModifica = "UPDATE prodotti 	"
+								+ "SET nome = '" + p.getNome() + "', "
+								+ "reparto = '" + p.getReparto() + "', "
+								+ "prezzo = '" + p.getPrezzo() + "', "
+								+ "iva= '" + p.getIva() + "', "
+								+ "descrizione = '" + p.getDescrizione() + "' "
+								+ "WHERE id = " + p.getId();
+			statementProdotto = connectionProdotto.createStatement(); //acquisisco la connesione con lo statement
+			connectionProdotto.createStatement().executeUpdate(queryModifica); //eseguo la query -> Seleziona prodotto
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		int size = incastratoreDiProdotti.size();
+		for(int index=0; index<size; index++){
+		   if(incastratoreDiProdotti.get(index).getId() == p.getId()){
+			   incastratoreDiProdotti.set(index, p); //Modifica nella tabella
+		   }
+		}  
+	}
+	
+	public static ObservableList<Prodotto> effettuaRicerca (String ricerca) {
+		
+		try { //Creo la connessione
+			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti(); 
+		}catch(SQLException e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); return incastratoreDiProdotti;}
+		
+		incastratoreDiProdotti.clear();
+		
+		boolean isDouble = true;
+			try {
+				Double numeroDouble = Double.parseDouble(ricerca);
+				
+			}catch(NumberFormatException e) {
+				isDouble = false;
+			}
+			if(isDouble) {
+				try {
+					String ricercaDouble = "SELECT * " + 
+							"FROM prodotti " + 
+							"WHERE " + 
+							"	id = '" + ricerca + "' OR" + // Se 'ricerca' è uguale all'id  
+							"	prezzo = '" + ricerca + "' OR" + // Se 'ricerca' è uguale al prezzo  
+							"	iva = '" + ricerca + "' OR" + // Se 'ricerca' è uguale all'iva
+							"	prezzo*(1+(iva/100)) = '" + ricerca + "'"; // Se 'ricerca' è uguale al prezzo compreso iva
+					
+					preparedStatementProdotto = connectionProdotto.prepareStatement(ricercaDouble);
+					resultProdotto = preparedStatementProdotto.executeQuery();
+					
+					while(resultProdotto.next()) { 
+		            	Integer id = Integer.parseInt(resultProdotto.getString("id"));
+		            	String nome = resultProdotto.getString("nome");
+		            	String reparto = resultProdotto.getString("reparto");
+		            	Double prezzo = Double.parseDouble(resultProdotto.getString("prezzo"));
+		            	Integer iva = Integer.parseInt(resultProdotto.getString("iva"));
+		            	String descrizione = resultProdotto.getString("descrizione");
+		            	
+		            	incastratoreDiProdotti.add(new Prodotto(id,nome,reparto,prezzo,iva,descrizione));
+		            }
+					
+					return incastratoreDiProdotti;
+				}catch(SQLException e) {}
+			}
+		
+		//E' una stringa
+			
+		
+		try {
+			String ricercaDouble = "SELECT * " + 
+					"FROM prodotti " + 
+					"WHERE " + 
+					"	nome LIKE '%" + ricerca + "%' OR" + // Se ciò che è stato cercato è incluso nel nome  
+					"	descrizione LIKE '%" + ricerca + "%' OR" + // Se è incluso nella descrizione
+					"	reparto LIKE '%" + ricerca + "%'"; // Se è incluso nel reparto
+			
+			preparedStatementProdotto = connectionProdotto.prepareStatement(ricercaDouble);
+			resultProdotto = preparedStatementProdotto.executeQuery();
+			
+			while(resultProdotto.next()) { 
+            	Integer id = Integer.parseInt(resultProdotto.getString("id"));
+            	String nome = resultProdotto.getString("nome");
+            	String reparto = resultProdotto.getString("reparto");
+            	Double prezzo = Double.parseDouble(resultProdotto.getString("prezzo"));
+            	Integer iva = Integer.parseInt(resultProdotto.getString("iva"));
+            	String descrizione = resultProdotto.getString("descrizione");
+            	
+            	incastratoreDiProdotti.add(new Prodotto(id,nome,reparto,prezzo,iva,descrizione));
+            }
+		}catch(SQLException e) {}
+		
+		return incastratoreDiProdotti;
+	}
+	
+	public static Double calcolaPrezzoFinale (Double prezzo, Integer iva) {
+		return (prezzo * (1 + (iva /= 100) ) );
+	}
+	
 	
 	/* * * * * * * * **
 	 *                *

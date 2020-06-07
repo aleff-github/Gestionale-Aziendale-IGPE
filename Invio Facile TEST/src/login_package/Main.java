@@ -47,8 +47,8 @@ public class Main extends Application{
     	GestisciInterfacce.add("Catalogo E Magazzino", rootCatalogoEMagazzino);
 		
 		primaryStage.setResizable(true);
-		primaryStage.setMinHeight(500);
-		primaryStage.setMinWidth(600);
+		primaryStage.setMinHeight(700);
+		primaryStage.setMinWidth(800);
 		primaryStage.setTitle("Invio Facile!");
 		primaryStage.setScene(scenaIniziale);
 		primaryStage.show();
