@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import util_package.GestisciInterfacce;
+import util_package.Messaggi;
 import util_package.Util;
 
 public class InterfacciaImprenditore  {
@@ -100,41 +101,16 @@ private AnchorPane imprenditoreAnchorPane;
 		    @FXML
 		    private MenuItem pulsanteCrediti;
 		    @FXML
-		    void crediti(ActionEvent event) {
-		    	Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("Invio Facile!");
-				alert.setHeaderText(null);
-				alert.setContentText("Questo software è stato creato al fine del superamento dell'esame di IGPE da Alessandro Greco.\nUniversità Della Calabria - UNICAL");
-			
-				alert.showAndWait();
-			}
+		    void crediti(ActionEvent event) { Messaggi.crediti(); }
 		    @FXML
 		    private MenuItem pulsanteContattaLAssistenza;
 			    @FXML
-			    void contattaLAssistenza(ActionEvent event) {
-			    	Alert alert = new Alert(AlertType.INFORMATION);
-			    	alert.setTitle("Contatta l'assistenza");
-			    	alert.setHeaderText(null);
-			    	alert.setContentText("Stai contattando l'assistenza, se desideri un consulto immediato contatta il numero:\n+39 327 83 21 517");
-			    	ButtonType inviaUnaEmail = new ButtonType ("Invia una email");
-			    	alert.getButtonTypes().setAll(inviaUnaEmail);
-			    	
-			    	Optional<ButtonType> opzioneScelta = alert.showAndWait();
-			    	if(opzioneScelta.get() == inviaUnaEmail) {
-			    		//TODO
-			    		Util.inviaEmail();
-			    	}
-			    }
+			    void contattaLAssistenza(ActionEvent event) { Messaggi.contattaAssistenza(); }
 		    @FXML
 		    private MenuItem pulsanteRiavviaIlProgramma;
 			    @FXML
-			    void riavviaIlProgramma(ActionEvent event) {
-			    	//TODO
-			    }
-			    
-    
-				
-	 
+			    void riavviaIlProgramma(ActionEvent event) { Messaggi.riavviaIlProgramma(); }
+
 	@FXML
 	private SplitPane splitPaneImprenditore;	
 		@FXML

@@ -58,8 +58,6 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <BorderPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -74,38 +72,6 @@
                            </GridPane.margin>
                         </Label>
                         <Label fx:id="vociTotali" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                           <font>
-                              <Font name="Baskerville Old Face" size="48.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label fx:id="prodottiLabel" text="Prodotti:" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="Baskerville Old Face" size="48.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label fx:id="prodotti" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="Baskerville Old Face" size="48.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label fx:id="scorteInMagazzinoLabel" text="Scorte in Magazzino:" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="Baskerville Old Face" size="48.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label fx:id="scorteInMagazzino" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <font>
                               <Font name="Baskerville Old Face" size="48.0" />
                            </font>

@@ -92,7 +92,7 @@ public class ControllerAggiungiProdotto {
     void aggiungiProdotto(ActionEvent event) {
     	//NOME
     	String nome = nomeField.getText();
-    	if(nome.equals(null)) {
+    	if(nome.equals("")) {
     		Messaggi.erroreNomeProdotto();
 			flag = false;
     	}
@@ -125,12 +125,12 @@ public class ControllerAggiungiProdotto {
 		
     	//DESCRIZIONE
 		String descrizioneProdotto = descrizioneTextArea.getText();
-		if(descrizioneProdotto.equals(null)) {
+		if(descrizioneProdotto.equals("")) {
 			Messaggi.erroreDescrizioneProdotto();
 			flag = false;
 		}
-		
-		Util.aggiungiVoceProdotto(new Prodotto (0, nome, repartoScelto, prezzo, ivaScelta, descrizioneProdotto));
+		if(flag)
+			Util.aggiungiVoceProdotto(new Prodotto (0, nome, repartoScelto, prezzo, ivaScelta, descrizioneProdotto));
     }
 
     @FXML

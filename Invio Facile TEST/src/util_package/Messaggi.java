@@ -16,6 +16,15 @@ public class Messaggi {
 			alert.showAndWait();
 	}
 	
+	public static void erroreApriCatalogoEMagazzino() {
+		Alert alert = new Alert (AlertType.INFORMATION);
+			alert.setTitle("Apri catalogo e magazzino");
+			alert.setHeaderText("Stai cercando di accedere a catalogo e magazzino.");
+			alert.setContentText("Sei già all'interno di Catalogo e Magazzino, se desideri uscire puoi andare alla Home oppure, cliccando il tasto esci, tornerai alla schermata di Login.");
+			
+			alert.showAndWait();
+	}
+	
 	public static void erroreSalvataggio() {
 		Alert alert = new Alert(AlertType.ERROR);
     	alert.setTitle("Errore nel salvataggio");
@@ -183,7 +192,7 @@ public class Messaggi {
 		alert.showAndWait();
 	}
 	
-	public static void annullaModifiche () {
+	public static void annullaModifiche() {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Annullamento");
 		alert.setHeaderText(null);
@@ -217,6 +226,10 @@ public class Messaggi {
 		alert.setContentText("E' stato riscontato un problema generico nel caricare il database, contatta l'assistenza.");
 
 		alert.showAndWait();
+	}
+	
+	public static void riavviaIlProgramma() {
+		//TODO
 	}
 	
 }

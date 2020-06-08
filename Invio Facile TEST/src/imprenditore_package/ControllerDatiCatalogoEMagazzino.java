@@ -1,6 +1,8 @@
 	package imprenditore_package;
 
-	import javafx.event.ActionEvent;
+	import java.sql.SQLException;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import util_package.GestisciInterfacce;
+import util_package.Util;
 
 	public class ControllerDatiCatalogoEMagazzino {
 		
@@ -44,12 +47,15 @@ import util_package.GestisciInterfacce;
 					@FXML
 				    private GridPane catalocoEMagazzinoGridPane;
 					@FXML private Label vociTotaliLabel; @FXML private Label vociTotali;
-					@FXML private Label prodottiLabel; @FXML private Label prodotti;
-					@FXML private Label scorteInMagazzinoLabel; @FXML private Label scorteInMagazzino;
 
 		@FXML
 	    void apriCatalocoEMagazzino(ActionEvent event) {
 			GestisciInterfacce.setFinestra("Catalogo E Magazzino");
 	    }
+		
+		@FXML
+		void initialize () {
+			vociTotali.setText( "" + Util.vociTotaliCatalogoEMagazzino() );
+		}
 
 	}

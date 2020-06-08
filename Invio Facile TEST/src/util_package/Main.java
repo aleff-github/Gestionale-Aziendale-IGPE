@@ -1,12 +1,11 @@
-package login_package;
+package util_package;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import util_package.GestisciInterfacce;
-import util_package.Util;
+import login_package.LoginController;
 
 public class Main extends Application{
 	

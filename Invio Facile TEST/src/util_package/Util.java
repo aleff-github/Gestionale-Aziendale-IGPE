@@ -19,9 +19,6 @@ import libro_giornale.VoceLibroGiornale;
 public class Util {
 	private static Application app;
 	
-	public Util () {
-	}
-	
 	public static void setApplication (Application app) {
 		Util.app = app;
 	}
@@ -148,11 +145,11 @@ public class Util {
 		return toReturn;
 	}
 	
-	/* * * * * * * * **
-	 *                *
-	 *    PRODOTTO    *
-	 *                *
-	 * * * * * * * * */
+	/* * * * * * * * * * * **
+	 *                      *
+	 * CATALOGO E MAGAZZINO *
+	 *                      *
+	 * * * * * * * * * * * **/
 	
 	private static ObservableList<Prodotto> incastratoreDiProdotti = FXCollections.observableArrayList();;
 	private static Prodotto ultimoProdottoAggiunto;
@@ -165,10 +162,10 @@ public class Util {
 	
 	public static ObservableList<Prodotto> creaTableViewProdotti (){
 		try {
-			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti(); 
+			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti();
 			preparedStatementProdotto = connectionProdotto.prepareStatement("SELECT * FROM 'prodotti'");
-            resultProdotto = preparedStatementProdotto.executeQuery(); 
-            
+            resultProdotto = preparedStatementProdotto.executeQuery();
+			
             while(resultProdotto.next()) { 
             	Integer id = Integer.parseInt(resultProdotto.getString("id"));
             	String nome = resultProdotto.getString("nome");
@@ -179,7 +176,7 @@ public class Util {
             	
             	incastratoreDiProdotti.add(new Prodotto(id,nome,reparto,prezzo,iva,descrizione));
             }
-            
+            connectionProdotto.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 	    }
@@ -189,21 +186,21 @@ public class Util {
 	//Comunicazione con il database
 	public static void aggiungiVoceProdotto (Prodotto p) {
 		try {
-			String query = "INSERT INTO 'prodotti' ('nome', 'reparto', 'prezzo', 'iva', 'descrizione') 	"
-					+ "VALUES ('" + p.getNome() + "', '" 	
-					+ p.getReparto() + "', '"	
-					+ p.getPrezzo() + "', '"	
-					+ p.getIva() + "', '"	
-					+ p.getDescrizione() + "');";
-			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti(); //creo la connessione con il database
-			connectionProdotto.createStatement().executeUpdate(query); //eseguo la queri -> Aggiungi prodotto
+			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti();
+			preparedStatementProdotto = connectionProdotto.prepareStatement("INSERT INTO 'prodotti' ('nome', 'reparto', 'prezzo', 'iva', 'descrizione') VALUES (?,?,?,?,?)");
+			preparedStatementProdotto.setString(1, p.getNome());
+			preparedStatementProdotto.setString(2, p.getReparto());
+			preparedStatementProdotto.setDouble(3, p.getPrezzo());
+			preparedStatementProdotto.setInt(4, p.getIva());
+			preparedStatementProdotto.setString(5, p.getDescrizione());
+			preparedStatementProdotto.executeUpdate();
 			
 			String queryLastId = "SELECT * FROM prodotti WHERE id =(SELECT MAX(id) FROM prodotti);";
-			statementProdotto = connectionProdotto.createStatement(); //acquisisco la connesione con lo statement
-			resultProdotto = statementProdotto.executeQuery(queryLastId); //eseguo la query -> Seleziona prodotto
-			
+			preparedStatementProdotto = connectionProdotto.prepareStatement(queryLastId);
+			resultProdotto = preparedStatementProdotto.executeQuery();
 			p.setId(resultProdotto.getInt("id"));
 			
+			connectionProdotto.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -221,13 +218,14 @@ public class Util {
 	
 	public static void eliminaProdotto (Integer id, Prodotto p) {
 		try {
-    	String queryCancellaVoce = "DELETE FROM prodotti WHERE id = " + id + "";
-	    	incastratoreDiProdotti.remove(p);
-	    	connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti();
-	    	connectionProdotto.createStatement().executeUpdate(queryCancellaVoce);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti();
+	    	String queryCancellaVoce = "DELETE FROM prodotti WHERE id = ?";
+	    	preparedStatementProdotto = connectionProdotto.prepareStatement(queryCancellaVoce);
+	    	preparedStatementProdotto.setInt(1, id);
+	    	
+	    	preparedStatementProdotto.executeUpdate();
+	    	connectionProdotto.close();
+		} catch (Exception e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); }
 	}
 	
 	public static void modificaProdotto (Prodotto p) {
@@ -235,34 +233,29 @@ public class Util {
 	}
 	
 	public static void modificaVoceProdotto(Prodotto p) {
-//		new Prodotto(id, nome, reparto, prezzo, iva, descrizione)
-//		UPDATE prodotti SET nome = 'cambiato' WHERE id = 23
 		try {
-			String queryModifica = "UPDATE prodotti 	"
-								+ "SET nome = '" + p.getNome() + "', "
-								+ "reparto = '" + p.getReparto() + "', "
-								+ "prezzo = '" + p.getPrezzo() + "', "
-								+ "iva= '" + p.getIva() + "', "
-								+ "descrizione = '" + p.getDescrizione() + "' "
-								+ "WHERE id = " + p.getId();
-			statementProdotto = connectionProdotto.createStatement(); //acquisisco la connesione con lo statement
-			connectionProdotto.createStatement().executeUpdate(queryModifica); //eseguo la query -> Seleziona prodotto
+			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti();
+			String queryModifica = "UPDATE prodotti SET nome=?, reparto=?, prezzo=?, iva=?, descrizione=? WHERE id=?";
+			preparedStatementProdotto = connectionProdotto.prepareStatement(queryModifica);
+			preparedStatementProdotto.setString(1, p.getNome());
+			preparedStatementProdotto.setString(2, p.getReparto());
+			preparedStatementProdotto.setDouble(3, p.getPrezzo());
+			preparedStatementProdotto.setInt(4, p.getIva());
+			preparedStatementProdotto.setString(5, p.getDescrizione());
+			preparedStatementProdotto.setInt(6, p.getId());
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			preparedStatementProdotto.executeUpdate();
+			connectionProdotto.close();
+		} catch (SQLException e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); }
 		
 		int size = incastratoreDiProdotti.size();
-		for(int index=0; index<size; index++){
-		   if(incastratoreDiProdotti.get(index).getId() == p.getId()){
+		for(int index=0; index < size; index++)
+		   if(incastratoreDiProdotti.get(index).getId() == p.getId())
 			   incastratoreDiProdotti.set(index, p); //Modifica nella tabella
-		   }
-		}  
 	}
 	
 	public static ObservableList<Prodotto> effettuaRicerca (String ricerca) {
-		
-		try { //Creo la connessione
+		try { 
 			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti(); 
 		}catch(SQLException e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); return incastratoreDiProdotti;}
 		
@@ -280,10 +273,10 @@ public class Util {
 					String ricercaDouble = "SELECT * " + 
 							"FROM prodotti " + 
 							"WHERE " + 
-							"	id = '" + ricerca + "' OR" + // Se 'ricerca' è uguale all'id  
-							"	prezzo = '" + ricerca + "' OR" + // Se 'ricerca' è uguale al prezzo  
-							"	iva = '" + ricerca + "' OR" + // Se 'ricerca' è uguale all'iva
-							"	prezzo*(1+(iva/100)) = '" + ricerca + "'"; // Se 'ricerca' è uguale al prezzo compreso iva
+							"	id = '" + ricerca + "' OR" + 
+							"	prezzo = '" + ricerca + "' OR" +   
+							"	iva = '" + ricerca + "' OR" + 
+							"	prezzo*(1+(iva/100)) = '" + ricerca + "'"; 
 					
 					preparedStatementProdotto = connectionProdotto.prepareStatement(ricercaDouble);
 					resultProdotto = preparedStatementProdotto.executeQuery();
@@ -300,21 +293,18 @@ public class Util {
 		            }
 					
 					return incastratoreDiProdotti;
-				}catch(SQLException e) {}
+				}catch(SQLException e) {Messaggi.erroreDiConnessioneAlDataBaseGenerico();}
 			}
 		
-		//E' una stringa
-			
-		
 		try {
-			String ricercaDouble = "SELECT * " + 
+			String ricercaStringa = "SELECT * " + 
 					"FROM prodotti " + 
 					"WHERE " + 
-					"	nome LIKE '%" + ricerca + "%' OR" + // Se ciò che è stato cercato è incluso nel nome  
-					"	descrizione LIKE '%" + ricerca + "%' OR" + // Se è incluso nella descrizione
-					"	reparto LIKE '%" + ricerca + "%'"; // Se è incluso nel reparto
+					"	nome LIKE '%" + ricerca + "%' OR" + // Se ciï¿½ che ï¿½ stato cercato ï¿½ incluso nel nome  
+					"	descrizione LIKE '%" + ricerca + "%' OR" + // Se ï¿½ incluso nella descrizione
+					"	reparto LIKE '%" + ricerca + "%'"; // Se ï¿½ incluso nel reparto
 			
-			preparedStatementProdotto = connectionProdotto.prepareStatement(ricercaDouble);
+			preparedStatementProdotto = connectionProdotto.prepareStatement(ricercaStringa);
 			resultProdotto = preparedStatementProdotto.executeQuery();
 			
 			while(resultProdotto.next()) { 
@@ -327,13 +317,25 @@ public class Util {
             	
             	incastratoreDiProdotti.add(new Prodotto(id,nome,reparto,prezzo,iva,descrizione));
             }
-		}catch(SQLException e) {}
+		}catch(SQLException e) {Messaggi.erroreDiConnessioneAlDataBaseGenerico();}
 		
 		return incastratoreDiProdotti;
 	}
 	
-	public static Double calcolaPrezzoFinale (Double prezzo, Integer iva) {
-		return (prezzo * (1 + (iva /= 100) ) );
+	public static Integer vociTotaliCatalogoEMagazzino () {
+		try {
+			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti();
+			String size = "SELECT count(*) FROM prodotti";
+			
+			statementProdotto = connectionProdotto.createStatement();
+			resultProdotto = statementProdotto.executeQuery(size);
+			
+			Integer vociTotali = resultProdotto.getInt("count(*)"); 
+			connectionProdotto.close();
+			return vociTotali;
+		} catch (Exception e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); }
+		
+		return 0;
 	}
 	
 	
@@ -358,7 +360,7 @@ public class Util {
             PreparedStatement statement = con.prepareStatement("SELECT * FROM data");//Preparo la query
             rs = statement.executeQuery(); //Eseguo la query salvando i dati in rs
             
-            while(rs.next()) { //Finché ci sono righe da analizzare
+            while(rs.next()) { //FinchÃ© ci sono righe da analizzare
             	String dataX = rs.getString("data");
             	Integer documentoX = Integer.parseInt(rs.getString("numeroDocumento"));
             	String descrizioneX = rs.getString("descrizione");
@@ -371,9 +373,7 @@ public class Util {
             	//Creo e aggiungo gli oggetti che popoleranno la TableView
             }
             
-		} catch (Exception e) {
-			e.printStackTrace();
-	    }
+		} catch (Exception e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); }
 		//TableView popolata
 	 
 		return incastratoreDiLibri;
@@ -397,5 +397,5 @@ public class Util {
 		return ultimaVoceAggiunta.getAvere();
 	}
 	
-	
+
 }

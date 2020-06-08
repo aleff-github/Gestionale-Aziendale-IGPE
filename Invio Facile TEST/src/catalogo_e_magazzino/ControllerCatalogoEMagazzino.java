@@ -79,18 +79,11 @@ public class ControllerCatalogoEMagazzino {
 					@FXML
 				    private MenuItem menuCatalogoEMagazzino;
 			  		@FXML
-			  		void apriCatalogoEMagazzino(ActionEvent event) { 
-			  			Alert alert = new Alert (AlertType.INFORMATION);
-			  			alert.setTitle("Apri catalogo e magazzino");
-			  			alert.setHeaderText("Stai cercando di accedere a catalogo e magazzino.");
-			  			alert.setContentText("Sei già all'interno di Catalogo e Magazzino, se desideri uscire puoi andare alla Home oppure, cliccando il tasto esci, tornerai alla schermata di Login.");
-			  			
-			  			alert.showAndWait();
-			  		}
+			  		void apriCatalogoEMagazzino(ActionEvent event) { Messaggi.erroreApriCatalogoEMagazzino();}
 					@FXML
 					private MenuItem menuStatistiche;
 					@FXML
-			   		void apriStatistiche (ActionEvent event) { GestisciInterfacce.setFinestra("Statistiche"); } 
+			   		void apriStatistiche (ActionEvent event) {  GestisciInterfacce.setFinestra("Statistiche"); } 
 				@FXML
 				private Menu menuOpzioni;
 					@FXML
@@ -106,38 +99,15 @@ public class ControllerCatalogoEMagazzino {
 					@FXML
 				    private MenuItem menuCrediti;
 						 @FXML
-						 void crediti(ActionEvent event) {
-						   	Alert alert = new Alert(AlertType.INFORMATION);
-							alert.setTitle("Invio Facile!");
-							alert.setHeaderText(null);
-							alert.setContentText("Questo software è stato creato al fine del superamento dell'esame di IGPE da Alessandro Greco.\nUniversità Della Calabria - UNICAL");
-						
-							alert.showAndWait();
-						}
+						 void crediti(ActionEvent event) { Messaggi.crediti(); }
 					@FXML
 				    private MenuItem menuContattaLAssistenza;
 						@FXML
-					    void contattaLAssistenza(ActionEvent event) {
-					    	Alert alert = new Alert(AlertType.INFORMATION);
-					    	alert.setTitle("Contatta l'assistenza");
-					    	alert.setHeaderText(null);
-					    	alert.setContentText("Stai contattando l'assistenza, se desideri un consulto immediato contatta il numero:\n+39 327 83 21 517");
-					    	ButtonType inviaUnaEmail = new ButtonType ("Invia una email");
-					    	alert.getButtonTypes().setAll(inviaUnaEmail);
-					    	
-					    	Optional<ButtonType> opzioneScelta = alert.showAndWait();
-					    	if(opzioneScelta.get() == inviaUnaEmail) {
-					    		//TODO
-					    		Util.inviaEmail();
-					    	}
-					    }
+					    void contattaLAssistenza(ActionEvent event) { Messaggi.contattaAssistenza(); }
 					@FXML
 				    private MenuItem menuRiavviaIlProgramma;
 					  @FXML
-					    void riavviaIlProgramma(ActionEvent event) {
-					    	//TODO
-							//CREARE UN COLLEGAMENTO CON IL MAIN
-					    }
+					    void riavviaIlProgramma(ActionEvent event) { Messaggi.riavviaIlProgramma(); }
 				
 	@FXML
 	private TableView<Prodotto> tableViewProdotti;
@@ -307,6 +277,7 @@ public class ControllerCatalogoEMagazzino {
     void eliminaProdotto(ActionEvent event) {
     	Integer id = tableViewProdotti.getSelectionModel().getSelectedItem().getId();
     	Util.eliminaProdotto(id, tableViewProdotti.getSelectionModel().getSelectedItem());
+    	tableViewProdotti.getItems().removeAll(tableViewProdotti.getSelectionModel().getSelectedItems());
     }
 
 }
