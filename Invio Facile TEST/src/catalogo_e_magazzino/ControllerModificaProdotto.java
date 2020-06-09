@@ -91,16 +91,20 @@ public class ControllerModificaProdotto {
 		descrizioneTextArea.setText(prodottoSelezionato.getDescrizione());
 	}
 
+	public static boolean flag = true;
+	
     @FXML
     void modificaProdotto(ActionEvent event) {
     	//NOME
     	String nome = nomeField.getText();
     	if(nome.equals(null)) {
     		Messaggi.erroreNomeProdotto();
+    		flag = false;
     	}
     	//REPARTO
     	if(scegliReparto.getValue() == null) {
 			Messaggi.erroreSceltaRepartoProdotto();
+			flag = false;
 		}
 		String repartoScelto = scegliReparto.getValue();
     	
@@ -111,23 +115,27 @@ public class ControllerModificaProdotto {
 			prezzo = Double.valueOf(valoreInserito);
 			if(prezzo <= 0) {
 				Messaggi.errorePrezzoNegativoProdotto();
+				flag = false;
 			}
 		}catch(NumberFormatException errore) {
 			Messaggi.erroreGenericoPrezzoProdotto();
+			flag = false;
 		}
 		//IVA
 		Integer ivaScelta = scegliIva.getValue();
 		if (ivaScelta == null) {
 			Messaggi.erroreIvaSceltaProdotto();
+			flag = false;
 		}
 		
     	//DESCRIZIONE
 		String descrizioneProdotto = descrizioneTextArea.getText();
 		if(descrizioneProdotto.equals(null)) {
 			Messaggi.erroreDescrizioneProdotto();
+			flag = false;
 		}
-		
-		Util.modificaVoceProdotto(new Prodotto(id, nome, repartoScelto, prezzo, ivaScelta, descrizioneProdotto));
+		if(flag)
+			Util.modificaVoceProdotto(new Prodotto(id, nome, repartoScelto, prezzo, ivaScelta, descrizioneProdotto));
     }
 
     @FXML

@@ -230,12 +230,12 @@ public class ControllerCatalogoEMagazzino {
 
     @FXML
     void modificaProdotto(ActionEvent event) {
-    	//Acquisisco la selezione
     	Prodotto prodottoSelezionato = tableViewProdotti.getSelectionModel().getSelectedItem();
-    	if(prodottoSelezionato == null)
+    	if(prodottoSelezionato == null) {
     		Messaggi.prodottoNonSelezionato();
-    	//Mi salvo i dati del prodotto selezionato
-   		Util.modificaProdotto(prodottoSelezionato);
+    		return;
+    	}
+   		Util.prodottoDaModificare(prodottoSelezionato);
    		
    		Alert dialogo = new Alert(AlertType.INFORMATION); 
 		dialogo.setTitle("Modifica prodotto");

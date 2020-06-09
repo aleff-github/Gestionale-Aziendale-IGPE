@@ -79,22 +79,22 @@ public class Util {
 //	FABBRICAZIONE E MONTAGGIO
 	public static Double costiTotaliFabbricazioneEMontaggio() {
 		Double toReturn = 0.0;
-		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
-			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Fabbricazione e Montaggio")) 
-				toReturn += ControllerLibroGiornale.tableView.getItems().get(i).getDare();
+		for(int i = 0; i < ControllerLibroGiornale.tableViewCopia.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableViewCopia.getItems().get(i).getReparto().equals("Fabbricazione e Montaggio")) 
+				toReturn += ControllerLibroGiornale.tableViewCopia.getItems().get(i).getDare();
 		return toReturn;
 	}
 	public static Double ricaviTotaliFabbricazioneEMontaggio() {
 		Double toReturn = 0.0;
-		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
-			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Fabbricazione e Montaggio")) 
-				toReturn += ControllerLibroGiornale.tableView.getItems().get(i).getAvere();
+		for(int i = 0; i < ControllerLibroGiornale.tableViewCopia.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableViewCopia.getItems().get(i).getReparto().equals("Fabbricazione e Montaggio")) 
+				toReturn += ControllerLibroGiornale.tableViewCopia.getItems().get(i).getAvere();
 		return toReturn;
 	}
 	public static Integer vociTotaliFabbricazioneEMontaggio() {
 		Integer toReturn = 0;
-		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
-			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Fabbricazione e Montaggio")) 
+		for(int i = 0; i < ControllerLibroGiornale.tableViewCopia.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableViewCopia.getItems().get(i).getReparto().equals("Fabbricazione e Montaggio")) 
 				toReturn ++;
 		return toReturn;
 	}
@@ -102,22 +102,22 @@ public class Util {
 //	TEST DI RESISTENZA AMBIENTALE
 	public static Double costiTotaliTestDiResistenzaAmbientale() {
 		Double toReturn = 0.0;
-		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
-			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Test di Resistenza Ambientale")) 
-				toReturn += ControllerLibroGiornale.tableView.getItems().get(i).getDare();
+		for(int i = 0; i < ControllerLibroGiornale.tableViewCopia.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableViewCopia.getItems().get(i).getReparto().equals("Test di Resistenza Ambientale")) 
+				toReturn += ControllerLibroGiornale.tableViewCopia.getItems().get(i).getDare();
 		return toReturn;
 	}
 	public static Double ricaviTotaliTestDiResistenzaAmbientale() {
 		Double toReturn = 0.0;
-		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
-			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Test di Resistenza Ambientale")) 
-				toReturn += ControllerLibroGiornale.tableView.getItems().get(i).getAvere();
+		for(int i = 0; i < ControllerLibroGiornale.tableViewCopia.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableViewCopia.getItems().get(i).getReparto().equals("Test di Resistenza Ambientale")) 
+				toReturn += ControllerLibroGiornale.tableViewCopia.getItems().get(i).getAvere();
 		return toReturn;
 	}
 	public static Integer vociTotaliTestDiResistenzaAmbientale() {
 		Integer toReturn = 0;
-		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
-			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Test di Resistenza Ambientale")) 
+		for(int i = 0; i < ControllerLibroGiornale.tableViewCopia.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableViewCopia.getItems().get(i).getReparto().equals("Test di Resistenza Ambientale")) 
 				toReturn ++;
 		return toReturn;
 	}
@@ -125,22 +125,22 @@ public class Util {
 //	TEST DI RESISTENZA AMBIENTALE
 	public static Double costiTotaliPuliziaEImballaggio() {
 		Double toReturn = 0.0;
-		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
-			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Pulizia e Imballaggio")) 
-				toReturn += ControllerLibroGiornale.tableView.getItems().get(i).getDare();
+		for(int i = 0; i < ControllerLibroGiornale.tableViewCopia.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableViewCopia.getItems().get(i).getReparto().equals("Pulizia e Imballaggio")) 
+				toReturn += ControllerLibroGiornale.tableViewCopia.getItems().get(i).getDare();
 		return toReturn;
 	}
 	public static Double ricaviTotaliPuliziaEImballaggio() {
 		Double toReturn = 0.0;
-		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
-			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Pulizia e Imballaggio")) 
-				toReturn += ControllerLibroGiornale.tableView.getItems().get(i).getAvere();
+		for(int i = 0; i < ControllerLibroGiornale.tableViewCopia.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableViewCopia.getItems().get(i).getReparto().equals("Pulizia e Imballaggio")) 
+				toReturn += ControllerLibroGiornale.tableViewCopia.getItems().get(i).getAvere();
 		return toReturn;
 	}
 	public static Integer vociTotaliPuliziaEImballaggio() {
 		Integer toReturn = 0;
-		for(int i = 0; i < ControllerLibroGiornale.tableView.getItems().size() ; i++) 
-			if(ControllerLibroGiornale.tableView.getItems().get(i).getReparto().equals("Pulizia e Imballaggio")) 
+		for(int i = 0; i < ControllerLibroGiornale.tableViewCopia.getItems().size() ; i++) 
+			if(ControllerLibroGiornale.tableViewCopia.getItems().get(i).getReparto().equals("Pulizia e Imballaggio")) 
 				toReturn ++;
 		return toReturn;
 	}
@@ -151,7 +151,7 @@ public class Util {
 	 *                      *
 	 * * * * * * * * * * * **/
 	
-	private static ObservableList<Prodotto> incastratoreDiProdotti = FXCollections.observableArrayList();;
+	private static ObservableList<Prodotto> incastratoreDiProdotti = FXCollections.observableArrayList();
 	private static Prodotto ultimoProdottoAggiunto;
 	public static Prodotto prodottoDaModificare;
 	
@@ -183,7 +183,6 @@ public class Util {
 		return incastratoreDiProdotti;
 	}
 	
-	//Comunicazione con il database
 	public static void aggiungiVoceProdotto (Prodotto p) {
 		try {
 			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti();
@@ -228,7 +227,7 @@ public class Util {
 		} catch (Exception e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); }
 	}
 	
-	public static void modificaProdotto (Prodotto p) {
+	public static void prodottoDaModificare (Prodotto p) {
 		prodottoDaModificare = p;
 	}
 	
@@ -344,57 +343,122 @@ public class Util {
 	 * LIBRO GIORNALE *
 	 *                *
 	 * * * * * * * * */
-	
-	private static ObservableList<VoceLibroGiornale> incastratoreDiLibri = FXCollections.observableArrayList();
+//	private static ObservableList<Prodotto> incastratoreDiProdotti = FXCollections.observableArrayList();;
+	private static ObservableList<VoceLibroGiornale> incastratoreDiVociLibroGiornale = FXCollections.observableArrayList();
 	private static VoceLibroGiornale ultimaVoceAggiunta;
+	public static VoceLibroGiornale voceDaModificare;
 	public static boolean eStataAggiuntaUnaVoce = false;
 	
-	public static Connection con;
-	public static ResultSet rs;
+	private static PreparedStatement preparedStatementLibroGiornale;
+	private static Statement statementLibroGiornale;
+    private static ResultSet resultLibroGiornale;
+    private static Connection connectionLibroGiornale;
 	
-	
+//	C R E A
 	public static ObservableList<VoceLibroGiornale> creaTableViewLibroGiornale (){
-		
 		try {
-            con = DatabaseConnector.getConnectionLibroGiornale(); // Acquisisco la connessione
-            PreparedStatement statement = con.prepareStatement("SELECT * FROM data");//Preparo la query
-            rs = statement.executeQuery(); //Eseguo la query salvando i dati in rs
+			connectionLibroGiornale = DatabaseConnector.getConnectionLibroGiornale(); 
+			preparedStatementLibroGiornale = connectionLibroGiornale.prepareStatement("SELECT * FROM 'data'");
+			resultLibroGiornale = preparedStatementLibroGiornale.executeQuery(); 
             
-            while(rs.next()) { //Finché ci sono righe da analizzare
-            	String dataX = rs.getString("data");
-            	Integer documentoX = Integer.parseInt(rs.getString("numeroDocumento"));
-            	String descrizioneX = rs.getString("descrizione");
-            	String repartoX = rs.getString("reparto");
-            	Integer ivaX = Integer.parseInt(rs.getString("iva"));
-            	Double dareX = Double.parseDouble(rs.getString("dare"));
-            	Double avereX = Double.parseDouble(rs.getString("avere"));
+            while(resultLibroGiornale.next()) { 
+            	String data = resultLibroGiornale.getString("data");
+            	Integer documento = Integer.parseInt(resultLibroGiornale.getString("numeroDocumento"));
+            	String descrizione= resultLibroGiornale.getString("descrizione");
+            	String reparto = resultLibroGiornale.getString("reparto");
+            	Integer iva = Integer.parseInt(resultLibroGiornale.getString("iva"));
+            	Double dare = Double.parseDouble(resultLibroGiornale.getString("dare"));
+            	Double avere = Double.parseDouble(resultLibroGiornale.getString("avere"));
             	
-            	incastratoreDiLibri.add(new VoceLibroGiornale(dataX,documentoX,descrizioneX,repartoX,ivaX,dareX,avereX));
-            	//Creo e aggiungo gli oggetti che popoleranno la TableView
+            	incastratoreDiVociLibroGiornale.add(new VoceLibroGiornale(data,documento,descrizione,reparto,iva,dare,avere));
+            	
             }
-            
+            connectionLibroGiornale.close();
 		} catch (Exception e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); }
-		//TableView popolata
 	 
-		return incastratoreDiLibri;
+		return incastratoreDiVociLibroGiornale;
+	}
+	
+	//A G G I U N G I
+	public static void aggiungiVoceLibroGiornale (VoceLibroGiornale v) {
+		try {
+			connectionLibroGiornale = DatabaseConnector.getConnectionLibroGiornale();
+			preparedStatementLibroGiornale = connectionLibroGiornale.prepareStatement("INSERT INTO data ('data', 'descrizione', 'reparto', 'iva', 'dare', 'avere') VALUES (?,?,?,?,?,?)");
+			preparedStatementLibroGiornale.setString(1, v.getData());
+			preparedStatementLibroGiornale.setString(2, v.getDescrizione());
+			preparedStatementLibroGiornale.setString(3, v.getReparto());
+			preparedStatementLibroGiornale.setInt(4, v.getIva());
+			preparedStatementLibroGiornale.setDouble(5, v.getDare());
+			preparedStatementLibroGiornale.setDouble(6, v.getAvere());
+			preparedStatementLibroGiornale.executeUpdate();
+			
+			String queryLastVoice = "SELECT * FROM data WHERE numeroDocumento =(SELECT MAX(numeroDocumento) FROM data);";
+			preparedStatementLibroGiornale = connectionLibroGiornale.prepareStatement(queryLastVoice);
+			resultLibroGiornale = preparedStatementLibroGiornale.executeQuery();
+			v.setDocumentoNumero(resultLibroGiornale.getInt("numeroDocumento"));
+			
+			connectionLibroGiornale.close();
+		} catch (SQLException e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); }
+		incastratoreDiVociLibroGiornale.add(v);
+		ultimaVoceAggiunta = v;
 	}
 	
 	public static void aggiungiVoce (VoceLibroGiornale v) {
-		incastratoreDiLibri.add(v);
+		incastratoreDiVociLibroGiornale.add(v);
 		ultimaVoceAggiunta = v;
 		eStataAggiuntaUnaVoce = true;
 	}
 	
 	public static ObservableList<VoceLibroGiornale> tableViewAggiornata (){
-		return incastratoreDiLibri;
+		return incastratoreDiVociLibroGiornale;
 	}
 	
-	public static Double getDare () {
+	public static Double getUltimoDare () {
 		return ultimaVoceAggiunta.getDare();
 	}
 	
-	public static Double getAvere () {
+	public static Double getUltimoAvere () {
 		return ultimaVoceAggiunta.getAvere();
+	}
+	
+//	E L I M I N A
+	public static void eliminaVoceLibroGiornale(Integer numeroDocumento) {
+		try {
+			connectionLibroGiornale = DatabaseConnector.getConnectionLibroGiornale();
+			String queryCancellaVoce = "DELETE FROM data WHERE numeroDocumento = ?";
+			preparedStatementLibroGiornale = connectionLibroGiornale.prepareStatement(queryCancellaVoce);
+			preparedStatementLibroGiornale.setInt(1, numeroDocumento);
+			
+			preparedStatementLibroGiornale.executeUpdate();
+			connectionLibroGiornale.close();
+		}catch(Exception e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico();}
+	}
+
+	public static void voceLibroGiornaleDaModificare (VoceLibroGiornale v) {
+		voceDaModificare = v;
+	}
+
+	public static void modificaVoceLibroGiornale(VoceLibroGiornale v) {
+		try {
+			connectionLibroGiornale = DatabaseConnector.getConnectionLibroGiornale();
+			String queryModifica = "UPDATE data SET data=?, descrizione=?, reparto=?, iva=?, dare=?, avere=? WHERE numeroDocumento=?";
+			preparedStatementLibroGiornale = connectionLibroGiornale.prepareStatement(queryModifica);
+			preparedStatementLibroGiornale.setString(1, v.getData()); //D A T A
+			preparedStatementLibroGiornale.setString(2, v.getDescrizione()); //D E S C R I Z I O N E
+			preparedStatementLibroGiornale.setString(3, v.getReparto()); //R E P A R T O
+			preparedStatementLibroGiornale.setInt(4, v.getIva());//I V A
+			preparedStatementLibroGiornale.setDouble(5, v.getDare()); //D A R E
+			preparedStatementLibroGiornale.setDouble(6, v.getAvere());//A V E R E
+			preparedStatementLibroGiornale.setInt(7, v.getDocumentoNumero());//N U M E R O   D O C U M E N T O
+			
+			preparedStatementLibroGiornale.executeUpdate();
+			connectionLibroGiornale.close();
+		} catch (SQLException e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); }
+		
+		int size = incastratoreDiVociLibroGiornale.size();
+		for(int index=0; index < size; index++)
+		   if(incastratoreDiVociLibroGiornale.get(index).getDocumentoNumero() == v.getDocumentoNumero())
+			   incastratoreDiVociLibroGiornale.set(index, v); 
 	}
 	
 

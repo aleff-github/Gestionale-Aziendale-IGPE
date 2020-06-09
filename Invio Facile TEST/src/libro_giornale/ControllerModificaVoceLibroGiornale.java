@@ -1,6 +1,7 @@
 package libro_giornale;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,31 +24,31 @@ import javafx.scene.text.Text;
 import util_package.Messaggi;
 import util_package.Util;
 
-public class ControllerVoceLibroGiornale {
+public class ControllerModificaVoceLibroGiornale {
 	
 	@FXML
-    private AnchorPane anchorPaneAggiungiVoceBase;
+    private AnchorPane anchorPaneModificaVoce;
 		@FXML
-	    private BorderPane borderPaneAggiungiVoce;
+	    private BorderPane borderPaneModificaVoce;
 			@FXML
-		    private HBox hBoxMenuAggiungiVocePulsanti;
+		    private HBox hBoxMenuModificaVoce;
 				@FXML
 			    private ImageView logoAziendale;
 				@FXML
 			    private VBox vBoxTitoloAzienda;
-					@FXML private Label labelAggiungiVoce; @FXML private Label labelIPear;
+					@FXML private Label labelModificaVoce; @FXML private Label labelIPear;
 				@FXML
 			    private BorderPane borderPanePulsanti;
 					@FXML
 				    private HBox hBoxPulsanti;
-						@FXML private BorderPane borderPaneAggiungi; @FXML private Button pulsanteAggiungi;
+						@FXML private BorderPane borderPaneModifica; @FXML private Button pulsanteModifica;
 						
 						@FXML private BorderPane borderPaneAnnulla; @FXML private Button pulsanteAnnulla;
 				@FXML
-			    private GridPane gridPaneAggiungiVoce;
-					@FXML private Text textData; @FXML private DatePicker dataPicker;
+			    private GridPane gridPaneModificaVoce;
+					private Integer numeroDocumento;
 					
-					@FXML private Text textDocumentoNumero; @FXML private TextField textFieldNumero;
+					@FXML private Text textData; @FXML private DatePicker dataPicker;		
 					
 					@FXML private Text textDescrizione; @FXML private TextField textFieldDescrizione;
 					
@@ -58,7 +59,7 @@ public class ControllerVoceLibroGiornale {
 					@FXML private Text textDare; @FXML private TextField textFieldDare;
 					
 				    @FXML private Text textAvere; @FXML private TextField textFieldAvere;
-	
+
     @FXML
 	protected void initialize () {
 		List<Integer> iva = new ArrayList<Integer>();
@@ -78,34 +79,41 @@ public class ControllerVoceLibroGiornale {
 		scegliReparto.getItems().clear();
 		scegliReparto.setItems(o2);
 		scegliReparto.setPromptText("Scegli");
-	}
-    
-    public static boolean flag = true;
+		
 
+		
+		VoceLibroGiornale voceSelezionata = Util.voceDaModificare;
+		numeroDocumento = voceSelezionata.getDocumentoNumero();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		dataPicker.setValue(LocalDate.parse(voceSelezionata.getData()));
+		
+		textFieldDescrizione.setText(voceSelezionata.getDescrizione());
+		scegliReparto.setPromptText(voceSelezionata.getReparto());
+		scegliIva.setPromptText("" + voceSelezionata.getIva());
+		textFieldDare.setText("" + voceSelezionata.getDare());
+		textFieldAvere.setText("" + voceSelezionata.getAvere());
+	}
+			
+    public static boolean flag = true;
+    
     @FXML
-    void aggiungiVoce(ActionEvent event) {
-		//DATA
+    void modificaVoce(ActionEvent event) {
+    	//DATA
 		LocalDate localData = dataPicker.getValue();
 		String data = localData.toString();
-		if(data.equals("")) {
-			Messaggi.erroreData();
-			flag = false;
-		}
 		
 		//DESCRIZIONE
 		String descrizione = textFieldDescrizione.getText();
-		if(descrizione.equals("")) {
-			Messaggi.erroreDescrizioneVoceLibroGiornale();
-		}
 		
 		//REPARTO
-		String reparto = scegliReparto.getValue();
-		if(reparto.equals("")) {
+		if(scegliReparto.getValue() == null) {
 			Messaggi.erroreRepartoGenerico();
 			flag = false;
 		}
+		String reparto = scegliReparto.getValue();
 		
 		//IVA
+
 		Integer iva = scegliIva.getValue();
 		if (iva == null) {
 			Messaggi.erroreIvaGenerico();
@@ -131,14 +139,13 @@ public class ControllerVoceLibroGiornale {
 			flag = false;
 		}
 		if(flag) 
-			Util.aggiungiVoceLibroGiornale(new VoceLibroGiornale(data, 0, descrizione, reparto, iva, dare, avere));
+			Util.modificaVoceLibroGiornale(new VoceLibroGiornale(data, numeroDocumento, descrizione, reparto, iva, dare, avere));
 		
     }
 
     @FXML
     void annullaVoce(ActionEvent event) {
-    	Messaggi.annullaVoce();
-    }
 
+    }
 
 }

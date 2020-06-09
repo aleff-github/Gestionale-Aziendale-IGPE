@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Optional;
 
+import catalogo_e_magazzino.Prodotto;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import util_package.DatabaseConnector;
 import util_package.GestisciInterfacce;
 import util_package.Messaggi;
 import util_package.Util;
@@ -257,28 +259,26 @@ public class ControllerLibroGiornale {
 	
 //	VOCI
     @FXML
-    public static TableView<VoceLibroGiornale> tableView = new TableView<VoceLibroGiornale>();
-    @FXML
-    private TableColumn<VoceLibroGiornale, String> tableColumnData = new TableColumn<VoceLibroGiornale, String>("Data"); 
-    @FXML
-    private TableColumn<VoceLibroGiornale, Integer> tableColumnDocumento = new TableColumn<VoceLibroGiornale, Integer>("Documento"); 
-    @FXML
-    private TableColumn<VoceLibroGiornale, String> tableColumnDescrizione = new TableColumn<VoceLibroGiornale, String>("Descrizione"); 
-    @FXML
-    private TableColumn<VoceLibroGiornale, String> tableColumnReparto = new TableColumn<VoceLibroGiornale, String>("Reparto");
-    @FXML
-    private TableColumn<VoceLibroGiornale, Integer> tableColumnIva = new TableColumn<VoceLibroGiornale, Integer>("IVA"); 
-    @FXML
-    private TableColumn<VoceLibroGiornale, Double> tableColumnDare = new TableColumn<VoceLibroGiornale, Double>("Dare"); 
-    @FXML
-    private TableColumn<VoceLibroGiornale, Double> tableColumnAvere = new TableColumn<VoceLibroGiornale, Double>("Avere"); 
+    public TableView<VoceLibroGiornale> tableView;
+    public static TableView<VoceLibroGiornale> tableViewCopia = new TableView<VoceLibroGiornale>();
+	    @FXML private TableColumn<VoceLibroGiornale, String> tableColumnData = new TableColumn<VoceLibroGiornale, String>("Data"); 
+	    
+	    @FXML private TableColumn<VoceLibroGiornale, Integer> tableColumnDocumento = new TableColumn<VoceLibroGiornale, Integer>("Documento"); 
+	    
+	    @FXML private TableColumn<VoceLibroGiornale, String> tableColumnDescrizione = new TableColumn<VoceLibroGiornale, String>("Descrizione"); 
+	    
+	    @FXML private TableColumn<VoceLibroGiornale, String> tableColumnReparto = new TableColumn<VoceLibroGiornale, String>("Reparto");
+	    
+	    @FXML private TableColumn<VoceLibroGiornale, Integer> tableColumnIva = new TableColumn<VoceLibroGiornale, Integer>("IVA"); 
+	    
+	    @FXML private TableColumn<VoceLibroGiornale, Double> tableColumnDare = new TableColumn<VoceLibroGiornale, Double>("Dare"); 
+	    
+	    @FXML private TableColumn<VoceLibroGiornale, Double> tableColumnAvere = new TableColumn<VoceLibroGiornale, Double>("Avere"); 
 
     @FXML
 	public void initialize() {
-//    	TABLEVIEW - UTIL
     	ObservableList<VoceLibroGiornale> incastratoreDiLibri = Util.creaTableViewLibroGiornale();
     	
-
 		tableColumnData.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, String>("data"));
 		tableColumnDocumento.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, Integer>("documentoNumero"));
 		tableColumnDescrizione.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, String>("descrizione"));
@@ -288,6 +288,7 @@ public class ControllerLibroGiornale {
 		tableColumnAvere.setCellValueFactory(new PropertyValueFactory<VoceLibroGiornale, Double>("avere"));
 		
 		tableView.setItems(incastratoreDiLibri);
+		tableViewCopia = tableView;
 		
 		vociTotali = tableView.getItems().size();
 		dareTotale = calcolaTotaleDare();
@@ -339,8 +340,8 @@ public class ControllerLibroGiornale {
 			if(Util.eStataAggiuntaUnaVoce) {
 	    		tableView.setItems(Util.tableViewAggiornata());
 	    		vociTotali++;
-	    	    dareTotale += Util.getDare();
-	    	 	avereTotale += Util.getAvere();
+	    	    dareTotale += Util.getUltimoDare();
+	    	 	avereTotale += Util.getUltimoAvere();
 	    	 	Util.eStataAggiuntaUnaVoce = false;
 			}
 
@@ -357,8 +358,60 @@ public class ControllerLibroGiornale {
     private Button pulsanteModificaVoce;
     @FXML
     public void modificaVoce(ActionEvent event) {
-//    	tableView.getItems().
+  	VoceLibroGiornale voceSelezionata = tableView.getSelectionModel().getSelectedItem();
+    	if(voceSelezionata == null) {
+    		Messaggi.prodottoNonSelezionato();
+    		return;
+    	}
+   		Util.voceLibroGiornaleDaModificare(voceSelezionata);
+   		
+   		Alert dialogo = new Alert(AlertType.INFORMATION); 
+		dialogo.setTitle("Modifica voce");
+		dialogo.setHeaderText("Se riscontri problemi nell'inserimento dei dati contatta l'assistenza.");
+		dialogo.setResizable(true); 
+		
+		try {
+			AnchorPane modificaProdotto = (AnchorPane) FXMLLoader.load(getClass().getResource( "ModificaVoce.fxml" ));
+			dialogo.getDialogPane().setContent(modificaProdotto);
+			
+			dialogo.getButtonTypes().clear();
+			ButtonType termina = new ButtonType("Termina");
+			dialogo.getButtonTypes().add(termina);
+			Optional<ButtonType> res1 = dialogo.showAndWait();
+			
+			if (res1.get() == termina){
+				Alert alert = new Alert(AlertType.WARNING); 
+				alert.setTitle("Attenzione!");
+				alert.setHeaderText("Sei sicuro di voler chiudere? I dati non salvati andranno persi.");
+				alert.setResizable(true); 
+				
+				ButtonType conferma = new ButtonType("Conferma");
+				ButtonType annulla = new ButtonType("Annulla");
+				alert.getButtonTypes().clear();
+				alert.getButtonTypes().addAll(conferma, annulla);
+				
+				Optional<ButtonType> res2 = alert.showAndWait();
+				if(res2.get() == annulla) {
+					modificaVoce(event);
+				}
+				else {/*CHIUDI*/}
+			} else {/*CHIUDI*/}
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
     }
     
+//    ELIMINA VOCE
+    @FXML
+    private BorderPane borderPaneElimina;
+    @FXML 
+    private Button pulsanteElimina;
+    @FXML
+    public void eliminaVoce(ActionEvent event) {
+    	Integer numeroDocumento = tableView.getSelectionModel().getSelectedItem().getDocumentoNumero();
+    	Util.eliminaVoceLibroGiornale(numeroDocumento);
+    	tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItems());
+    	tableViewCopia = tableView;
+    }
 	    
 }

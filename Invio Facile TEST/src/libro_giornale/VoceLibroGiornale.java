@@ -16,8 +16,8 @@ public class VoceLibroGiornale {
 
 	
 	public VoceLibroGiornale() {
-//		super();
-		this.data = new SimpleStringProperty ("01-01-2020");
+		super();
+		this.data = new SimpleStringProperty ("2020-01-01");
 		this.documentoNumero = new SimpleIntegerProperty (123);
 		this.descrizione = new SimpleStringProperty ("Merci c/Acquisti");
 		this.reparto = new SimpleStringProperty("Fabbricazione e Montaggio");
@@ -27,7 +27,7 @@ public class VoceLibroGiornale {
 	}
 	
 	public VoceLibroGiornale(String data, Integer documentoNumero, String descrizione, String reparto, Integer iva, Double dare, Double avere) {
-		//super();
+		super();
 		this.data = new SimpleStringProperty (data);
 		this.documentoNumero = new SimpleIntegerProperty (documentoNumero);
 		this.descrizione = new SimpleStringProperty (descrizione);

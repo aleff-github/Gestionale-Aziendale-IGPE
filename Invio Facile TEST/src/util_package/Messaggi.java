@@ -228,8 +228,25 @@ public class Messaggi {
 		alert.showAndWait();
 	}
 	
-	public static void riavviaIlProgramma() {
-		//TODO
+	public static void erroreData() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Errore data");
+		alert.setHeaderText(null);
+		alert.setContentText("Errore generico nell'inserimento della data, assicurati di aver selezionato una data reale.");
+
+		alert.showAndWait();
 	}
+
+	public static void erroreDescrizioneVoceLibroGiornale() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Errore descrizione");
+		alert.setHeaderText(null);
+		alert.setContentText("Assicurati di aver inserito una descrizione valida, come ad esempio 'Merci c/Acquisto' oppure 'Merci c/Vendita'");
+
+		alert.showAndWait();
+		
+	}
+	
+	
 	
 }
