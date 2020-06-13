@@ -5,13 +5,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
+import java.util.TimeZone;
 
 import catalogo_e_magazzino.Prodotto;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart.Series;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import libro_giornale.ControllerLibroGiornale;
 import libro_giornale.VoceLibroGiornale;
@@ -45,6 +54,7 @@ public class Util {
 	 *                *
 	 * * * * * * * * */
 	
+//	DATI UTILI PER ANNULLARE LA MODIFICA
 	public static String ragioneSociale;
 	public static String partitaIva;
 	public static String codiceUnivoco;
@@ -52,22 +62,80 @@ public class Util {
 	public static String email;
 	public static String capitaleSociale; 
 	
-	public static void settaDatiPrimitiviAziendali () {
-		ragioneSociale = "iPear, azienda di produzione di oggetti tecnologici e informatici.";
-		partitaIva = "IT 11359591002";
-		codiceUnivoco = "ZJ1UHX";
-		titolare = "Stefano Mestieri";
-		email = "info@ipear.com";
-		capitaleSociale = "2.402.550.510,11"; //Data e morte di Steve Jobs 
+	private static PreparedStatement preparedStatementDatiAziendali;
+	private static Statement statementDatiAziendali;
+    private static ResultSet resultDatiAziendali;
+    private static Connection connectionDatiAziendali;
+	
+	public static void assegnaValoriDatiAziendali(TextField ragioneSocialeField, TextField partitaIvaField,
+			TextField codiceUnivocoField, TextField titolareField, TextField emailField,
+			TextField capitaleSocialeField) {
+		
+		try {
+			String datiAziendali = "SELECT * FROM dati_aziendali";
+			connectionDatiAziendali = DatabaseConnector.getConnectionDatabase();
+			preparedStatementDatiAziendali = connectionDatiAziendali.prepareStatement(datiAziendali);
+			resultDatiAziendali = preparedStatementDatiAziendali.executeQuery();
+			
+			ragioneSocialeField.setText(resultDatiAziendali.getString("Ragione_Sociale"));	
+			partitaIvaField.setText(resultDatiAziendali.getString("P_Iva"));
+			codiceUnivocoField.setText(resultDatiAziendali.getString("Codice_Univoco"));			
+			titolareField.setText(resultDatiAziendali.getString("Titolare"));
+			emailField.setText(resultDatiAziendali.getString("Email"));
+			capitaleSocialeField.setText(resultDatiAziendali.getString("Capitale_Sociale"));
+			
+			connectionDatiAziendali.close();
+		} catch (Exception e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); }
+		
+		aggiornaDatiTemp(ragioneSocialeField.getText(),	
+    			partitaIvaField.getText(),	
+    			codiceUnivocoField.getText(), 	
+    			titolareField.getText(), 	
+    			emailField.getText(), 	
+    			capitaleSocialeField.getText());
 	}
 	
-	public static void datiAziendaliCambiati (String ragioneSociale_, String partitaIva_, String codiceUnivoco_, String titolare_, String email_, String capitaleSociale_) {
-		ragioneSociale = ragioneSociale_;
-		partitaIva = partitaIva_;
-		codiceUnivoco = codiceUnivoco_;
-		titolare = titolare_;
-		email = email_;
-		capitaleSociale = capitaleSociale_;
+	public static void datiAziendaliCambiati (String ragioneSociale, String partitaIva, String codiceUnivoco, String titolare, String email, String capitaleSociale) {
+		try {
+			String cambiaDatiAziendali = "UPDATE dati_aziendali SET Ragione_Sociale=?, P_Iva=?, Codice_Univoco=?, Titolare=?, Email=?, Capitale_Sociale=? WHERE id=1";
+			connectionDatiAziendali = DatabaseConnector.getConnectionDatabase();	
+			preparedStatementDatiAziendali = connectionDatiAziendali.prepareStatement(cambiaDatiAziendali);
+			preparedStatementDatiAziendali.setString(1, ragioneSociale);			
+			preparedStatementDatiAziendali.setString(2, partitaIva);
+			preparedStatementDatiAziendali.setString(3, codiceUnivoco);
+			preparedStatementDatiAziendali.setString(4, titolare);
+			preparedStatementDatiAziendali.setString(5, email);
+			preparedStatementDatiAziendali.setString(6, capitaleSociale);
+			preparedStatementDatiAziendali.executeUpdate();
+			
+			connectionDatiAziendali.close();
+		} catch (Exception e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); }
+		aggiornaDatiTemp(ragioneSociale, partitaIva, codiceUnivoco, titolare, email, capitaleSociale);
+	}
+	
+	public static void annullaModifiche(TextField ragioneSocialeField, TextField partitaIvaField,
+			TextField codiceUnivocoField, TextField titolareField, TextField emailField,
+			TextField capitaleSocialeField) {
+		ragioneSocialeField.setText(Util.ragioneSociale);
+		partitaIvaField.setText(Util.partitaIva);
+		codiceUnivocoField.setText(Util.codiceUnivoco);
+		titolareField.setText(Util.titolare);
+		emailField.setText(Util.email);
+		capitaleSocialeField.setText(Util.capitaleSociale);
+	}
+	
+	private static void aggiornaDatiTemp ( String ragioneSociale,
+									String partitaIva, 
+									String codiceUnivoco,	
+									String titolare,
+									String email,
+									String capitaleSociale) {
+		Util.ragioneSociale = ragioneSociale;
+		Util.partitaIva = partitaIva;
+		Util.codiceUnivoco = codiceUnivoco;
+		Util.titolare = titolare;
+		Util.email = email;
+		Util.capitaleSociale = capitaleSociale;
 	}
 	
 	/* * * * * * * * * * * *
@@ -162,7 +230,7 @@ public class Util {
 	
 	public static ObservableList<Prodotto> creaTableViewProdotti (){
 		try {
-			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti();
+			connectionProdotto = DatabaseConnector.getConnectionDatabase();
 			preparedStatementProdotto = connectionProdotto.prepareStatement("SELECT * FROM 'prodotti'");
             resultProdotto = preparedStatementProdotto.executeQuery();
 			
@@ -185,7 +253,7 @@ public class Util {
 	
 	public static void aggiungiVoceProdotto (Prodotto p) {
 		try {
-			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti();
+			connectionProdotto = DatabaseConnector.getConnectionDatabase();
 			preparedStatementProdotto = connectionProdotto.prepareStatement("INSERT INTO 'prodotti' ('nome', 'reparto', 'prezzo', 'iva', 'descrizione') VALUES (?,?,?,?,?)");
 			preparedStatementProdotto.setString(1, p.getNome());
 			preparedStatementProdotto.setString(2, p.getReparto());
@@ -217,7 +285,7 @@ public class Util {
 	
 	public static void eliminaProdotto (Integer id, Prodotto p) {
 		try {
-			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti();
+			connectionProdotto = DatabaseConnector.getConnectionDatabase();
 	    	String queryCancellaVoce = "DELETE FROM prodotti WHERE id = ?";
 	    	preparedStatementProdotto = connectionProdotto.prepareStatement(queryCancellaVoce);
 	    	preparedStatementProdotto.setInt(1, id);
@@ -233,7 +301,7 @@ public class Util {
 	
 	public static void modificaVoceProdotto(Prodotto p) {
 		try {
-			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti();
+			connectionProdotto = DatabaseConnector.getConnectionDatabase();
 			String queryModifica = "UPDATE prodotti SET nome=?, reparto=?, prezzo=?, iva=?, descrizione=? WHERE id=?";
 			preparedStatementProdotto = connectionProdotto.prepareStatement(queryModifica);
 			preparedStatementProdotto.setString(1, p.getNome());
@@ -255,7 +323,7 @@ public class Util {
 	
 	public static ObservableList<Prodotto> effettuaRicerca (String ricerca) {
 		try { 
-			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti(); 
+			connectionProdotto = DatabaseConnector.getConnectionDatabase(); 
 		}catch(SQLException e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); return incastratoreDiProdotti;}
 		
 		incastratoreDiProdotti.clear();
@@ -323,7 +391,7 @@ public class Util {
 	
 	public static Integer vociTotaliCatalogoEMagazzino () {
 		try {
-			connectionProdotto = DatabaseConnector.getConnectionCatalogoProdotti();
+			connectionProdotto = DatabaseConnector.getConnectionDatabase();
 			String size = "SELECT count(*) FROM prodotti";
 			
 			statementProdotto = connectionProdotto.createStatement();
@@ -343,7 +411,6 @@ public class Util {
 	 * LIBRO GIORNALE *
 	 *                *
 	 * * * * * * * * */
-//	private static ObservableList<Prodotto> incastratoreDiProdotti = FXCollections.observableArrayList();;
 	private static ObservableList<VoceLibroGiornale> incastratoreDiVociLibroGiornale = FXCollections.observableArrayList();
 	private static VoceLibroGiornale ultimaVoceAggiunta;
 	public static VoceLibroGiornale voceDaModificare;
@@ -357,8 +424,8 @@ public class Util {
 //	C R E A
 	public static ObservableList<VoceLibroGiornale> creaTableViewLibroGiornale (){
 		try {
-			connectionLibroGiornale = DatabaseConnector.getConnectionLibroGiornale(); 
-			preparedStatementLibroGiornale = connectionLibroGiornale.prepareStatement("SELECT * FROM 'data'");
+			connectionLibroGiornale = DatabaseConnector.getConnectionDatabase(); 
+			preparedStatementLibroGiornale = connectionLibroGiornale.prepareStatement("SELECT * FROM libro_giornale");
 			resultLibroGiornale = preparedStatementLibroGiornale.executeQuery(); 
             
             while(resultLibroGiornale.next()) { 
@@ -382,8 +449,8 @@ public class Util {
 	//A G G I U N G I
 	public static void aggiungiVoceLibroGiornale (VoceLibroGiornale v) {
 		try {
-			connectionLibroGiornale = DatabaseConnector.getConnectionLibroGiornale();
-			preparedStatementLibroGiornale = connectionLibroGiornale.prepareStatement("INSERT INTO data ('data', 'descrizione', 'reparto', 'iva', 'dare', 'avere') VALUES (?,?,?,?,?,?)");
+			connectionLibroGiornale = DatabaseConnector.getConnectionDatabase();
+			preparedStatementLibroGiornale = connectionLibroGiornale.prepareStatement("INSERT INTO libro_giornale ('data', 'descrizione', 'reparto', 'iva', 'dare', 'avere') VALUES (?,?,?,?,?,?)");
 			preparedStatementLibroGiornale.setString(1, v.getData());
 			preparedStatementLibroGiornale.setString(2, v.getDescrizione());
 			preparedStatementLibroGiornale.setString(3, v.getReparto());
@@ -392,7 +459,7 @@ public class Util {
 			preparedStatementLibroGiornale.setDouble(6, v.getAvere());
 			preparedStatementLibroGiornale.executeUpdate();
 			
-			String queryLastVoice = "SELECT * FROM data WHERE numeroDocumento =(SELECT MAX(numeroDocumento) FROM data);";
+			String queryLastVoice = "SELECT * FROM libro_giornale WHERE numeroDocumento =(SELECT MAX(numeroDocumento) FROM libro_giornale);";
 			preparedStatementLibroGiornale = connectionLibroGiornale.prepareStatement(queryLastVoice);
 			resultLibroGiornale = preparedStatementLibroGiornale.executeQuery();
 			v.setDocumentoNumero(resultLibroGiornale.getInt("numeroDocumento"));
@@ -424,8 +491,8 @@ public class Util {
 //	E L I M I N A
 	public static void eliminaVoceLibroGiornale(Integer numeroDocumento) {
 		try {
-			connectionLibroGiornale = DatabaseConnector.getConnectionLibroGiornale();
-			String queryCancellaVoce = "DELETE FROM data WHERE numeroDocumento = ?";
+			connectionLibroGiornale = DatabaseConnector.getConnectionDatabase();
+			String queryCancellaVoce = "DELETE FROM libro_giornale WHERE numeroDocumento = ?";
 			preparedStatementLibroGiornale = connectionLibroGiornale.prepareStatement(queryCancellaVoce);
 			preparedStatementLibroGiornale.setInt(1, numeroDocumento);
 			
@@ -440,8 +507,8 @@ public class Util {
 
 	public static void modificaVoceLibroGiornale(VoceLibroGiornale v) {
 		try {
-			connectionLibroGiornale = DatabaseConnector.getConnectionLibroGiornale();
-			String queryModifica = "UPDATE data SET data=?, descrizione=?, reparto=?, iva=?, dare=?, avere=? WHERE numeroDocumento=?";
+			connectionLibroGiornale = DatabaseConnector.getConnectionDatabase();
+			String queryModifica = "UPDATE libro_giornale SET data=?, descrizione=?, reparto=?, iva=?, dare=?, avere=? WHERE numeroDocumento=?";
 			preparedStatementLibroGiornale = connectionLibroGiornale.prepareStatement(queryModifica);
 			preparedStatementLibroGiornale.setString(1, v.getData()); //D A T A
 			preparedStatementLibroGiornale.setString(2, v.getDescrizione()); //D E S C R I Z I O N E
@@ -461,5 +528,48 @@ public class Util {
 			   incastratoreDiVociLibroGiornale.set(index, v); 
 	}
 	
+	/* * * * * * * * **
+	 *                *
+	 *  STATISTICHE   *
+	 *                *
+	 * * * * * * * * */
+	
+	private static PreparedStatement preparedStatementStatistiche;
+	private static Statement statementStatistiche;
+    private static ResultSet resultStatistiche;
+    private static Connection connectionStatistiche;
+	
+	public static ObservableList<Series<String, Double>> acquisisciDatiLibroGiornale() {
+		//ObservableList<XYChart<X, Y>.Series<String, Double>> dati = FXCollections.observableArrayList();
 
+		Series<String, Double> FabbricazioneEMontaggio = new Series<>();
+		Series<String, Double> TestDiResistenzaAmbientale = new Series<>();
+		Series<String, Double> PuliziaEImballaggio = new Series<>();
+		
+		FabbricazioneEMontaggio.setName("Fabbricazione e Montaggio");
+		TestDiResistenzaAmbientale.setName("Test di Resistenza Ambientale");
+		PuliziaEImballaggio.setName("Pulizia e Imballaggio");
+
+		Integer mesiDaVerificare = 6;
+		
+		//Data di oggi
+	    Calendar calendario = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"),Locale.ITALY);
+	    Date data = calendario.getTime();
+	    LocalDate localData = data.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	    LocalDate da = localData.minusMonths(6);
+	    
+	    SimpleDateFormat patternData= new SimpleDateFormat("yyyy/MM/dd"); //Setto il pattern giorno-mese-anno
+	    String dataDiOggi = patternData.format(calendario.getTime()); //"trasformo" la data in una stringa sulla quale lavorare
+		
+		return null;
+	}
+
+	
+
+
+
+	
+	
+	
+	
 }

@@ -40,41 +40,26 @@ public class ControllerDatiAziendali {
 			    private HBox hBoxDatiAziendali;
 					@FXML
 				    private GridPane griPaneDatiAziendali;
-						@FXML
-					    private Label ragioneSocialeLabel;
-						@FXML
-					    private TextField ragioneSocialeField;
-						@FXML
-					    private Label partitaIvaLabel;
-						@FXML
-					    private TextField partitaIvaField;
-						@FXML
-					    private Label codiceUnivocoLabel;
-						@FXML
-					    private TextField codiceUnivocoField;
-						@FXML
-					    private Label titolareLabel;
-						@FXML
-					    private TextField titolareField;
-						@FXML
-					    private Label emailLabel;
-						@FXML
-					    private TextField emailField;
-						@FXML
-					    private Label capitaleSocialeLabel;
-						@FXML
-					    private TextField capitaleSocialeField;
- 
-	
+						@FXML private Label ragioneSocialeLabel; @FXML private TextField ragioneSocialeField;
+						
+						@FXML private Label partitaIvaLabel; @FXML private TextField partitaIvaField;
+						
+						@FXML private Label codiceUnivocoLabel; @FXML private TextField codiceUnivocoField;
+						
+						@FXML private Label titolareLabel; @FXML private TextField titolareField;
+						
+						@FXML private Label emailLabel; @FXML private TextField emailField;
+						
+						@FXML private Label capitaleSocialeLabel; @FXML private TextField capitaleSocialeField;
 	
 	@FXML
 	public void initialize() {
-		ragioneSocialeField.setText(Util.ragioneSociale);
-		partitaIvaField.setText(Util.partitaIva);
-		codiceUnivocoField.setText(Util.codiceUnivoco);
-		titolareField.setText(Util.titolare);
-		emailField.setText(Util.email);
-		capitaleSocialeField.setText(Util.capitaleSociale); 
+		Util.assegnaValoriDatiAziendali(ragioneSocialeField,	
+											partitaIvaField, 	
+											codiceUnivocoField, 	
+											titolareField, 	
+											emailField, 	
+											capitaleSocialeField);
 		
 		ragioneSocialeField.setEditable(false);
 		partitaIvaField.setEditable(false);
@@ -116,12 +101,12 @@ public class ControllerDatiAziendali {
     @FXML
     void annullaModifiche(ActionEvent event) {
     	//RIPRISTINO LE MODIFICHE
-    	ragioneSocialeField.setText(Util.ragioneSociale);
-		partitaIvaField.setText(Util.partitaIva);
-		codiceUnivocoField.setText(Util.codiceUnivoco);
-		titolareField.setText(Util.titolare);
-		emailField.setText(Util.email);
-		capitaleSocialeField.setText(Util.capitaleSociale);
+    	Util.annullaModifiche(ragioneSocialeField,	
+								partitaIvaField, 	
+								codiceUnivocoField, 	
+								titolareField, 	
+								emailField, 	
+								capitaleSocialeField);
     	
     	ragioneSocialeField.setEditable(false);
 		partitaIvaField.setEditable(false);

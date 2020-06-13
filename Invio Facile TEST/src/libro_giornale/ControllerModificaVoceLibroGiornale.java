@@ -88,8 +88,8 @@ public class ControllerModificaVoceLibroGiornale {
 		dataPicker.setValue(LocalDate.parse(voceSelezionata.getData()));
 		
 		textFieldDescrizione.setText(voceSelezionata.getDescrizione());
-		scegliReparto.setPromptText(voceSelezionata.getReparto());
-		scegliIva.setPromptText("" + voceSelezionata.getIva());
+		scegliReparto.setValue(voceSelezionata.getReparto());
+		scegliIva.setValue(voceSelezionata.getIva());
 		textFieldDare.setText("" + voceSelezionata.getDare());
 		textFieldAvere.setText("" + voceSelezionata.getAvere());
 	}

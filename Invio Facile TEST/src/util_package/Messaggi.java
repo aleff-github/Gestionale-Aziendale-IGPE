@@ -12,7 +12,6 @@ public class Messaggi {
 			alert.setTitle("Apri libro giornale");
 			alert.setHeaderText("Stai cercando di accedere il libro giornale.");
 			alert.setContentText("Sei già all'interno del Libro Giornale, se desideri uscire puoi andare alla Home oppure, cliccando il tasto esci, tornerai alla schermata di Login.");
-			
 			alert.showAndWait();
 	}
 	
@@ -21,7 +20,6 @@ public class Messaggi {
 			alert.setTitle("Apri catalogo e magazzino");
 			alert.setHeaderText("Stai cercando di accedere a catalogo e magazzino.");
 			alert.setContentText("Sei già all'interno di Catalogo e Magazzino, se desideri uscire puoi andare alla Home oppure, cliccando il tasto esci, tornerai alla schermata di Login.");
-			
 			alert.showAndWait();
 	}
 	
@@ -30,7 +28,6 @@ public class Messaggi {
     	alert.setTitle("Errore nel salvataggio");
     	alert.setHeaderText(null);
     	alert.setContentText("Scegli una cartella correttamente, se credi di averne scelta una correttamente contatta l'assistenza.");
-
     	alert.showAndWait();
 	}
 	
@@ -39,7 +36,6 @@ public class Messaggi {
 		alert.setTitle("Invio Facile!");
 		alert.setHeaderText(null);
 		alert.setContentText("Questo software è stato creato al fine del superamento dell'esame di IGPE da Alessandro Greco.\nUniversità Della Calabria - UNICAL");
-	
 		alert.showAndWait();
 	}
 
@@ -53,7 +49,6 @@ public class Messaggi {
     	
     	Optional<ButtonType> opzioneScelta = alert.showAndWait();
     	if(opzioneScelta.get() == inviaUnaEmail) {
-    		//TODO
     		Util.inviaEmail();
     	}
 	}
@@ -63,7 +58,6 @@ public class Messaggi {
 		alert.setTitle("Errore d'inserimento in Documento N.");
 		alert.setHeaderText(null);
 		alert.setContentText("Non puoi inserire un numero negativo come numero del documento.");
-
 		alert.showAndWait();
 	}
 	
@@ -72,7 +66,6 @@ public class Messaggi {
 		alert.setTitle("Errore d'inserimento in Documento N.");
 		alert.setHeaderText(null);
 		alert.setContentText("Non puoi inserire un numero del documento superiore a 10000.");
-
 		alert.showAndWait();
 	}
 	
@@ -81,7 +74,6 @@ public class Messaggi {
 		alert.setTitle("Errore d'inserimento in Documento N.");
 		alert.setHeaderText(null);
 		alert.setContentText("Puoi inserire solo un numero nel campo \"Documento N.\", non sono ammessi altri caratteri.");
-
 		alert.showAndWait();
 	}
 	
@@ -90,7 +82,6 @@ public class Messaggi {
 		alert.setTitle("Errore in scegli reparto");
 		alert.setHeaderText(null);
 		alert.setContentText("Per continuare devi necessariamente scegliare un reparto.");
-
 		alert.showAndWait();
 	}
 	public static void erroreIvaGenerico () {
@@ -98,7 +89,6 @@ public class Messaggi {
 		alert.setTitle("Errore in scegli iva");
 		alert.setHeaderText(null);
 		alert.setContentText("Per continuare devi necessariamente scegliare un iva.");
-
 		alert.showAndWait();
 	}
 	
@@ -107,7 +97,6 @@ public class Messaggi {
 		alert.setTitle("Errore d'inserimento in Dare o Avere");
 		alert.setHeaderText(null);
 		alert.setContentText("Non puoi inserire sia Dare che Avere");
-
 		alert.showAndWait();
 	}
 	
@@ -116,7 +105,6 @@ public class Messaggi {
 		alert.setTitle("Errore d'inserimento in Dare o Avere");
 		alert.setHeaderText(null);
 		alert.setContentText("Devi inserire almeno un valore in Dare o in Avere");
-
 		alert.showAndWait();
 	}
 	
@@ -125,7 +113,6 @@ public class Messaggi {
 		alert.setTitle("Errore d'inserimento in Dare o Avere");
 		alert.setHeaderText(null);
 		alert.setContentText("Puoi inserire solo un numero sia nel campo \"Dare\" che nel campo \"Avere\", non sono ammessi altri caratteri e ricorda di usare il punto e non la virgola. \nSe inserisci un valore in Dare ricorda di mettere 0 in Avere (e viceversa)");
-
 		alert.showAndWait();
 	}
 	
@@ -134,7 +121,6 @@ public class Messaggi {
 		alert.setTitle("Annullamento");
 		alert.setHeaderText(null);
 		alert.setContentText("Hai annullato l'inserimento della nuova voce, non sono stati applicati ulteriori cambiamenti.");
-
 		alert.showAndWait();
 	}
 	
@@ -143,7 +129,6 @@ public class Messaggi {
 		alert.setTitle("Errore in nome prodotto");
 		alert.setHeaderText(null);
 		alert.setContentText("Per continuare devi necessariamente inserire il nome del prodotto.");
-
 		alert.showAndWait();
 	}
 	
@@ -152,7 +137,6 @@ public class Messaggi {
 		alert.setTitle("Errore in scegli reparto");
 		alert.setHeaderText(null);
 		alert.setContentText("Per continuare devi necessariamente scegliare un reparto.");
-
 		alert.showAndWait();
 	}
 	
@@ -161,7 +145,6 @@ public class Messaggi {
 		alert.setTitle("Errore in prezzo");
 		alert.setHeaderText(null);
 		alert.setContentText("Devi necessariamente inserire un valore superiore a zero quando inserisci il prezzo, e ricorda di inserirlo SENZA iva");
-
 		alert.showAndWait();
 	}
 	
@@ -170,7 +153,6 @@ public class Messaggi {
 		alert.setTitle("Errore in prezzo");
 		alert.setHeaderText(null);
 		alert.setContentText("Devi necessariamente inserire un valore in prezzo per continuare. Assicurati di non aver inserito altri caratteri.");
-
 		alert.showAndWait();
 	}
 	
@@ -179,7 +161,6 @@ public class Messaggi {
 		alert.setTitle("Errore in scegli iva");
 		alert.setHeaderText(null);
 		alert.setContentText("Per continuare devi necessariamente scegliare un iva.");
-
 		alert.showAndWait();
 	}
 	
@@ -188,7 +169,6 @@ public class Messaggi {
 		alert.setTitle("Errore in descrizione");
 		alert.setHeaderText(null);
 		alert.setContentText("Devi necessariamente inserire una descrizione per continuare.");
-
 		alert.showAndWait();
 	}
 	
@@ -197,7 +177,6 @@ public class Messaggi {
 		alert.setTitle("Annullamento");
 		alert.setHeaderText(null);
 		alert.setContentText("Hai annullato l'inserimento del nuovo prodotto, non sono stati applicati ulteriori cambiamenti.");
-
 		alert.showAndWait();
 	}
 	
@@ -206,7 +185,6 @@ public class Messaggi {
 		alert.setTitle("Prodotto non selezionato");
 		alert.setHeaderText(null);
 		alert.setContentText("Prima di proseguire assicurati di aver selezionato (cliccandoci sopra) un prodotto");
-
 		alert.showAndWait();
 	}
 	
@@ -215,7 +193,6 @@ public class Messaggi {
 		alert.setTitle("Campo di ricerca vuoto");
 		alert.setHeaderText(null);
 		alert.setContentText("Per effettuare una ricerca tra i prodotti inserisci qualcosa nel campo di ricerca.");
-
 		alert.showAndWait();
 	}
 	
@@ -224,7 +201,6 @@ public class Messaggi {
 		alert.setTitle("Errore generico - Database");
 		alert.setHeaderText(null);
 		alert.setContentText("E' stato riscontato un problema generico nel caricare il database, contatta l'assistenza.");
-
 		alert.showAndWait();
 	}
 	
@@ -233,7 +209,6 @@ public class Messaggi {
 		alert.setTitle("Errore data");
 		alert.setHeaderText(null);
 		alert.setContentText("Errore generico nell'inserimento della data, assicurati di aver selezionato una data reale.");
-
 		alert.showAndWait();
 	}
 
@@ -242,11 +217,17 @@ public class Messaggi {
 		alert.setTitle("Errore descrizione");
 		alert.setHeaderText(null);
 		alert.setContentText("Assicurati di aver inserito una descrizione valida, come ad esempio 'Merci c/Acquisto' oppure 'Merci c/Vendita'");
-
 		alert.showAndWait();
 		
 	}
 	
-	
+	public static void erroreGenericoModificaVoceLibroGiornale() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Errore generale");
+		alert.setHeaderText(null);
+		alert.setContentText("E' stato riscontrato un errore generale nella modifica della voce del libro giornale, è consigliato contattare l'assistenza.");
+		alert.showAndWait();
+		
+	}
 	
 }

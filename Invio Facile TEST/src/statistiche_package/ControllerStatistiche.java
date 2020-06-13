@@ -9,6 +9,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
@@ -17,7 +18,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -156,13 +156,13 @@ public class ControllerStatistiche {
 							    @FXML
 							    private Text funzionalitaTextAziendale;
 							    @FXML
-							    private ComboBox<?> periodoDiTempoAzienda;
+							    private ComboBox<String> periodoDiTempoAzienda;
 							    @FXML
 							    private Button pulsanteLeggiCommentoAziendale;
 							    @FXML
 							    private TextArea areaDiTestoAdibitoAlCommentoBitcoin;
 						    @FXML
-						    private BarChart<?, ?> andamentoAziendale;						    
+						    private BarChart<String, Double> andamentoAziendale;						    
 							    @FXML
 							    private CategoryAxis categoryAzisAziendale;
 							    @FXML
@@ -175,24 +175,22 @@ public class ControllerStatistiche {
 								@FXML
 							    private Text funzionalitaTextBitcoin;
 								@FXML
-							    private ComboBox<?> periodoDiTempoBitcoin;
+							    private ComboBox<String> periodoDiTempoBitcoin;
 								@FXML
 							    private Button pulsanteLeggiCommentoBitcoind;
 								@FXML
 							    private TextArea areaDiTestoAdibitoAlCommentoAziendale;
 							@FXML
-						    private LineChart<?, ?> andamentoBitcoin;
+						    private LineChart<String, Double> andamentoBitcoin;
 								@FXML
 							    private CategoryAxis categoryAzisBitcoin;
 								@FXML
 							    private NumberAxis numberAxisBitcoin;
-								
-								
 
     
     @FXML
     void periodoDiTempoAziendaleSelezionato(ActionEvent event) {
-
+    	
     }
     @FXML
     void leggiCommentoAziendalePulsantePremuto(ActionEvent event) {

@@ -132,13 +132,10 @@ public class ControllerVoceLibroGiornale {
 		}
 		if(flag) 
 			Util.aggiungiVoceLibroGiornale(new VoceLibroGiornale(data, 0, descrizione, reparto, iva, dare, avere));
-		
     }
 
     @FXML
     void annullaVoce(ActionEvent event) {
     	Messaggi.annullaVoce();
     }
-
-
 }

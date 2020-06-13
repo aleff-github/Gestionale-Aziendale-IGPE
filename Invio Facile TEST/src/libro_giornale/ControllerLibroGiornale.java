@@ -319,23 +319,8 @@ public class ControllerLibroGiornale {
 			ButtonType termina = new ButtonType("Termina");
 			dialogo.getButtonTypes().add(termina);
 			Optional<ButtonType> res1 = dialogo.showAndWait();
-			if (res1.get() == termina){
-				Alert alert = new Alert(AlertType.WARNING); 
-				alert.setTitle("Attenzione!");
-				alert.setHeaderText("Sei sicuro di voler chiudere? I dati non salvati andranno persi.");
-				alert.setResizable(true); 
-				
-				ButtonType conferma = new ButtonType("Conferma");
-				ButtonType annulla = new ButtonType("Annulla");
-				alert.getButtonTypes().clear();
-				alert.getButtonTypes().addAll(conferma, annulla);
-				
-				Optional<ButtonType> res2 = alert.showAndWait();
-				if(res2.get() == annulla) {
-					aggiungiVoceManualmente(event);
-				}
-				else {/*CHIUDI*/}
-			} else {/*CHIUDI*/}
+			if (res1.get() == termina){/*CHIUDI*/} 
+			else {/*CHIUDI*/}
 			
 			if(Util.eStataAggiuntaUnaVoce) {
 	    		tableView.setItems(Util.tableViewAggiornata());
@@ -396,9 +381,7 @@ public class ControllerLibroGiornale {
 				}
 				else {/*CHIUDI*/}
 			} else {/*CHIUDI*/}
-		}catch (IOException e) {
-			e.printStackTrace();
-		}
+		}catch (IOException e) {Messaggi.erroreGenericoModificaVoceLibroGiornale();}
     }
     
 //    ELIMINA VOCE

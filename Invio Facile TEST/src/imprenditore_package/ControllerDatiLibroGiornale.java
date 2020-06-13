@@ -3,10 +3,7 @@ package imprenditore_package;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -15,7 +12,7 @@ import javafx.scene.text.Text;
 import libro_giornale.ControllerLibroGiornale;
 import util_package.GestisciInterfacce;
 
-public class ControllerDatiDaStampare {
+public class ControllerDatiLibroGiornale {
 	
 	/* * * * * * * * * * * **
 	 *                      *

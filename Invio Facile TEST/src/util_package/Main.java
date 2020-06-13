@@ -11,12 +11,13 @@ public class Main extends Application{
 	
 	@Override 
 	public void start(Stage primaryStage) throws Exception {
+		
+		Util.acquisisciDatiLibroGiornale();
+		
 //		Setto Util
 		Util.setApplication(this);
 //		Setto gli utenti registrati
 		LoginController.init("admin", "admin");
-//		Dati aziendali iniziali
-		Util.settaDatiPrimitiviAziendali();
 		
 //		Schermata login
 		FXMLLoader login = new FXMLLoader (getClass().getResource("/login_package/Login.fxml"));
