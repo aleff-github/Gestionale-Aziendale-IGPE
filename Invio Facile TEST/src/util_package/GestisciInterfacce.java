@@ -15,8 +15,6 @@ public class GestisciInterfacce{
 			 * Libro Giornale
 			 * Catalogo E Magazzino
 			 * Statistiche
-	
-	 * 
 	 */
 	
 	public static void inizio (Scene m) {

@@ -229,5 +229,37 @@ public class Messaggi {
 		alert.showAndWait();
 		
 	}
+
+	public static void erroreApriRepartiDiProduzione() {
+		Alert alert = new Alert (AlertType.INFORMATION);
+		alert.setTitle("Apri reparto di produzione");
+		alert.setHeaderText("Stai cercando di accedere al reparto di produzione.");
+		alert.setContentText("Sei già all'interno del Reparto di Produzione, se desideri uscire puoi andare alla Home oppure, cliccando il tasto esci, tornerai alla schermata di Login.");
+		alert.showAndWait();
+	}
+
+	public static void erroreCaricamentoDati() {
+		Alert alert = new Alert (AlertType.INFORMATION);
+		alert.setTitle("Errore caricamento dati");
+		alert.setHeaderText(null);
+		alert.setContentText("E' stato riscontrato un errore generico nel caricamento dei dati, t'invitiamo a riprovare o a contattare l'assistenza.");
+		alert.showAndWait();	
+	}
+
+	public static void erroreApriStatistiche() {
+		Alert alert = new Alert (AlertType.INFORMATION);
+		alert.setTitle("Apri statistiche");
+		alert.setHeaderText("Stai cercando di accedere la pagina delle statistiche.");
+		alert.setContentText("Sei già all'interno della pagine sulle statistiche, se desideri uscire puoi andare alla Home oppure, cliccando il tasto esci, tornerai alla schermata di Login.");
+		alert.showAndWait();
+	}
+
+	public static void erroreApriHome() {
+		Alert alert = new Alert (AlertType.INFORMATION);
+		alert.setTitle("Apri Home");
+		alert.setHeaderText("Stai cercando di accedere la pagina della Home.");
+		alert.setContentText("Sei già all'interno della pagine Home, se desideri sloggare puoi farlo cliccando sul tasto esci, tornerando così alla schermata di Login.");
+		alert.showAndWait();
+	}
 	
 }

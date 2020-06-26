@@ -220,13 +220,6 @@ public class ControllerLibroGiornale {
 		    void contattaLAssistenza(ActionEvent event) {
 		    	Messaggi.contattaAssistenza();
 		    }
-	    @FXML
-	    private MenuItem pulsanteRiavviaIlProgramma;
-		    @FXML
-		    void riavviaIlProgramma(ActionEvent event) {
-		    	//TODO
-				//CREARE UN COLLEGAMENTO CON IL MAIN
-		    }
 	
 //	ROOT
 	@FXML
@@ -275,7 +268,6 @@ public class ControllerLibroGiornale {
 	    
 	    @FXML private TableColumn<VoceLibroGiornale, Double> tableColumnAvere = new TableColumn<VoceLibroGiornale, Double>("Avere"); 
 
-    @FXML
 	public void initialize() {
     	ObservableList<VoceLibroGiornale> incastratoreDiLibri = Util.creaTableViewLibroGiornale();
     	

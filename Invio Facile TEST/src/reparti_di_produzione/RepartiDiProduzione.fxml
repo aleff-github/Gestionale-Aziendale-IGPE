@@ -174,7 +174,6 @@
                      <items>
                         <MenuItem fx:id="menuCrediti" mnemonicParsing="false" onAction="#visualizzaCrediti" text="Crediti" />
                         <MenuItem fx:id="menuContattaLAssistenza" mnemonicParsing="false" onAction="#mandaEmailAllAssistenza" text="Contatta assistenza" />
-                        <MenuItem fx:id="menuRiavviaProgramma" mnemonicParsing="false" onAction="#riavviaIlProgramma" text="Riavvia il programma" />
                      </items>
                   </Menu>
                </menus>

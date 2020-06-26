@@ -24,6 +24,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import util_package.GestisciInterfacce;
+import util_package.Messaggi;
 import util_package.Util;
 
 public class ControllerRepartiDiProduzione {
@@ -77,14 +78,7 @@ public class ControllerRepartiDiProduzione {
 					@FXML
 				    private MenuItem menuRepartiDiProduzione;
 						@FXML
-					    void vaiARepartiDiProduzione(ActionEvent event) {
-							Alert alert = new Alert (AlertType.INFORMATION);
-				  			alert.setTitle("Apri reparto di produzione");
-				  			alert.setHeaderText("Stai cercando di accedere al reparto di produzione.");
-				  			alert.setContentText("Sei già all'interno del Reparto di Produzione, se desideri uscire puoi andare alla Home oppure, cliccando il tasto esci, tornerai alla schermata di Login.");
-				  			
-				  			alert.showAndWait();
-						}
+					    void vaiARepartiDiProduzione(ActionEvent event) { Messaggi.erroreApriRepartiDiProduzione(); }
 					@FXML
 				    private MenuItem menuCatalogoEMagazzino;
 						@FXML
@@ -106,38 +100,11 @@ public class ControllerRepartiDiProduzione {
 					@FXML
 				    private MenuItem menuCrediti;
 						@FXML
-					    void visualizzaCrediti(ActionEvent event) {
-							Alert alert = new Alert(AlertType.INFORMATION);
-							alert.setTitle("Invio Facile!");
-							alert.setHeaderText(null);
-							alert.setContentText("Questo software è stato creato al fine del superamento dell'esame di IGPE da Alessandro Greco.\nUniversità Della Calabria - UNICAL");
-						
-							alert.showAndWait();
-						}
+					    void visualizzaCrediti(ActionEvent event) { Messaggi.crediti(); }
 					@FXML
 				    private MenuItem menuContattaLAssistenza;
 						@FXML
-					    void mandaEmailAllAssistenza(ActionEvent event) {
-							Alert alert = new Alert(AlertType.INFORMATION);
-					    	alert.setTitle("Contatta l'assistenza");
-					    	alert.setHeaderText(null);
-					    	alert.setContentText("Stai contattando l'assistenza, se desideri un consulto immediato contatta il numero:\n+39 327 83 21 517");
-					    	ButtonType inviaUnaEmail = new ButtonType ("Invia una email");
-					    	alert.getButtonTypes().setAll(inviaUnaEmail);
-					    	
-					    	Optional<ButtonType> opzioneScelta = alert.showAndWait();
-					    	if(opzioneScelta.get() == inviaUnaEmail) {
-					    		//TODO
-					    		Util.inviaEmail();
-					    	}
-						}
-					@FXML
-				    private MenuItem menuRiavviaProgramma;
-						@FXML
-					    void riavviaIlProgramma(ActionEvent event) {
-							//TODO
-							//CREARE UN COLLEGAMENTO CON IL MAIN
-						}
+					    void mandaEmailAllAssistenza(ActionEvent event) { Util.inviaEmail(); }
 	
 			@FXML
 			private SplitPane splitPane;
@@ -207,17 +174,12 @@ public class ControllerRepartiDiProduzione {
 
 	    void visualizzaDati (String url) {
 	    	
-					try {
-						Parent root = null;
-						FXMLLoader loader=new FXMLLoader(getClass().getResource ("/reparti_di_produzione/reparti/" + url + ".fxml"));
-						root = loader.load(); //Carico il file
-						borderPaneDiDestra.setCenter((ScrollPane) root);
-					} catch (IOException ecc) {
-						System.out.println("---");
-						ecc.printStackTrace();
-						System.out.println("---");
-					}
-					
-			    }
+			try {
+				Parent root = null;
+				FXMLLoader loader=new FXMLLoader(getClass().getResource ("/reparti_di_produzione/reparti/" + url + ".fxml"));
+				root = loader.load(); //Carico il file
+				borderPaneDiDestra.setCenter((ScrollPane) root);
+			} catch (IOException ecc) { Messaggi.erroreCaricamentoDati(); }			
+	    }
 	    
 }

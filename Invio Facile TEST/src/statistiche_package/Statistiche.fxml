@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="anchorPaneBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="1307.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="statistiche_package.ControllerStatistiche">
+<AnchorPane fx:id="anchorPaneBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="statistiche_package.ControllerStatistiche">
    <children>
-      <BorderPane fx:id="borderPaneBase" layoutX="97.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="borderPaneBase" layoutX="97.0" layoutY="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
               <menus>
@@ -30,9 +31,7 @@
                 </Menu>
                 <Menu fx:id="menuOpzioni" mnemonicParsing="false" text="Opzioni">
                   <items>
-                    <MenuItem fx:id="impostaTuttoA6Mesi" mnemonicParsing="false" onAction="#actionImpostaTuttoA6Mesi" text="Imposta tutto a 6 mesi" />
-                        <MenuItem fx:id="impostaTuttoA12Mesi" mnemonicParsing="false" onAction="#actionImpostaTuttoA12Mesi" text="Imposta tutto a 12 mesi" />
-                        <MenuItem fx:id="impostaTuttoA24Mesi" mnemonicParsing="false" onAction="#actionImpostaTuttoA24Mesi" text="Imposta tutto a 24 mesi" />
+                    <MenuItem fx:id="opzioneLeggiCommento" mnemonicParsing="false" onAction="#leggiCommentoAziendalePulsantePremuto" text="Leggi commento" />
                   </items>
                 </Menu>
                 <Menu fx:id="menuAiuto" mnemonicParsing="false" text="Aiuto">
@@ -46,70 +45,46 @@
             </MenuBar>
          </top>
          <center>
-            <ScrollPane fx:id="scrollBar" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <ScrollPane fx:id="scrollBar" BorderPane.alignment="CENTER">
               <content>
-                <AnchorPane fx:id="anchorPaneScrollPane">
+                <AnchorPane fx:id="anchorPaneScrollPane" minHeight="-Infinity" minWidth="-Infinity">
                      <children>
-                        <VBox fx:id="vBoxScrollPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <HBox fx:id="hBoxScrollPane" prefHeight="400.0" prefWidth="1000.0">
+                        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <center>
+                              <AnchorPane minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
                                  <children>
-                                    <AnchorPane fx:id="anchorPaneAziendale" prefHeight="400.0" prefWidth="454.0">
-                                       <children>
-                                          <Text fx:id="funzionalitaTextAziendale" layoutX="163.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funzionalità" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="10.0">
-                                             <font>
-                                                <Font size="24.0" />
-                                             </font>
-                                          </Text>
-                                          <ComboBox fx:id="periodoDiTempoAzienda" layoutX="64.0" layoutY="55.0" onAction="#periodoDiTempoAziendaleSelezionato" prefWidth="150.0" promptText="Periodo di tempo" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="55.0" />
-                                          <Button fx:id="pulsanteLeggiCommentoAziendale" layoutX="341.0" layoutY="55.0" mnemonicParsing="false" onAction="#leggiCommentoAziendalePulsantePremuto" text="Leggi commento" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
-                                          <TextArea fx:id="areaDiTestoAdibitoAlCommentoAziendale" editable="false" layoutX="127.0" layoutY="138.0" prefHeight="200.0" prefWidth="200.0" promptText="Per leggere il commento clicca su &quot;Leggi commento&quot; qua sopra." wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
-                                             <font>
-                                                <Font name="Baskerville Old Face" size="24.0" />
-                                             </font>
-                                          </TextArea>
-                                       </children>
-                                    </AnchorPane>
-                                    <BarChart fx:id="andamentoAziendale" onMouseClicked="#visualizzaCommentoAndamentoAziendale" prefHeight="250.0" prefWidth="850.0" title="Andamento Aziendale">
-                                       <xAxis>
-                                          <CategoryAxis fx:id="categoryAzisAziendale" side="BOTTOM" />
-                                       </xAxis>
-                                       <yAxis>
-                                          <NumberAxis fx:id="numberAxisAziendale" side="LEFT" />
-                                       </yAxis>
+                                    <BarChart fx:id="andamentoAziendale" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <xAxis>
+                                        <CategoryAxis fx:id="categoryAxisAziendale" side="BOTTOM" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis fx:id="numberAxisAziendale" side="LEFT" />
+                                      </yAxis>
                                     </BarChart>
                                  </children>
-                              </HBox>
-                              <HBox fx:id="hBoxBitcoin" prefHeight="431.0" prefWidth="1307.0">
+                              </AnchorPane>
+                           </center>
+                           <bottom>
+                              <AnchorPane fx:id="anchorPaneAziendale" BorderPane.alignment="CENTER">
                                  <children>
-                                    <AnchorPane fx:id="anchorPaneBitcoin" prefHeight="400.0" prefWidth="454.0">
-                                       <children>
-                                          <Text fx:id="funzionalitaTextBitcoin" layoutX="171.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funzionalità" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="10.0">
-                                             <font>
-                                                <Font size="24.0" />
-                                             </font>
-                                          </Text>
-                                          <ComboBox fx:id="periodoDiTempoBitcoin" layoutX="20.0" layoutY="56.0" onAction="#periodoDiTempoBitcoinSelezionato" prefWidth="150.0" promptText="Periodo di tempo" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="280.0" AnchorPane.topAnchor="56.0" />
-                                          <Button fx:id="pulsanteLeggiCommentoBitcoind" layoutX="251.0" layoutY="84.0" mnemonicParsing="false" onAction="#leggiCommentoBitcoinPulsantePremuto" text="Leggi commento" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
-                                          <TextArea fx:id="areaDiTestoAdibitoAlCommentoBitcoin" editable="false" layoutX="132.0" layoutY="143.0" prefHeight="200.0" prefWidth="200.0" promptText="Per leggere il commento clicca su &quot;Leggi commento&quot; qua sopra." wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
-                                             <font>
-                                                <Font name="Baskerville Old Face" size="24.0" />
-                                             </font>
-                                          </TextArea>
-                                       </children>
-                                    </AnchorPane>
-                                    <LineChart fx:id="andamentoBitcoin" prefWidth="850.0" title="Andamento Bitcoin">
-                                       <xAxis>
-                                          <CategoryAxis fx:id="categoryAzisBitcoin" side="BOTTOM" />
-                                       </xAxis>
-                                       <yAxis>
-                                          <NumberAxis fx:id="numberAxisBitcoin" side="LEFT" />
-                                       </yAxis>
-                                    </LineChart>
+                                    <Text fx:id="funzionalitaTextAziendale" layoutX="376.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funzionalità" AnchorPane.bottomAnchor="263.9765625" AnchorPane.leftAnchor="375.37109375" AnchorPane.rightAnchor="376.62890625" AnchorPane.topAnchor="14.0234375">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Text>
+                                    <Button fx:id="pulsanteLeggiCommentoAziendale" layoutX="341.0" layoutY="55.0" mnemonicParsing="false" onAction="#leggiCommentoAziendalePulsantePremuto" text="Leggi commento" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
+                                    <TextArea fx:id="areaDiTestoAdibitoAlCommentoAziendale" editable="false" layoutX="127.0" layoutY="138.0" prefHeight="200.0" prefWidth="200.0" promptText="Per leggere il commento clicca su &quot;Leggi commento&quot; qua sopra." wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="24.0" />
+                                       </font>
+                                    </TextArea>
                                  </children>
-                              </HBox>
-                           </children>
-                        </VBox>
+                                 <BorderPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </BorderPane.margin>
+                              </AnchorPane>
+                           </bottom>
+                        </BorderPane>
                      </children>
                   </AnchorPane>
               </content>

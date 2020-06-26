@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import util_package.GestisciInterfacce;
+import util_package.Util;
 
 public class ControllerDatiRepartiDiProduzione {
 	/* * * * * * * * * * * **
@@ -59,7 +60,11 @@ public class ControllerDatiRepartiDiProduzione {
 							    private Button pulsanteGeneraCommentoDatiFabbricazioneEMontaggio;
 									@FXML
 								    void generaCommentoFabbricazioneEMontaggio(ActionEvent event) {
-		
+										String commento = Util.generaCommentoRepartoFabbricazioneEMontaggio();
+										commento = commento + "\n\nSe vuoi approfondire questa visione" + 
+												"tramite un diagrama ad oc t'invito a visitare la pagina sulle statistiche o volendo, andando sul libro giornale " + 
+												"potrai vedere interamente le voci riportate.";
+										areaDiTestoCommentoFabbricazioneEMontaggio.appendText(commento);
 								    }
 							@FXML
 							private TextArea areaDiTestoCommentoFabbricazioneEMontaggio;
@@ -73,8 +78,12 @@ public class ControllerDatiRepartiDiProduzione {
 							    private Button pulsanteDatiTestDiResistenzaAmbientale;
 									@FXML
 								    void generaCommentoTestDiResistenzaAmbientale(ActionEvent event) {
-		
-								    }
+										String commento = Util.generaCommentoRepartoTestDiResistenzaAmbientale();
+										commento = commento + "\n\nSe vuoi approfondire questa visione" + 
+												"tramite un diagrama ad oc t'invito a visitare la pagina sulle statistiche o volendo, andando sul libro giornale " + 
+												"potrai vedere interamente le voci riportate.";
+										textAreaDatiTestDiResistenzaAmbientale.appendText(commento);
+									}
 							@FXML
 							private TextArea textAreaDatiTestDiResistenzaAmbientale;
 							@FXML
@@ -87,8 +96,12 @@ public class ControllerDatiRepartiDiProduzione {
 							    private Button pulsanteDatiPulizziaEImballaggio;
 								@FXML
 							    void generaCommentoPulizziaEImballaggio(ActionEvent event) {
-	
-							    }	
+									String commento = Util.generaCommentoRepartoPuliziaEImballaggio();
+									commento = commento + "\n\nSe vuoi approfondire questa visione" + 
+											"tramite un diagrama ad oc t'invito a visitare la pagina sulle statistiche o volendo, andando sul libro giornale " + 
+											"potrai vedere interamente le voci riportate.";
+									textAreaDatiPulizziaEImballaggio.appendText(commento);
+								}	
 							@FXML
 							private TextArea textAreaDatiPulizziaEImballaggio;
 }

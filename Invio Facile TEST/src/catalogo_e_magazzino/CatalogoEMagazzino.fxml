@@ -10,7 +10,7 @@
    <children>
       <BorderPane fx:id="borderPaneBase" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <SplitPane fx:id="splitPane" dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
+            <SplitPane fx:id="splitPane" dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="TOP_LEFT">
                <items>
                   <AnchorPane fx:id="anchorPaneSinistra" minHeight="-Infinity" minWidth="-Infinity" SplitPane.resizableWithParent="false">
                      <children>
@@ -153,7 +153,6 @@
                      <items>
                         <MenuItem fx:id="menuCrediti" mnemonicParsing="false" onAction="#crediti" text="Crediti" />
                         <MenuItem fx:id="menuContattaLAssistenza" mnemonicParsing="false" onAction="#contattaLAssistenza" text="Contatta assistenza" />
-                        <MenuItem fx:id="menuRiavviaIlProgramma" mnemonicParsing="false" onAction="#riavviaIlProgramma" text="Riavvia il programma" />
                      </items>
                   </Menu>
               </menus>

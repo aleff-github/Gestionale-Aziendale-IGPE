@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.net.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
@@ -40,67 +41,152 @@
             <items>
               <MenuItem fx:id="menuCrediti" mnemonicParsing="false" onAction="#crediti" text="Crediti" />
                   <MenuItem fx:id="menuContattaLAssistenza" mnemonicParsing="false" onAction="#contattaLAssistenza" text="Contatta assistenza" />
-                  <MenuItem fx:id="menuRiavviaIlProgramma" mnemonicParsing="false" onAction="#riavviaIlProgramma" text="Riavvia il programma" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <SplitPane fx:id="splitPaneImprenditore" dividerPositions="0.3" layoutY="32.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
+      <SplitPane fx:id="splitPaneImprenditore" dividerPositions="0.3" layoutY="32.0" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
         <items>
-          <AnchorPane fx:id="anchorPaneSinistra" prefHeight="818.0" prefWidth="309.0" SplitPane.resizableWithParent="false">
+          <AnchorPane fx:id="anchorPaneSinistra" SplitPane.resizableWithParent="false">
                <children>
-                  <Text fx:id="textLibroGiornale" layoutX="106.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libro Giornale">
-                     <font>
-                        <Font name="Bell MT" size="24.0" />
-                     </font>
-                  </Text>
-                  <ImageView fx:id="iconaLibroGiornale" fitHeight="100.0" fitWidth="100.0" layoutX="56.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/libro_giornale.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="apriDatiLibroGiornale" layoutX="203.0" layoutY="124.0" mnemonicParsing="false" onAction="#visualizzaDatiDelLibroGiornale" prefHeight="50.0" prefWidth="120.0" text="Informazioni" />
-                  <Separator fx:id="separatorUno" layoutX="1.0" layoutY="188.0" prefWidth="200.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" />
-                  <Text fx:id="textRepartiDiProduzione" layoutX="73.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reparti di produzione">
-                     <font>
-                        <Font name="Bell MT" size="24.0" />
-                     </font>
-                  </Text>
-                  <ImageView fx:id="iconaRepartiDiProduzione" fitHeight="100.0" fitWidth="100.0" layoutX="56.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/azienda.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="apriDatiRepartiDiProduzione" layoutX="203.0" layoutY="303.0" mnemonicParsing="false" onAction="#visualizzaDatiDeiRepartiDiProduzione" prefHeight="50.0" prefWidth="120.0" text="Informazioni" />
-                  <Separator fx:id="separatorDue" layoutX="-1.0" layoutY="377.0" prefWidth="200.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
-                  <Text fx:id="textCatalogoEMagazzino" layoutX="70.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catalogo e Magazzino">
-                     <font>
-                        <Font name="Bell MT" size="24.0" />
-                     </font>
-                  </Text>
-                  <ImageView fx:id="iconaCatalogoEMagazzino" fitHeight="100.0" fitWidth="100.0" layoutX="70.0" layoutY="447.0" onMouseClicked="#visualizzaDatiDelCatalogoEDelMagazzino" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Documents/GitHub/GestionaleIGPE/Invio%20Facile%20TEST/src/icons/magazzino.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="apriDatiCatalogoMagazzino" layoutX="203.0" layoutY="497.0" mnemonicParsing="false" onAction="#visualizzaDatiDelCatalogoEDelMagazzino" prefHeight="50.0" prefWidth="120.0" text="Informazioni" />
-                  <Separator fx:id="separatorTre" layoutX="1.0" layoutY="575.0" prefWidth="200.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" />
-                  <Text fx:id="textStatistiche" layoutX="128.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistiche">
-                     <font>
-                        <Font name="Bell MT" size="24.0" />
-                     </font>
-                  </Text>
-                  <ImageView fx:id="iconaStatistica" fitHeight="100.0" fitWidth="100.0" layoutX="78.0" layoutY="641.0" onMouseClicked="#visualizzaDatiDelleStatistiche" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Documents/GitHub/GestionaleIGPE/Invio%20Facile%20TEST/src/icons/statistiche.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="apriDatiStatistiche" layoutX="203.0" layoutY="691.0" mnemonicParsing="false" onAction="#visualizzaDatiDelleStatistiche" prefHeight="50.0" prefWidth="120.0" text="Informazioni" />
+                  <ScrollPane fx:id="scrollPaneMenuDiSinistra" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <VBox fx:id="vBoxMeniDiSinistra" alignment="CENTER" prefHeight="810.0" prefWidth="361.0">
+                           <children>
+                              <BorderPane fx:id="borderPaneMenuDiSinistraLibroGiornale">
+                                 <top>
+                                    <Text fx:id="textLibroGiornale" strokeType="OUTSIDE" strokeWidth="0.0" text="Libro Giornale" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Bell MT" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </top>
+                                 <left>
+                                    <ImageView fx:id="iconaLibroGiornale" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                       <image>
+                                          <Image url="@../icons/libro_giornale.png" />
+                                       </image>
+                                    </ImageView>
+                                 </left>
+                                 <bottom>
+                                    <Separator fx:id="separatorUno" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </BorderPane.margin>
+                                    </Separator>
+                                 </bottom>
+                                 <right>
+                                    <Button fx:id="apriDatiLibroGiornale" mnemonicParsing="false" onAction="#visualizzaDatiDelLibroGiornale" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER" />
+                                 </right>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin></BorderPane>
+                              <BorderPane fx:id="borderPaneMenuRepartiDiProduzione" prefHeight="200.0" prefWidth="200.0">
+                                 <top>
+                                    <Text fx:id="textRepartiDiProduzione" strokeType="OUTSIDE" strokeWidth="0.0" text="Reparti di produzione" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Bell MT" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </top>
+                                 <left>
+                                    <ImageView fx:id="iconaRepartiDiProduzione" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                       <image>
+                                          <Image url="@../icons/azienda.png" />
+                                       </image>
+                                    </ImageView>
+                                 </left>
+                                 <right>
+                                    <Button fx:id="apriDatiRepartiDiProduzione" mnemonicParsing="false" onAction="#visualizzaDatiDeiRepartiDiProduzione" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER" />
+                                 </right>
+                                 <bottom>
+                                    <Separator fx:id="separatorDue" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </BorderPane.margin>
+                                    </Separator>
+                                 </bottom>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </BorderPane>
+                              <BorderPane fx:id="borderPaneMenuDiSinistraCatalogoEMagazzino" prefHeight="200.0" prefWidth="200.0">
+                                 <top>
+                                    <Text fx:id="textCatalogoEMagazzino" strokeType="OUTSIDE" strokeWidth="0.0" text="Catalogo e Magazzino" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Bell MT" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </top>
+                                 <left>
+                                    <ImageView fx:id="iconaCatalogoEMagazzino" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#visualizzaDatiDelCatalogoEDelMagazzino" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                       <image>
+                                          <Image url="@../../../../../Documents/GitHub/GestionaleIGPE/Invio%20Facile%20TEST/src/icons/magazzino.png" />
+                                       </image>
+                                    </ImageView>
+                                 </left>
+                                 <right>
+                                    <Button fx:id="apriDatiCatalogoMagazzino" mnemonicParsing="false" onAction="#visualizzaDatiDelCatalogoEDelMagazzino" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER" />
+                                 </right>
+                                 <bottom>
+                                    <Separator fx:id="separatorTre" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </BorderPane.margin>
+                                    </Separator>
+                                 </bottom>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </BorderPane>
+                              <BorderPane fx:id="borderPaneMenuDiSinistraStatistiche" prefHeight="200.0" prefWidth="200.0">
+                                 <top>
+                                    <Text fx:id="textStatistiche" strokeType="OUTSIDE" strokeWidth="0.0" text="Statistiche" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Bell MT" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </top>
+                                 <left>
+                                    <ImageView fx:id="iconaStatistica" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#visualizzaDatiDelleStatistiche" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                       <image>
+                                          <Image url="@../../../../../Documents/GitHub/GestionaleIGPE/Invio%20Facile%20TEST/src/icons/statistiche.png" />
+                                       </image>
+                                    </ImageView>
+                                 </left>
+                                 <right>
+                                    <Button fx:id="apriDatiStatistiche" mnemonicParsing="false" onAction="#visualizzaDatiDelleStatistiche" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER" />
+                                 </right>
+                                 <bottom>
+                                    <Separator fx:id="separatorQuattro" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </BorderPane.margin>
+                                    </Separator>
+                                 </bottom>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </BorderPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
                </children>
             </AnchorPane>
           <AnchorPane fx:id="anchorPaneDestra" prefHeight="850.0" prefWidth="1000.0">
                <children>
-                  <BorderPane fx:id="borderpaneDiDestra" prefHeight="850.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <BorderPane fx:id="borderpaneDiDestra" prefHeight="850.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <ScrollPane fx:id="scrollPaneInternoDiDestra" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <content>
+                              <AnchorPane fx:id="anchorPaneDiScrollPaneDiDestra" maxWidth="850.0" prefHeight="1000.0" />
+                           </content>
+                        </ScrollPane>
+                     </center></BorderPane>
                </children></AnchorPane>
         </items>
       </SplitPane>

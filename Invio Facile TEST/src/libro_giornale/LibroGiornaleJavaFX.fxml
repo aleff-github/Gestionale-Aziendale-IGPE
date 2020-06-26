@@ -43,7 +43,6 @@
                   <items>
                     <MenuItem fx:id="pulsanteCrediti" mnemonicParsing="false" onAction="#crediti" text="Crediti" />
                         <MenuItem fx:id="pulsanteContattaLAssistenza" mnemonicParsing="false" onAction="#contattaLAssistenza" text="Contatta l'assistenza" />
-                        <MenuItem fx:id="pulsanteRiavviaIlProgramma" mnemonicParsing="false" onAction="#riavviaIlProgramma" text="Riavvia il programma" />
                   </items>
                 </Menu>
               </menus>

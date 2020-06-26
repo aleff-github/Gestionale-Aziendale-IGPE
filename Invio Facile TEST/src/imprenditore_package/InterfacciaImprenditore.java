@@ -1,7 +1,6 @@
 package imprenditore_package;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -20,6 +18,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import util_package.GestisciInterfacce;
 import util_package.Messaggi;
@@ -38,7 +37,7 @@ private AnchorPane imprenditoreAnchorPane;
 			@FXML
 			private MenuItem menuHome;
 				@FXML
-	    		void tornaAllaHome(ActionEvent event) { GestisciInterfacce.setFinestra("Imprenditore"); }
+	    		void tornaAllaHome(ActionEvent event) { Messaggi.erroreApriHome(); }
 			@FXML
 			private MenuItem menuDatiAziendali;
 				@FXML 
@@ -106,50 +105,64 @@ private AnchorPane imprenditoreAnchorPane;
 		    private MenuItem pulsanteContattaLAssistenza;
 			    @FXML
 			    void contattaLAssistenza(ActionEvent event) { Messaggi.contattaAssistenza(); }
-		    @FXML
-		    private MenuItem pulsanteRiavviaIlProgramma;
-			    @FXML
-			    void riavviaIlProgramma(ActionEvent event) { Messaggi.riavviaIlProgramma(); }
-
+		   
 	@FXML
 	private SplitPane splitPaneImprenditore;	
 		@FXML
 	    private AnchorPane anchorPaneSinistra;
-		    @FXML
-		    private Text textLibroGiornale;
-			    @FXML
-			    private ImageView iconaLibroGiornale;
-			    @FXML
-			    private Button apriDatiLibroGiornale; //PULSANTE LIBRO GIORNALE
-			    @FXML
-			    private Separator separatorUno;
 			@FXML
-		    private Text textRepartiDiProduzione;
+			private ScrollPane scrollPaneMenuDiSinistra;
 				@FXML
-			    private ImageView iconaRepartiDiProduzione;	
-				@FXML
-			    private Button apriDatiRepartiDiProduzione;
-				@FXML
-			    private Separator separatorDue;
-		    @FXML
-		    private Text textCatalogoEMagazzino;
-			    @FXML
-			    private ImageView iconaCatalogoEMagazzino;
-			    @FXML
-			    private Button apriDatiCatalogoMagazzino;
-			    @FXML
-			    private Separator separatorTre;
-		    @FXML
-		    private Text textStatistiche;
-			    @FXML
-			    private ImageView iconaStatistica;
-			    @FXML
-			    private Button apriDatiStatistiche;
+				private VBox vBoxMeniDiSinistra;
+					@FXML
+					private BorderPane borderPaneMenuDiSinistraLibroGiornale;
+					    @FXML
+					    private Text textLibroGiornale;
+						    @FXML
+						    private ImageView iconaLibroGiornale;
+						    @FXML
+						    private Button apriDatiLibroGiornale; //PULSANTE LIBRO GIORNALE
+						    @FXML
+						    private Separator separatorUno;
+					@FXML
+					private BorderPane borderPaneMenuRepartiDiProduzione;
+						@FXML
+					    private Text textRepartiDiProduzione;
+							@FXML
+						    private ImageView iconaRepartiDiProduzione;	
+							@FXML
+						    private Button apriDatiRepartiDiProduzione;
+							@FXML
+						    private Separator separatorDue;
+					@FXML
+					private BorderPane borderPaneMenuDiSinistraCatalogoEMagazzino;
+					    @FXML
+					    private Text textCatalogoEMagazzino;
+						    @FXML
+						    private ImageView iconaCatalogoEMagazzino;
+						    @FXML
+						    private Button apriDatiCatalogoMagazzino;
+						    @FXML
+						    private Separator separatorTre;
+					@FXML
+					private BorderPane borderPaneMenuDiSinistraStatistiche;
+					    @FXML
+					    private Text textStatistiche;
+						    @FXML
+						    private ImageView iconaStatistica;
+						    @FXML
+						    private Button apriDatiStatistiche;
+						    @FXML
+						    private Separator separatorQuattro;
 			    
 	@FXML
 	private AnchorPane anchorPaneDestra;
 	    @FXML
 		private BorderPane borderpaneDiDestra;
+	    @FXML
+	    private ScrollPane scrollPaneInternoDiDestra;
+	    @FXML
+	    private AnchorPane anchorPaneDiScrollPaneDiDestra;
 		    @FXML
 			void visualizzaDatiDelLibroGiornale(ActionEvent event) {
 		    	visualizzaDati ("DatiLibroGiornale");
@@ -165,7 +178,7 @@ private AnchorPane imprenditoreAnchorPane;
 		
 		    @FXML
 		    void visualizzaDatiDelleStatistiche(ActionEvent event) {
-		
+		    	visualizzaDati ("DatiStatistiche");
 		    }
 		    void visualizzaDati (String url) {
 		    	
@@ -173,7 +186,8 @@ private AnchorPane imprenditoreAnchorPane;
 					Parent root = null;
 					FXMLLoader loader=new FXMLLoader(getClass().getResource ("/imprenditore_package/Dati/" + url + ".fxml"));
 					root = loader.load(); //Carico il file
-					borderpaneDiDestra.setCenter((ScrollPane) root); //Il primo elemento è un HBox per ogni file di Dati
+//					borderpaneDiDestra.setCenter((ScrollPane) root); //Il primo elemento è un HBox per ogni file di Dati
+					anchorPaneDiScrollPaneDiDestra.getChildren().add(root);
 				} catch (IOException ecc) {
 					System.out.println("---");
 					ecc.printStackTrace();

@@ -11,9 +11,6 @@ public class Main extends Application{
 	
 	@Override 
 	public void start(Stage primaryStage) throws Exception {
-		
-		Util.acquisisciDatiLibroGiornale();
-		
 //		Setto Util
 		Util.setApplication(this);
 //		Setto gli utenti registrati
@@ -45,10 +42,13 @@ public class Main extends Application{
     	FXMLLoader catalogoEProdotti = new FXMLLoader (getClass().getResource("/catalogo_e_magazzino/CatalogoEMagazzino.fxml"));
     	AnchorPane rootCatalogoEMagazzino = (AnchorPane) catalogoEProdotti.load();
     	GestisciInterfacce.add("Catalogo E Magazzino", rootCatalogoEMagazzino);
-		
+ 
+//    	STATISTICHE
+    	FXMLLoader statistiche = new FXMLLoader (getClass().getResource("/statistiche_package/Statistiche.fxml"));
+    	AnchorPane rootStatistiche= (AnchorPane) statistiche.load();
+    	GestisciInterfacce.add("Statistiche", rootStatistiche);
+    	
 		primaryStage.setResizable(true);
-		primaryStage.setMinHeight(700);
-		primaryStage.setMinWidth(800);
 		primaryStage.setTitle("Invio Facile!");
 		primaryStage.setScene(scenaIniziale);
 		primaryStage.show();

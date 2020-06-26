@@ -104,11 +104,7 @@ public class ControllerCatalogoEMagazzino {
 				    private MenuItem menuContattaLAssistenza;
 						@FXML
 					    void contattaLAssistenza(ActionEvent event) { Messaggi.contattaAssistenza(); }
-					@FXML
-				    private MenuItem menuRiavviaIlProgramma;
-					  @FXML
-					    void riavviaIlProgramma(ActionEvent event) { Messaggi.riavviaIlProgramma(); }
-				
+					
 	@FXML
 	private TableView<Prodotto> tableViewProdotti;
 		@FXML private TableColumn<Prodotto, Integer> tableColumnIdProdotto = new TableColumn<Prodotto, Integer>("Id Prodotto");

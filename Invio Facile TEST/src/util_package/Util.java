@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
@@ -19,6 +18,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -166,6 +166,18 @@ public class Util {
 				toReturn ++;
 		return toReturn;
 	}
+	public static String generaCommentoRepartoFabbricazioneEMontaggio () {
+		String commento = "";
+		Double costi = costiTotaliFabbricazioneEMontaggio();
+		Double ricavi = ricaviTotaliFabbricazioneEMontaggio();
+		if(costi > ricavi) 
+			commento = "Il reparto Fabbricazione e Montaggio risulta avere una contabilità complessivamente negativa per via "
+					+ "del fatto che i costi totali risultano essere superiori dei ricavi totali.";
+		else
+			commento = "Il reparto Fabbricazione e Montaggio risulta avere una contabilità complessivamente positiva per via "
+					+ "del fatto che i ricavi totali risultano essere superiori ai costi totali.";
+		return commento;
+	}
 	
 //	TEST DI RESISTENZA AMBIENTALE
 	public static Double costiTotaliTestDiResistenzaAmbientale() {
@@ -189,6 +201,18 @@ public class Util {
 				toReturn ++;
 		return toReturn;
 	}
+	public static String generaCommentoRepartoTestDiResistenzaAmbientale () {
+		String commento = "";
+		Double costi = costiTotaliTestDiResistenzaAmbientale();
+		Double ricavi = ricaviTotaliTestDiResistenzaAmbientale();
+		if(costi > ricavi) 
+			commento = "Il reparto Test Di Resistenza Ambientale risulta avere una contabilità complessivamente negativa per via "
+					+ "del fatto che i costi totali risultano essere superiori dei ricavi totali.";
+		else
+			commento = "Il reparto Test Di Resistenza Ambientale risulta avere una contabilità complessivamente positiva per via "
+					+ "del fatto che i ricavi totali risultano essere superiori dei costi totali.";
+		return commento;
+	}
 	
 //	TEST DI RESISTENZA AMBIENTALE
 	public static Double costiTotaliPuliziaEImballaggio() {
@@ -211,6 +235,18 @@ public class Util {
 			if(ControllerLibroGiornale.tableViewCopia.getItems().get(i).getReparto().equals("Pulizia e Imballaggio")) 
 				toReturn ++;
 		return toReturn;
+	}
+	public static String generaCommentoRepartoPuliziaEImballaggio() {
+		String commento = "";
+		Double costi = costiTotaliPuliziaEImballaggio();
+		Double ricavi = ricaviTotaliPuliziaEImballaggio();
+		if(costi > ricavi) 
+			commento = "Il reparto Pulizia e Imballaggio risulta avere una contabilità complessivamente negativa per via "
+					+ "del fatto che i costi totali risultano essere superiori dei ricavi totali.";
+		else
+			commento = "Il reparto Pulizia e Imballaggio risulta avere una contabilità complessivamente positiva per via "
+					+ "del fatto che i ricavi totali risultano essere superiori dei costi totali.";
+		return commento;
 	}
 	
 	/* * * * * * * * * * * **
@@ -533,43 +569,193 @@ public class Util {
 	 *  STATISTICHE   *
 	 *                *
 	 * * * * * * * * */
-	
 	private static PreparedStatement preparedStatementStatistiche;
 	private static Statement statementStatistiche;
     private static ResultSet resultStatistiche;
     private static Connection connectionStatistiche;
-	
-	public static ObservableList<Series<String, Double>> acquisisciDatiLibroGiornale() {
-		//ObservableList<XYChart<X, Y>.Series<String, Double>> dati = FXCollections.observableArrayList();
+    private static ObservableList<XYChart.Series<String, Double>> answer;
+    
+    private static Double andamentoReparto1;
+    private static Double andamentoReparto2;
+    private static Double andamentoReparto3;
+    
+    public static Integer MESI_DA_CONTROLLARE = 6;
+    
+  public static ObservableList<XYChart.Series<String, Double>> acquisisciDatiStatistici() {
+	  andamentoReparto1 = 0.0;
+	  andamentoReparto2 = 0.0;
+	  andamentoReparto3 = 0.0;
+	  //CREO UN OBSERVABLE LIST DI SERIES
+	  answer = FXCollections.observableArrayList();
+	//CREO I SERIES
+	  Series<String, Double> fabbricazioneEMontaggio = new Series<String, Double>();
+	  Series<String, Double> testDiResistenzaAmbientale = new Series<String, Double>();
+	  Series<String, Double> puliziaEImballaggio = new Series<String, Double>();
+	  fabbricazioneEMontaggio.setName("Fabbricazione e Montaggio");
+	  testDiResistenzaAmbientale.setName("Test di Resistenza Ambientale");
+	  puliziaEImballaggio.setName("Pulizia e Imballaggio");
+	  
+	  Double utileReparto1 = 0.0;
+	  Double utileReparto2 = 0.0;
+	  Double utileReparto3 = 0.0;
+	  
+	  Calendar calendario = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"),Locale.ITALY); //Prende la data attuale
+	  Date dataDiOggi = calendario.getTime();
+	  LocalDate finoA = dataDiOggi.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); // Acquisisce la data nel formato corretto -> yyyy/MM/dd
+	  LocalDate da = finoA.minusMonths(MESI_DA_CONTROLLARE); // Acquisisce la data da quando deve partire il controllo
+	  Integer mesiControllati = 0;
+	  try {//Acquisisco tutte le voci per ogni singolo giorno
+		connectionStatistiche = DatabaseConnector.getConnectionDatabase(); 		
+	  //ASSEGNO DEI VALORI
+	  while(da.isBefore(finoA)) {
+		  preparedStatementStatistiche = connectionStatistiche.prepareStatement("SELECT * FROM libro_giornale WHERE data=?");
+		  preparedStatementStatistiche.setString(1, da.toString());
+		  resultStatistiche = preparedStatementStatistiche.executeQuery(); 
+	          while(resultStatistiche.next()) { 
+	          	if( resultStatistiche.getString("reparto").equals("Fabbricazione e Montaggio")) {
+	          		Integer iva = Integer.parseInt(resultStatistiche.getString("iva"));
+	              	Double dare = Double.parseDouble(resultStatistiche.getString("dare"));
+	              	Double avere = Double.parseDouble(resultStatistiche.getString("avere"));
+	              	utileReparto1 += (avere*iva);
+	              	utileReparto1 -= (dare*iva);
+	          	}
+	          	else if( resultStatistiche.getString("reparto").equals("Test di Resistenza Ambientale")) {
+	          		Integer iva = Integer.parseInt(resultStatistiche.getString("iva"));
+	              	Double dare = Double.parseDouble(resultStatistiche.getString("dare"));
+	              	Double avere = Double.parseDouble(resultStatistiche.getString("avere"));
+	              	utileReparto2 += (avere*iva);
+	              	utileReparto2 -= (dare*iva);
+	          	}
+	          	else if( resultStatistiche.getString("reparto").equals("Pulizia e Imballaggio")) {
+	          		Integer iva = Integer.parseInt(resultStatistiche.getString("iva"));
+	              	Double dare = Double.parseDouble(resultStatistiche.getString("dare"));
+	              	Double avere = Double.parseDouble(resultStatistiche.getString("avere"));
+	              	utileReparto3 += (avere*iva);
+	              	utileReparto3 -= (dare*iva);
+	          	}
+	          }
+	         
+	  	//Verifico se cambio mese
+	      if(da.plusDays(1).getMonth() != da.getMonth()) {
+	    	  switch(mesiControllati) {
+	    	  case 1:
+	    		  fabbricazioneEMontaggio.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto1));
+	    		  testDiResistenzaAmbientale.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto2));
+	    		  puliziaEImballaggio.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto3));
+	    	  break;
+	    	  case 2:
+	    		  fabbricazioneEMontaggio.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto1));
+	    		  testDiResistenzaAmbientale.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto2));
+	    		  puliziaEImballaggio.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto3));
+	    	  break;
+	    	  case 3:
+	    		  fabbricazioneEMontaggio.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto1));
+	    		  testDiResistenzaAmbientale.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto2));
+	    		  puliziaEImballaggio.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto3));
+	    	  break;
+	    	  case 4:
+	    		  fabbricazioneEMontaggio.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto1));
+	    		  testDiResistenzaAmbientale.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto2));
+	    		  puliziaEImballaggio.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto3));
+	    	  break;
+	    	  case 5:
+	    		  fabbricazioneEMontaggio.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto1));
+	    		  testDiResistenzaAmbientale.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto2));
+	    		  puliziaEImballaggio.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto3));
+	    	  break;
+	    	  case 6:
+	    		  fabbricazioneEMontaggio.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto1));
+	    		  testDiResistenzaAmbientale.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto2));
+	    		  puliziaEImballaggio.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto3));
+		      break;
+	    	  default: break;
+	    	  }
+	    	
+	    	andamentoReparto1 += utileReparto1;
+	    	andamentoReparto2 += utileReparto2;
+	    	andamentoReparto3 += utileReparto3;
+	      	mesiControllati++;
+	      	utileReparto1 = 0.0;
+	        utileReparto2 = 0.0;
+	        utileReparto3 = 0.0;
+	      }
+	  	da = da.plusDays(1);
+	  }
+  	 connectionStatistiche.close();
+	} catch (Exception e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); }
+//ASSEGNO I SERIES ALL'OBSERVABLE LIST
+  answer.addAll(fabbricazioneEMontaggio, testDiResistenzaAmbientale, puliziaEImballaggio);
+  return answer;
+}
 
-		Series<String, Double> FabbricazioneEMontaggio = new Series<>();
-		Series<String, Double> TestDiResistenzaAmbientale = new Series<>();
-		Series<String, Double> PuliziaEImballaggio = new Series<>();
-		
-		FabbricazioneEMontaggio.setName("Fabbricazione e Montaggio");
-		TestDiResistenzaAmbientale.setName("Test di Resistenza Ambientale");
-		PuliziaEImballaggio.setName("Pulizia e Imballaggio");
-
-		Integer mesiDaVerificare = 6;
-		
-		//Data di oggi
-	    Calendar calendario = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"),Locale.ITALY);
-	    Date data = calendario.getTime();
-	    LocalDate localData = data.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-	    LocalDate da = localData.minusMonths(6);
-	    
-	    SimpleDateFormat patternData= new SimpleDateFormat("yyyy/MM/dd"); //Setto il pattern giorno-mese-anno
-	    String dataDiOggi = patternData.format(calendario.getTime()); //"trasformo" la data in una stringa sulla quale lavorare
-		
-		return null;
+	public static String generaCommentoAndamentoAziendale() {
+		String commento = "";
+		if(andamentoReparto1 > 0) 
+			commento = commento + "Il reparto 1, ovvero Fabbricazione e Montaggio, "
+					+ " complessivamente riporta un risultato positivo. La fabbricazione dei prodotti "
+					+ "prosegue correttametne e non sono state riportati problemi di gestione. ";
+		else
+			commento = commento + "Il reparto 1, ovvero Fabbricazione e Montaggio, "
+					+ " complessivamente riporta un risultato negativo. Il reparto potrebbe "
+					+ "avere dei problemi nella fabbricazione o nella gestione, è consigliato "
+					+ "effettuare delle manove di recupero.";
+		if(andamentoReparto2 > 0)
+			commento = commento + "\nIl reparto 2, ovvero Test di Resistenza Ambientale, "
+					+ " complessivamente riporta un risultato positivo. In questo reparto vengono "
+					+ "effettuati i test sulla resistenza ambientale dei dispositivi prodotti e, "
+					+ "stando ai movimenti economici e finanziari, l'andamento è buono visto che "
+					+ "si riescono a ricoprire interamente le spese avendo anche un utile.";
+		else
+			commento = commento + "\nIl reparto 2, ovvero Test di Resistenza Ambientale, "
+					+ " complessivamente riporta un risultato negativo. In questo reparto vengono "
+					+ "effettuati i test sulla resistenza ambientale dei dispositivi prodotti e, "
+					+ "stando ai movimenti economici e finanziari, l'andamento è pessimo visto che "
+					+ "tramite gli utili non è possibile ricoprire le spese andando così in perdita. "
+					+ "E' fortemente consigliato controllare la gestione del reparto e diminuire le spese.";
+		if(andamentoReparto3 > 0)
+			commento = commento + "\nIl reparto 3, ovvero Pulizia e Imballaggio, "
+					+ " complessivamente riporta un risultato positivo. Questo è l'ultimo reparto e forse "
+					+ "il più importante visto che tramite esso si gestisce il confezionamento prima dell'imballaggio"
+					+ " e quindi della spedizione/vendita. Tramite i movimenti economici e finanziari positivi"
+					+ ", riportati nel libro giornale, si può determinare un utile quindi la gestione del reparto è "
+					+ "buona.";
+		else
+			commento = commento + "\nIl reparto 3, ovvero Pulizia e Imballaggio, "
+					+ " complessivamente riporta un risultato negativo. Questo è l'ultimo reparto e forse "
+					+ "il più importante visto che tramite esso si gestisce il confezionamento prima dell'imballaggio"
+					+ " e quindi della spedizione/vendita. Tramite i movimenti economici e finanziari negativi"
+					+ ", riportati nel libro giornale, si può determinare una perdita, è fortemente consigliato "
+					+ "ricontrollare la gestione.";
+		return commento;
 	}
 
-	
+	public static String vociTotaliPerMese() {
+		String testo = "";
+		Integer vociPerMese = 0;
+		Calendar calendario = Calendar.getInstance(TimeZone.getTimeZone("Europe/Rome"),Locale.ITALY); 
+		  Date dataDiOggi = calendario.getTime();
+		  LocalDate finoA = dataDiOggi.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		  LocalDate da = finoA.minusMonths(MESI_DA_CONTROLLARE); 
+		  try {
+			connectionStatistiche = DatabaseConnector.getConnectionDatabase(); 		
 
-
-
-	
-	
-	
-	
+		  while(da.isBefore(finoA)) {
+			  preparedStatementStatistiche = connectionStatistiche.prepareStatement("SELECT * FROM libro_giornale WHERE data=?");
+			  preparedStatementStatistiche.setString(1, da.toString());
+			  resultStatistiche = preparedStatementStatistiche.executeQuery(); 
+		          while(resultStatistiche.next()) 
+		          	vociPerMese += 1;
+		          
+		      if(da.plusDays(1).getMonth() != da.getMonth()) {
+		    	  testo = testo + da.getMonth().toString() + ": " + vociPerMese + "\n";
+		    	  vociPerMese = 0;
+		      }
+		  	da = da.plusDays(1);
+		  }
+	  	 connectionStatistiche.close();
+		} catch (SQLException e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); }
+		
+		return testo;
+	}
+  
 }
