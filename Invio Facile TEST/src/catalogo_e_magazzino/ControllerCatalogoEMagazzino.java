@@ -167,7 +167,9 @@ public class ControllerCatalogoEMagazzino {
 		@FXML
 	    private AnchorPane anchorPaneDiDestra;
 			@FXML
-		    private Label prodottiTitolo;
+			private VBox vBoxTabellaProdotti;
+				@FXML
+			    private Label prodottiTitolo;
 
     
 

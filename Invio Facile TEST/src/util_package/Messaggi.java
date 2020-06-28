@@ -261,5 +261,13 @@ public class Messaggi {
 		alert.setContentText("Sei già all'interno della pagine Home, se desideri sloggare puoi farlo cliccando sul tasto esci, tornerando così alla schermata di Login.");
 		alert.showAndWait();
 	}
+
+	public static void erroreDiLogin() {
+		Alert alert = new Alert (AlertType.INFORMATION);
+		alert.setTitle("Errore di login");
+		alert.setHeaderText(null);
+		alert.setContentText("I dati inseriti non sono corretti, t'invitiamo a riprovare");
+		alert.showAndWait();
+	}
 	
 }

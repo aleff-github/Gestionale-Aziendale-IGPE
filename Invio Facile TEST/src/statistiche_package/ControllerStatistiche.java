@@ -107,14 +107,7 @@ public class ControllerStatistiche {
 				    @FXML
 				    private MenuItem menuContattaLAssistenza;
 					    @FXML
-					    void contattaLAssistenza(ActionEvent event) { Util.inviaEmail(); }
-				    @FXML
-				    private MenuItem menuRiavviaIlProgramma;
-					    @FXML
-					    void riavviaIlProgramma(ActionEvent event) {
-					    	//TODO
-							//CREARE UN COLLEGAMENTO CON IL MAIN
-					    }				
+					    void contattaLAssistenza(ActionEvent event) { Util.inviaEmail(); }			
     
 		    @FXML
 		    private ScrollPane scrollBar;			

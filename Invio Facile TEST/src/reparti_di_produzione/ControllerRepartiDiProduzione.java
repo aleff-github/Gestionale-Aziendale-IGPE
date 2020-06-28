@@ -111,52 +111,58 @@ public class ControllerRepartiDiProduzione {
 				@FXML
 			    private AnchorPane anchorPaneSinistro;
 					@FXML
-				    private VBox vBoxMenu;
+					private ScrollPane scrollPaneMenuDiSinistra;
 						@FXML
-					    private BorderPane borderPaneFabbricazioneEMontaggio;
+					    private VBox vBoxMenu;
 							@FXML
-						    private Text fabbricazioneEMontaggioTitolo; 
-							@FXML
-						    private HBox hBoxFabbricazioneEMontaggio;
+						    private BorderPane borderPaneFabbricazioneEMontaggio;
 								@FXML
-							    private ImageView iconaFabbricazioneEMontaggio;
-							@FXML
-							private BorderPane borderPanePulsanteFabbricazioneEMontaggio;
+							    private Text fabbricazioneEMontaggioTitolo; 
 								@FXML
-							    private Button pulsanteInformazioneFabbricazioneEMontaggio;
-					@FXML
-					private Separator separatoreUno;
-					@FXML
-				    private BorderPane borderPaneTestDiResistenzaAmbientale;
-						@FXML
-					    private Text testDiResistenzaAmbientaleTitolo;
-						@FXML
-					    private HBox hBoxTestDiResistenzaAmbientale;
-							@FXML
-						    private ImageView iconaTestDiResistenzaAmbientale;
-							@FXML
-						    private BorderPane borderPanePulsanteTestDiResistenzaEImballaggio;
+							    private HBox hBoxFabbricazioneEMontaggio;
+									@FXML
+								    private ImageView iconaFabbricazioneEMontaggio;
 								@FXML
-							    private Button pulsanteInformazioneTestDiResistenzaAmbientale;
-					@FXML
-					private Separator separatoreDue;
-					@FXML
-				    private BorderPane borderPanePuliziaEImballaggio;
+								private BorderPane borderPanePulsanteFabbricazioneEMontaggio;
+									@FXML
+								    private Button pulsanteInformazioneFabbricazioneEMontaggio;
 						@FXML
-					    private Text puliziaEImballaggioTitolo;
+						private Separator separatoreUno;
 						@FXML
-					    private HBox hBoxPuliziaEImballaggio;
+					    private BorderPane borderPaneTestDiResistenzaAmbientale;
 							@FXML
-						    private ImageView iconaPuliziaEImballaggio;
-						@FXML
-						private BorderPane borderPanePulsantePuliziaEImballaggio;
+						    private Text testDiResistenzaAmbientaleTitolo;
 							@FXML
-						    private Button pulsanteInformazionePuliziaEImballaggio;
+						    private HBox hBoxTestDiResistenzaAmbientale;
+								@FXML
+							    private ImageView iconaTestDiResistenzaAmbientale;
+								@FXML
+							    private BorderPane borderPanePulsanteTestDiResistenzaEImballaggio;
+									@FXML
+								    private Button pulsanteInformazioneTestDiResistenzaAmbientale;
+						@FXML
+						private Separator separatoreDue;
+						@FXML
+					    private BorderPane borderPanePuliziaEImballaggio;
+							@FXML
+						    private Text puliziaEImballaggioTitolo;
+							@FXML
+						    private HBox hBoxPuliziaEImballaggio;
+								@FXML
+							    private ImageView iconaPuliziaEImballaggio;
+							@FXML
+							private BorderPane borderPanePulsantePuliziaEImballaggio;
+								@FXML
+							    private Button pulsanteInformazionePuliziaEImballaggio;
 		
 				@FXML
 				private AnchorPane anchorPaneDiDestra;
 					@FXML
 					private BorderPane borderPaneDiDestra;
+						@FXML
+						private ScrollPane scrollPaneDiDestra;
+							@FXML
+							private AnchorPane anchorPaneInScrollPaneDiDestra;
 	    @FXML
 	    void visualizzaInformazioniFabbricazioneEMontaggio(ActionEvent event) {
 	    	visualizzaDati("Fabbricazione_e_Montaggio");
@@ -178,7 +184,7 @@ public class ControllerRepartiDiProduzione {
 				Parent root = null;
 				FXMLLoader loader=new FXMLLoader(getClass().getResource ("/reparti_di_produzione/reparti/" + url + ".fxml"));
 				root = loader.load(); //Carico il file
-				borderPaneDiDestra.setCenter((ScrollPane) root);
+				anchorPaneInScrollPaneDiDestra.getChildren().add(root);
 			} catch (IOException ecc) { Messaggi.erroreCaricamentoDati(); }			
 	    }
 	    

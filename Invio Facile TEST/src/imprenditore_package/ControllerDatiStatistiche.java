@@ -12,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import util_package.GestisciInterfacce;
 import util_package.Util;
 
 public class ControllerDatiStatistiche {
@@ -43,7 +44,7 @@ public class ControllerDatiStatistiche {
 	
     @FXML
     void apriStatistiche(ActionEvent event) {
-
+    	GestisciInterfacce.setFinestra("Statistiche");
     }
 
 }

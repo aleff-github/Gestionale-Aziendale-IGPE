@@ -25,6 +25,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import util_package.GestisciInterfacce;
+import util_package.Messaggi;
 import util_package.Util;
 
 public class LoginController implements Initializable{
@@ -36,7 +37,7 @@ public class LoginController implements Initializable{
 			@FXML
 		    private VBox boxContenitoreDiBorderPane;
 			
-				@FXML /*   LOGIN   */
+				@FXML
 			    private BorderPane borderPaneUsername;
 					@FXML
 				    private ImageView iconaUsername;
@@ -49,7 +50,7 @@ public class LoginController implements Initializable{
 					@FXML
 				    private PasswordField passwordField;
 					
-				@FXML /*   PULSANTI   */
+				@FXML 
 			    private HBox hBoxPulsanti;
 					@FXML
 				    private BorderPane borderPaneEntra;
@@ -82,20 +83,6 @@ public class LoginController implements Initializable{
 //		admin - admin
 		utenti.put(username, password);
 		
-	}
-	
-	public static void add (String username, String Password) {
-		if(!utenti.containsKey(username))
-			utenti.put(username, Password);
-		else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Errore di login");
-			alert.setHeaderText(null);
-			alert.setContentText("Questo username non può essere utilizzato.");
-		
-			alert.showAndWait();
-	
-		}
 	}
 	
 	@FXML
@@ -135,16 +122,11 @@ public class LoginController implements Initializable{
     			GestisciInterfacce.setFinestra("Imprenditore");
     			
     		}
-//    		Non aggiungo la notifica dell'errore d'inserimento della password per non notificare che l'utente esiste
+    		//Per motivi di sicurezza è preferibile non specificare cosa si sta sbagliando quindi uso lo stesso messaggio generico di errore
+    		else Messaggi.erroreDiLogin();
     	}
-    	else {
-    		Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Errore di login");
-			alert.setHeaderText(null);
-			alert.setContentText("I dati inseriti non sono corretti, t'invitiamo a riprovare.");
-		
-			alert.showAndWait();
-    	}
+    	else Messaggi.erroreDiLogin();
+    	
     	passwordField.clear();
     }    
     

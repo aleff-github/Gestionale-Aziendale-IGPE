@@ -186,7 +186,6 @@ private AnchorPane imprenditoreAnchorPane;
 					Parent root = null;
 					FXMLLoader loader=new FXMLLoader(getClass().getResource ("/imprenditore_package/Dati/" + url + ".fxml"));
 					root = loader.load(); //Carico il file
-//					borderpaneDiDestra.setCenter((ScrollPane) root); //Il primo elemento è un HBox per ogni file di Dati
 					anchorPaneDiScrollPaneDiDestra.getChildren().add(root);
 				} catch (IOException ecc) {
 					System.out.println("---");

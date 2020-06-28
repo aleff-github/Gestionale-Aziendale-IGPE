@@ -47,11 +47,11 @@
       </MenuBar>
       <SplitPane fx:id="splitPaneImprenditore" dividerPositions="0.3" layoutY="32.0" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
         <items>
-          <AnchorPane fx:id="anchorPaneSinistra" SplitPane.resizableWithParent="false">
+          <AnchorPane fx:id="anchorPaneSinistra" maxWidth="310.0" minWidth="300.0" prefWidth="310.0" SplitPane.resizableWithParent="false">
                <children>
                   <ScrollPane fx:id="scrollPaneMenuDiSinistra" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
-                        <VBox fx:id="vBoxMeniDiSinistra" alignment="CENTER" prefHeight="810.0" prefWidth="361.0">
+                        <VBox fx:id="vBoxMeniDiSinistra" alignment="CENTER" prefWidth="300.0">
                            <children>
                               <BorderPane fx:id="borderPaneMenuDiSinistraLibroGiornale">
                                  <top>
@@ -121,7 +121,7 @@
                                  <left>
                                     <ImageView fx:id="iconaCatalogoEMagazzino" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#visualizzaDatiDelCatalogoEDelMagazzino" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                        <image>
-                                          <Image url="@../../../../../Documents/GitHub/GestionaleIGPE/Invio%20Facile%20TEST/src/icons/magazzino.png" />
+                                          <Image url="@../icons/magazzino.png" />
                                        </image>
                                     </ImageView>
                                  </left>
@@ -150,7 +150,7 @@
                                  <left>
                                     <ImageView fx:id="iconaStatistica" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#visualizzaDatiDelleStatistiche" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                        <image>
-                                          <Image url="@../../../../../Documents/GitHub/GestionaleIGPE/Invio%20Facile%20TEST/src/icons/statistiche.png" />
+                                          <Image url="@../icons/statistiche.png" />
                                        </image>
                                     </ImageView>
                                  </left>
@@ -179,9 +179,9 @@
             </AnchorPane>
           <AnchorPane fx:id="anchorPaneDestra" prefHeight="850.0" prefWidth="1000.0">
                <children>
-                  <BorderPane fx:id="borderpaneDiDestra" prefHeight="850.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <BorderPane fx:id="borderpaneDiDestra" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <center>
-                        <ScrollPane fx:id="scrollPaneInternoDiDestra" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <ScrollPane fx:id="scrollPaneInternoDiDestra" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="850.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                            <content>
                               <AnchorPane fx:id="anchorPaneDiScrollPaneDiDestra" maxWidth="850.0" prefHeight="1000.0" />
                            </content>

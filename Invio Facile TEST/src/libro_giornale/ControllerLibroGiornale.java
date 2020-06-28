@@ -137,7 +137,7 @@ public class ControllerLibroGiornale {
 		    void scaricaInFormatoEXCEL(ActionEvent event) {
 		    	FileChooser acquisisciPosizione = new FileChooser();
 		    	FileChooser.ExtensionFilter filtriDiSalvataggio = 	
-		    			new FileChooser.ExtensionFilter("File Excel (*.xlsx)", "*.xlxs");
+		    			new FileChooser.ExtensionFilter("File Excel (*.xlsx)", "*.xlsx");
 		    	acquisisciPosizione.getExtensionFilters().add(filtriDiSalvataggio);
 		    	creaFileDiTesto(acquisisciPosizione);
 		    }

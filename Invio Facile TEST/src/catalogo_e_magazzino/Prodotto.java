@@ -1,5 +1,8 @@
 package catalogo_e_magazzino;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -59,7 +62,11 @@ public class Prodotto {
 	 * 
 	 * */
 	private Double calcolaPrezzoFinale(Double prezzo, Integer iva) {
-		return (prezzo * ((iva/100) + 1));
+		Double _prezzo = prezzo * ((iva/100.0) + 1.0);
+		_prezzo *= 100;
+		_prezzo = Math.floor(_prezzo);
+		_prezzo /= 100;
+		return _prezzo;
 	}
 	
 }
