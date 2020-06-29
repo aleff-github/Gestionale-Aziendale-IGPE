@@ -36,8 +36,6 @@ public class ControllerDatiLibroGiornale {
 			}
 	}
 
-//	@FXML
-//    private HBox hBoxLibroGiornale;
 		@FXML
 	    private BorderPane borderPaneLibroGiornale;
 			@FXML

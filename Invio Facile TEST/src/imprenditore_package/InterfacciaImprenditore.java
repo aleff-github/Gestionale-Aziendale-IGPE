@@ -186,11 +186,10 @@ private AnchorPane imprenditoreAnchorPane;
 					Parent root = null;
 					FXMLLoader loader=new FXMLLoader(getClass().getResource ("/imprenditore_package/Dati/" + url + ".fxml"));
 					root = loader.load(); //Carico il file
+					anchorPaneDiScrollPaneDiDestra.getChildren().clear();
 					anchorPaneDiScrollPaneDiDestra.getChildren().add(root);
 				} catch (IOException ecc) {
-					System.out.println("---");
 					ecc.printStackTrace();
-					System.out.println("---");
 				}
 				
 		    }

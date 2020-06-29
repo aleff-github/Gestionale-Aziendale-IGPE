@@ -502,8 +502,7 @@ public class Util {
 			
 			connectionLibroGiornale.close();
 		} catch (SQLException e) { Messaggi.erroreDiConnessioneAlDataBaseGenerico(); }
-		incastratoreDiVociLibroGiornale.add(v);
-		ultimaVoceAggiunta = v;
+		aggiungiVoce(v);
 	}
 	
 	public static void aggiungiVoce (VoceLibroGiornale v) {

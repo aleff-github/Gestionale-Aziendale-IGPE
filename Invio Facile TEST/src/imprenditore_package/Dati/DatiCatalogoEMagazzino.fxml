@@ -7,82 +7,80 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane fx:id="scrollPaneBase" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="850.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imprenditore_package.ControllerDatiCatalogoEMagazzino">
-  <content>
-    <AnchorPane fx:id="anchorPaneBase" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1000.0">
-         <children>
-            <BorderPane fx:id="borderPaneTitolo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <top>
-                  <HBox fx:id="hBoxTitolo" alignment="CENTER" BorderPane.alignment="CENTER">
+
+<AnchorPane fx:id="anchorPaneBase" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imprenditore_package.ControllerDatiCatalogoEMagazzino">
+   <children>
+      <BorderPane fx:id="borderPaneTitolo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox fx:id="hBoxTitolo" alignment="CENTER" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fx:id="catalocoEMagazzinoIcona" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../icons/catalogo.png" />
+                     </image>
+                  </ImageView>
+                  <VBox fx:id="vBoxTitolo" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="catalocoEMagazzinoIcona" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../icons/catalogo.png" />
-                           </image>
-                        </ImageView>
-                        <VBox fx:id="vBoxTitolo" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Text fx:id="catalocoEMagazzinoTitolo" strokeType="OUTSIDE" strokeWidth="0.0" text="Catalogo e Magazzino">
+                        <Text fx:id="catalocoEMagazzinoTitolo" strokeType="OUTSIDE" strokeWidth="0.0" text="Catalogo e Magazzino">
+                           <font>
+                              <Font name="Baskerville Old Face" size="48.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Text>
+                        <BorderPane fx:id="borderPanePulsante" prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Button fx:id="pulsanteVaicatalocoEMagazzino" mnemonicParsing="false" onAction="#apriCatalocoEMagazzino" text="Apri" BorderPane.alignment="CENTER">
                                  <font>
-                                    <Font name="Baskerville Old Face" size="48.0" />
+                                    <Font name="Baskerville Old Face" size="36.0" />
                                  </font>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </Text>
-                              <BorderPane fx:id="borderPanePulsante" prefHeight="200.0" prefWidth="200.0">
-                                 <center>
-                                    <Button fx:id="pulsanteVaicatalocoEMagazzino" mnemonicParsing="false" onAction="#apriCatalocoEMagazzino" text="Apri" BorderPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="Baskerville Old Face" size="36.0" />
-                                       </font>
-                                    </Button>
-                                 </center>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </BorderPane>
-                           </children>
-                        </VBox>
-                     </children>
-                     <BorderPane.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </BorderPane.margin>
-                  </HBox>
-               </top>
-               <center>
-                  <GridPane fx:id="catalocoEMagazzinoGridPane" prefHeight="400.0" BorderPane.alignment="CENTER">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <BorderPane.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </BorderPane.margin>
-                     <children>
-                        <Label fx:id="vociTotaliLabel" text="Voci Totali:" GridPane.halignment="CENTER">
-                           <font>
-                              <Font name="Baskerville Old Face" size="48.0" />
-                           </font>
-                           <GridPane.margin>
+                              </Button>
+                           </center>
+                           <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label fx:id="vociTotali" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                           <font>
-                              <Font name="Baskerville Old Face" size="48.0" />
-                           </font>
-                           <GridPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </GridPane.margin>
-                        </Label>
+                           </VBox.margin>
+                        </BorderPane>
                      </children>
-                  </GridPane>
-               </center>
-            </BorderPane>
-         </children></AnchorPane>
-  </content>
-</ScrollPane>
+                  </VBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </HBox>
+         </top>
+         <center>
+            <GridPane fx:id="catalocoEMagazzinoGridPane" prefHeight="400.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+               <children>
+                  <Label fx:id="vociTotaliLabel" text="Voci Totali:" GridPane.halignment="CENTER">
+                     <font>
+                        <Font name="Baskerville Old Face" size="48.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="vociTotali" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <font>
+                        <Font name="Baskerville Old Face" size="48.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+            </GridPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

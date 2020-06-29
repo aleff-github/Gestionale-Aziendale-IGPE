@@ -164,14 +164,6 @@ public class ControllerCatalogoEMagazzino {
 			    private BorderPane borderPaneElimina;
 				    @FXML
 				    private Button pulsanteElimina;
-		@FXML
-	    private AnchorPane anchorPaneDiDestra;
-			@FXML
-			private VBox vBoxTabellaProdotti;
-				@FXML
-			    private Label prodottiTitolo;
-
-    
 
     @FXML
     void effettuaRicercaDelProdotto(ActionEvent event) {

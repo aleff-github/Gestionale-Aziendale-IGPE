@@ -5,15 +5,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Optional;
 
-import catalogo_e_magazzino.Prodotto;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
@@ -24,7 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import util_package.DatabaseConnector;
+import javafx.stage.WindowEvent;
 import util_package.GestisciInterfacce;
 import util_package.Messaggi;
 import util_package.Util;
@@ -303,7 +305,7 @@ public class ControllerLibroGiornale {
 		dialogo.setHeaderText("Se riscontri problemi nell'inserimento dei dati contatta l'assistenza.");
 		dialogo.setResizable(true); 
 		
-		try {
+		try {	
 			AnchorPane aggiungiVoce = (AnchorPane) FXMLLoader.load(getClass().getResource( "PopupAggiungiVoce.fxml" ));
 			dialogo.getDialogPane().setContent(aggiungiVoce);
 			
@@ -311,8 +313,11 @@ public class ControllerLibroGiornale {
 			ButtonType termina = new ButtonType("Termina");
 			dialogo.getButtonTypes().add(termina);
 			Optional<ButtonType> res1 = dialogo.showAndWait();
-			if (res1.get() == termina){/*CHIUDI*/} 
-			else {/*CHIUDI*/}
+			
+			if (res1.get() == termina) {
+				dialogo.close();
+				event.consume();
+			}
 			
 			if(Util.eStataAggiuntaUnaVoce) {
 	    		tableView.setItems(Util.tableViewAggiornata());
@@ -321,11 +326,14 @@ public class ControllerLibroGiornale {
 	    	 	avereTotale += Util.getUltimoAvere();
 	    	 	Util.eStataAggiuntaUnaVoce = false;
 			}
-
+			
+			dialogo.close();
+			event.consume();
 		} catch (IOException e) {
 			e.printStackTrace();
+			dialogo.close();
+			event.consume();
 		}
-		
     }
     
 //    MODIFICA VOCE

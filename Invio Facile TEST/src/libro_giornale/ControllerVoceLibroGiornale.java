@@ -78,6 +78,7 @@ public class ControllerVoceLibroGiornale {
 		scegliReparto.getItems().clear();
 		scegliReparto.setItems(o2);
 		scegliReparto.setPromptText("Scegli");
+		
 	}
     
     public static boolean flag = true;
@@ -96,6 +97,7 @@ public class ControllerVoceLibroGiornale {
 		String descrizione = textFieldDescrizione.getText();
 		if(descrizione.equals("")) {
 			Messaggi.erroreDescrizioneVoceLibroGiornale();
+			flag = false;
 		}
 		
 		//REPARTO
@@ -130,9 +132,10 @@ public class ControllerVoceLibroGiornale {
 			Messaggi.erroreGenericoDareEAvere();
 			flag = false;
 		}
-		if(flag) 
+		if(flag)
 			Util.aggiungiVoceLibroGiornale(new VoceLibroGiornale(data, 0, descrizione, reparto, iva, dare, avere));
     }
+
 
     @FXML
     void annullaVoce(ActionEvent event) {
