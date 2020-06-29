@@ -326,7 +326,7 @@ public class ControllerLibroGiornale {
 	    	 	avereTotale += Util.getUltimoAvere();
 	    	 	Util.eStataAggiuntaUnaVoce = false;
 			}
-			
+			 
 			dialogo.close();
 			event.consume();
 		} catch (IOException e) {
