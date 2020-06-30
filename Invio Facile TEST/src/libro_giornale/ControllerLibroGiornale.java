@@ -304,6 +304,7 @@ public class ControllerLibroGiornale {
 		dialogo.setTitle("Aggiungi voce");
 		dialogo.setHeaderText("Se riscontri problemi nell'inserimento dei dati contatta l'assistenza.");
 		dialogo.setResizable(true); 
+		ControllerVoceLibroGiornale.dialogo = dialogo;
 		
 		try {	
 			AnchorPane aggiungiVoce = (AnchorPane) FXMLLoader.load(getClass().getResource( "PopupAggiungiVoce.fxml" ));
@@ -314,10 +315,11 @@ public class ControllerLibroGiornale {
 			dialogo.getButtonTypes().add(termina);
 			Optional<ButtonType> res1 = dialogo.showAndWait();
 			
-			if (res1.get() == termina) {
-				dialogo.close();
-				event.consume();
-			}
+			if(!res1.isPresent()) return;
+			
+			if (res1.get() == termina) 
+				ControllerVoceLibroGiornale.dialogo.close();
+			
 			
 			if(Util.eStataAggiuntaUnaVoce) {
 	    		tableView.setItems(Util.tableViewAggiornata());
@@ -327,12 +329,8 @@ public class ControllerLibroGiornale {
 	    	 	Util.eStataAggiuntaUnaVoce = false;
 			}
 			 
-			dialogo.close();
-			event.consume();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			dialogo.close();
-			event.consume();
 		}
     }
     
@@ -353,7 +351,8 @@ public class ControllerLibroGiornale {
    		Alert dialogo = new Alert(AlertType.INFORMATION); 
 		dialogo.setTitle("Modifica voce");
 		dialogo.setHeaderText("Se riscontri problemi nell'inserimento dei dati contatta l'assistenza.");
-		dialogo.setResizable(true); 
+		dialogo.setResizable(true);
+		ControllerModificaVoceLibroGiornale.dialogo = dialogo;
 		
 		try {
 			AnchorPane modificaProdotto = (AnchorPane) FXMLLoader.load(getClass().getResource( "ModificaVoce.fxml" ));
@@ -364,23 +363,11 @@ public class ControllerLibroGiornale {
 			dialogo.getButtonTypes().add(termina);
 			Optional<ButtonType> res1 = dialogo.showAndWait();
 			
-			if (res1.get() == termina){
-				Alert alert = new Alert(AlertType.WARNING); 
-				alert.setTitle("Attenzione!");
-				alert.setHeaderText("Sei sicuro di voler chiudere? I dati non salvati andranno persi.");
-				alert.setResizable(true); 
-				
-				ButtonType conferma = new ButtonType("Conferma");
-				ButtonType annulla = new ButtonType("Annulla");
-				alert.getButtonTypes().clear();
-				alert.getButtonTypes().addAll(conferma, annulla);
-				
-				Optional<ButtonType> res2 = alert.showAndWait();
-				if(res2.get() == annulla) {
-					modificaVoce(event);
-				}
-				else {/*CHIUDI*/}
-			} else {/*CHIUDI*/}
+			if(!res1.isPresent()) return;
+			
+			if (res1.get() == termina)
+				ControllerModificaVoceLibroGiornale.dialogo.close();
+			
 		}catch (IOException e) {Messaggi.erroreGenericoModificaVoceLibroGiornale();}
     }
     
@@ -391,10 +378,12 @@ public class ControllerLibroGiornale {
     private Button pulsanteElimina;
     @FXML
     public void eliminaVoce(ActionEvent event) {
-    	Integer numeroDocumento = tableView.getSelectionModel().getSelectedItem().getDocumentoNumero();
-    	Util.eliminaVoceLibroGiornale(numeroDocumento);
-    	tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItems());
-    	tableViewCopia = tableView;
+    	try {
+	    	Integer numeroDocumento = tableView.getSelectionModel().getSelectedItem().getDocumentoNumero();
+	    	Util.eliminaVoceLibroGiornale(numeroDocumento);
+	    	tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItems());
+	    	tableViewCopia = tableView;
+    	}catch(Exception e) { Messaggi.erroreGenericoEliminaVoceLibroGiornale(); }
     }
 	    
 }

@@ -76,7 +76,10 @@
                                     </Separator>
                                  </bottom>
                                  <right>
-                                    <Button fx:id="apriDatiLibroGiornale" mnemonicParsing="false" onAction="#visualizzaDatiDelLibroGiornale" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER" />
+                                    <Button fx:id="apriDatiLibroGiornale" mnemonicParsing="false" onAction="#visualizzaDatiDelLibroGiornale" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="18.0" />
+                                       </font></Button>
                                  </right>
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -97,7 +100,10 @@
                                     </ImageView>
                                  </left>
                                  <right>
-                                    <Button fx:id="apriDatiRepartiDiProduzione" mnemonicParsing="false" onAction="#visualizzaDatiDeiRepartiDiProduzione" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER" />
+                                    <Button fx:id="apriDatiRepartiDiProduzione" mnemonicParsing="false" onAction="#visualizzaDatiDeiRepartiDiProduzione" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="18.0" />
+                                       </font></Button>
                                  </right>
                                  <bottom>
                                     <Separator fx:id="separatorDue" BorderPane.alignment="CENTER">
@@ -126,7 +132,10 @@
                                     </ImageView>
                                  </left>
                                  <right>
-                                    <Button fx:id="apriDatiCatalogoMagazzino" mnemonicParsing="false" onAction="#visualizzaDatiDelCatalogoEDelMagazzino" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER" />
+                                    <Button fx:id="apriDatiCatalogoMagazzino" mnemonicParsing="false" onAction="#visualizzaDatiDelCatalogoEDelMagazzino" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="18.0" />
+                                       </font></Button>
                                  </right>
                                  <bottom>
                                     <Separator fx:id="separatorTre" BorderPane.alignment="CENTER">
@@ -155,7 +164,10 @@
                                     </ImageView>
                                  </left>
                                  <right>
-                                    <Button fx:id="apriDatiStatistiche" mnemonicParsing="false" onAction="#visualizzaDatiDelleStatistiche" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER" />
+                                    <Button fx:id="apriDatiStatistiche" mnemonicParsing="false" onAction="#visualizzaDatiDelleStatistiche" prefHeight="50.0" prefWidth="120.0" text="Informazioni" BorderPane.alignment="CENTER">
+                                       <font>
+                                          <Font name="Baskerville Old Face" size="18.0" />
+                                       </font></Button>
                                  </right>
                                  <bottom>
                                     <Separator fx:id="separatorQuattro" BorderPane.alignment="CENTER">

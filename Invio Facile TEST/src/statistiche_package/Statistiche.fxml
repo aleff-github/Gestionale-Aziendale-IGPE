@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.chart.*?>
@@ -7,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="anchorPaneBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="statistiche_package.ControllerStatistiche">
+<AnchorPane fx:id="anchorPaneBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="837.0" prefWidth="1338.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="statistiche_package.ControllerStatistiche">
    <children>
       <BorderPane fx:id="borderPaneBase" layoutX="97.0" layoutY="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -44,50 +45,109 @@
             </MenuBar>
          </top>
          <center>
-            <ScrollPane fx:id="scrollBar" BorderPane.alignment="CENTER">
-              <content>
-                <AnchorPane fx:id="anchorPaneScrollPane" minHeight="-Infinity" minWidth="-Infinity">
+            <SplitPane fx:id="splitPaneSInistra" dividerPositions="0.29797979797979796" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane fx:id="anchorPaneDiSinistra" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" SplitPane.resizableWithParent="false">
                      <children>
-                        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <center>
-                              <AnchorPane minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
+                        <ScrollPane fx:id="scrollPaneDiSinistra" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <VBox fx:id="vBoxMenuDiSinistra" prefWidth="250.0">
                                  <children>
-                                    <BarChart fx:id="andamentoAziendale" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                      <xAxis>
-                                        <CategoryAxis fx:id="categoryAxisAziendale" side="BOTTOM" />
-                                      </xAxis>
-                                      <yAxis>
-                                        <NumberAxis fx:id="numberAxisAziendale" side="LEFT" />
-                                      </yAxis>
-                                    </BarChart>
+                                    <BorderPane fx:id="borderPaneLeggiCommento" prefHeight="150.0">
+                                       <bottom>
+                                          <Separator fx:id="separatorUno" BorderPane.alignment="CENTER">
+                                             <BorderPane.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </BorderPane.margin>
+                                          </Separator>
+                                       </bottom>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <center>
+                                          <Button fx:id="pulsanteLeggiCommentoAziendale" mnemonicParsing="false" onAction="#leggiCommentoAziendalePulsantePremuto" text="Leggi commento" BorderPane.alignment="CENTER">
+                                             <font>
+                                                <Font name="Baskerville Old Face" size="24.0" />
+                                             </font>
+                                             <BorderPane.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </BorderPane.margin>
+                                          </Button>
+                                       </center>
+                                    </BorderPane>
+                                    <BorderPane fx:id="borderPaneRicaricalcolaDati" prefHeight="150.0">
+                                       <bottom>
+                                          <Separator fx:id="separatorDue" BorderPane.alignment="CENTER">
+                                             <BorderPane.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </BorderPane.margin>
+                                          </Separator>
+                                       </bottom>
+                                       <center>
+                                          <Button fx:id="pulsanteRicalcolaDati" mnemonicParsing="false" onAction="#ricalcolaDati" text="Ricalcola dati" BorderPane.alignment="CENTER">
+                                             <font>
+                                                <Font name="Baskerville Old Face" size="24.0" />
+                                             </font>
+                                             <BorderPane.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </BorderPane.margin>
+                                          </Button>
+                                       </center>
+                                    </BorderPane>
                                  </children>
-                              </AnchorPane>
-                           </center>
-                           <bottom>
-                              <AnchorPane fx:id="anchorPaneAziendale" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Text fx:id="funzionalitaTextAziendale" layoutX="376.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funzionalità" AnchorPane.bottomAnchor="263.9765625" AnchorPane.leftAnchor="375.37109375" AnchorPane.rightAnchor="376.62890625" AnchorPane.topAnchor="14.0234375">
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                    </Text>
-                                    <Button fx:id="pulsanteLeggiCommentoAziendale" layoutX="341.0" layoutY="55.0" mnemonicParsing="false" onAction="#leggiCommentoAziendalePulsantePremuto" text="Leggi commento" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="55.0" />
-                                    <TextArea fx:id="areaDiTestoAdibitoAlCommentoAziendale" editable="false" layoutX="127.0" layoutY="138.0" prefHeight="200.0" prefWidth="200.0" promptText="Per leggere il commento clicca su &quot;Leggi commento&quot; qua sopra." wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
-                                       <font>
-                                          <Font name="Baskerville Old Face" size="24.0" />
-                                       </font>
-                                    </TextArea>
-                                 </children>
-                                 <BorderPane.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </BorderPane.margin>
-                              </AnchorPane>
-                           </bottom>
-                        </BorderPane>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
                      </children>
                   </AnchorPane>
-              </content>
-            </ScrollPane>
+                <AnchorPane fx:id="anchorPaneScrollPane" minHeight="-Infinity" minWidth="-Infinity">
+                     <children>
+                        <ScrollPane fx:id="scrollPaneDiDestra" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <content>
+                              <BorderPane fx:id="borderPaneFUnzionalitaDiDestra" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <center>
+                                    <VBox fx:id="vBoxFunzionalita" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <BorderPane fx:id="borderPanevBoxFunzionalita" prefHeight="200.0" prefWidth="200.0">
+                                             <top>
+                                                <Text fx:id="funzionalitaTextAziendale" strokeType="OUTSIDE" strokeWidth="0.0" text="Funzionalità" BorderPane.alignment="CENTER">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                   <BorderPane.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </BorderPane.margin>
+                                                </Text>
+                                             </top>
+                                             <center>
+                                                <TextArea fx:id="areaDiTestoAdibitoAlCommentoAziendale" editable="false" prefHeight="300.0" prefWidth="200.0" promptText="Per leggere il commento clicca su &quot;Leggi commento&quot; qua sopra." wrapText="true" BorderPane.alignment="CENTER">
+                                                   <font>
+                                                      <Font name="Baskerville Old Face" size="24.0" />
+                                                   </font>
+                                                   <BorderPane.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </BorderPane.margin>
+                                                </TextArea>
+                                             </center>
+                                          </BorderPane>
+                                          <BarChart fx:id="andamentoAziendale" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0">
+                                            <xAxis>
+                                              <CategoryAxis fx:id="categoryAxisAziendale" side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis fx:id="numberAxisAziendale" side="LEFT" />
+                                            </yAxis>
+                                          </BarChart>
+                                       </children>
+                                    </VBox>
+                                 </center>
+                              </BorderPane>
+                          </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
          </center>
       </BorderPane>
    </children>

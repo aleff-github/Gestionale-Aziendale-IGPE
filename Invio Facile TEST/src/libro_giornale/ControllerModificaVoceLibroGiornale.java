@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -59,6 +60,8 @@ public class ControllerModificaVoceLibroGiornale {
 					@FXML private Text textDare; @FXML private TextField textFieldDare;
 					
 				    @FXML private Text textAvere; @FXML private TextField textFieldAvere;
+				    
+				    public static Alert dialogo;
 
     @FXML
 	protected void initialize () {
@@ -138,9 +141,12 @@ public class ControllerModificaVoceLibroGiornale {
 			Messaggi.erroreGenericoDareEAvere();
 			flag = false;
 		}
-		if(flag) 
+		if(flag) {
 			Util.modificaVoceLibroGiornale(new VoceLibroGiornale(data, numeroDocumento, descrizione, reparto, iva, dare, avere));
-		
+			dialogo.close();
+		}
+		else
+			flag = true;
     }
 
     @FXML

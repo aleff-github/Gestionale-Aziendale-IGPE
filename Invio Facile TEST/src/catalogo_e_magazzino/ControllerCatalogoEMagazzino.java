@@ -186,6 +186,7 @@ public class ControllerCatalogoEMagazzino {
 		dialogo.setTitle("Aggiungi prodotto");
 		dialogo.setHeaderText("Se riscontri problemi nell'inserimento dei dati contatta l'assistenza.");
 		dialogo.setResizable(true); 
+		ControllerAggiungiProdotto.dialogo = dialogo;
 		
 		try {
 			AnchorPane aggiungiProdotto = (AnchorPane) FXMLLoader.load(getClass().getResource( "AggiungiProdotto.fxml" ));
@@ -196,23 +197,11 @@ public class ControllerCatalogoEMagazzino {
 			dialogo.getButtonTypes().add(termina);
 			Optional<ButtonType> res1 = dialogo.showAndWait();
 			
-			if (res1.get() == termina){
-				Alert alert = new Alert(AlertType.WARNING); 
-				alert.setTitle("Attenzione!");
-				alert.setHeaderText("Sei sicuro di voler chiudere? I dati non salvati andranno persi.");
-				alert.setResizable(true); 
-				
-				ButtonType conferma = new ButtonType("Conferma");
-				ButtonType annulla = new ButtonType("Annulla");
-				alert.getButtonTypes().clear();
-				alert.getButtonTypes().addAll(conferma, annulla);
-				
-				Optional<ButtonType> res2 = alert.showAndWait();
-				if(res2.get() == annulla) {
-					aggiungiUnProdotto(event);
-				}
-				else {/*CHIUDI*/}
-			} else {/*CHIUDI*/}
+			if(!res1.isPresent()) return;
+			
+			if (res1.get() == termina)
+				ControllerAggiungiProdotto.dialogo.close();
+			
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -231,6 +220,7 @@ public class ControllerCatalogoEMagazzino {
 		dialogo.setTitle("Modifica prodotto");
 		dialogo.setHeaderText("Se riscontri problemi nell'inserimento dei dati contatta l'assistenza.");
 		dialogo.setResizable(true); 
+		ControllerModificaProdotto.dialogo = dialogo;
 		
 		try {
 			AnchorPane modificaProdotto = (AnchorPane) FXMLLoader.load(getClass().getResource( "ModificaProdotto.fxml" ));
@@ -241,33 +231,22 @@ public class ControllerCatalogoEMagazzino {
 			dialogo.getButtonTypes().add(termina);
 			Optional<ButtonType> res1 = dialogo.showAndWait();
 			
-			if (res1.get() == termina){
-				Alert alert = new Alert(AlertType.WARNING); 
-				alert.setTitle("Attenzione!");
-				alert.setHeaderText("Sei sicuro di voler chiudere? I dati non salvati andranno persi.");
-				alert.setResizable(true); 
-				
-				ButtonType conferma = new ButtonType("Conferma");
-				ButtonType annulla = new ButtonType("Annulla");
-				alert.getButtonTypes().clear();
-				alert.getButtonTypes().addAll(conferma, annulla);
-				
-				Optional<ButtonType> res2 = alert.showAndWait();
-				if(res2.get() == annulla) {
-					aggiungiUnProdotto(event);
-				}
-				else {/*CHIUDI*/}
-			} else {/*CHIUDI*/}
+			if(!res1.isPresent()) return;
+			
+			if (res1.get() == termina)
+				ControllerModificaProdotto.dialogo.close();
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
     }
-
+    
     @FXML
     void eliminaProdotto(ActionEvent event) {
-    	Integer id = tableViewProdotti.getSelectionModel().getSelectedItem().getId();
-    	Util.eliminaProdotto(id, tableViewProdotti.getSelectionModel().getSelectedItem());
-    	tableViewProdotti.getItems().removeAll(tableViewProdotti.getSelectionModel().getSelectedItems());
+    	try {
+	    	Integer id = tableViewProdotti.getSelectionModel().getSelectedItem().getId();
+	    	Util.eliminaProdotto(id);
+	    	tableViewProdotti.getItems().removeAll(tableViewProdotti.getSelectionModel().getSelectedItems());
+    	}catch(Exception e) { Messaggi.erroreGenericoEliminaProdotto(); }
     }
 
 }

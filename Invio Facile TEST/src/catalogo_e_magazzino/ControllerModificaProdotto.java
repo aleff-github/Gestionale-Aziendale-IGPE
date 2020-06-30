@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -61,6 +62,8 @@ public class ControllerModificaProdotto {
 							
 							@FXML private Label descrizioneLabel; @FXML private TextArea descrizioneTextArea;
 
+							public static Alert dialogo;
+							
 	@FXML
 	protected void initialize () {
 		
@@ -134,13 +137,18 @@ public class ControllerModificaProdotto {
 			Messaggi.erroreDescrizioneProdotto();
 			flag = false;
 		}
-		if(flag)
+		if(flag) {
 			Util.modificaVoceProdotto(new Prodotto(id, nome, repartoScelto, prezzo, ivaScelta, descrizioneProdotto));
-    }
+			dialogo.close();
+		}
+		else
+			flag = true;
+	}
 
     @FXML
     void annullaModifiche(ActionEvent event) {
-
+    	Messaggi.annullaModifiche();
+    	dialogo.close();
     }
 
 }

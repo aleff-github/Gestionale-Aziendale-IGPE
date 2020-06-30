@@ -319,7 +319,7 @@ public class Util {
 		incastratoreDiProdotti.add(p);
 	}
 	
-	public static void eliminaProdotto (Integer id, Prodotto p) {
+	public static void eliminaProdotto (Integer id) {
 		try {
 			connectionProdotto = DatabaseConnector.getConnectionDatabase();
 	    	String queryCancellaVoce = "DELETE FROM prodotti WHERE id = ?";
@@ -612,21 +612,24 @@ public class Util {
 		  resultStatistiche = preparedStatementStatistiche.executeQuery(); 
 	          while(resultStatistiche.next()) { 
 	          	if( resultStatistiche.getString("reparto").equals("Fabbricazione e Montaggio")) {
-	          		Integer iva = Integer.parseInt(resultStatistiche.getString("iva"));
+	          		Integer ivaLorda = Integer.parseInt(resultStatistiche.getString("iva"));
+	          		Double iva = (ivaLorda/100.0)+1.0;
 	              	Double dare = Double.parseDouble(resultStatistiche.getString("dare"));
 	              	Double avere = Double.parseDouble(resultStatistiche.getString("avere"));
 	              	utileReparto1 += (avere*iva);
 	              	utileReparto1 -= (dare*iva);
 	          	}
 	          	else if( resultStatistiche.getString("reparto").equals("Test di Resistenza Ambientale")) {
-	          		Integer iva = Integer.parseInt(resultStatistiche.getString("iva"));
+	          		Integer ivaLorda = Integer.parseInt(resultStatistiche.getString("iva"));
+	          		Double iva = (ivaLorda/100.0)+1.0;
 	              	Double dare = Double.parseDouble(resultStatistiche.getString("dare"));
 	              	Double avere = Double.parseDouble(resultStatistiche.getString("avere"));
 	              	utileReparto2 += (avere*iva);
 	              	utileReparto2 -= (dare*iva);
 	          	}
 	          	else if( resultStatistiche.getString("reparto").equals("Pulizia e Imballaggio")) {
-	          		Integer iva = Integer.parseInt(resultStatistiche.getString("iva"));
+	          		Integer ivaLorda = Integer.parseInt(resultStatistiche.getString("iva"));
+	          		Double iva = (ivaLorda/100.0)+1.0;
 	              	Double dare = Double.parseDouble(resultStatistiche.getString("dare"));
 	              	Double avere = Double.parseDouble(resultStatistiche.getString("avere"));
 	              	utileReparto3 += (avere*iva);
@@ -635,7 +638,7 @@ public class Util {
 	          }
 	         
 	  	//Verifico se cambio mese
-	      if(da.plusDays(1).getMonth() != da.getMonth()) {
+	      if(da.plusDays(1).getMonth() != da.getMonth() || (da.plusDays(1).isEqual(finoA) || da.plusDays(1).isAfter(finoA))) {
 	    	  switch(mesiControllati) {
 	    	  case 1:
 	    		  fabbricazioneEMontaggio.getData().add(new XYChart.Data(da.getMonth().toString(), utileReparto1));
@@ -745,7 +748,7 @@ public class Util {
 		          while(resultStatistiche.next()) 
 		          	vociPerMese += 1;
 		          
-		      if(da.plusDays(1).getMonth() != da.getMonth()) {
+		      if((da.plusDays(1).getMonth() != da.getMonth()) || (da.plusDays(1).isEqual(finoA) || da.plusDays(1).isAfter(finoA))) {
 		    	  testo = testo + da.getMonth().toString() + ": " + vociPerMese + "\n";
 		    	  vociPerMese = 0;
 		      }

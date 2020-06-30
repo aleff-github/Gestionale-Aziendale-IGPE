@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -47,8 +48,6 @@ public class ControllerVoceLibroGiornale {
 			    private GridPane gridPaneAggiungiVoce;
 					@FXML private Text textData; @FXML private DatePicker dataPicker;
 					
-					@FXML private Text textDocumentoNumero; @FXML private TextField textFieldNumero;
-					
 					@FXML private Text textDescrizione; @FXML private TextField textFieldDescrizione;
 					
 					@FXML private Text textReparto; @FXML private ComboBox<String> scegliReparto;
@@ -58,6 +57,8 @@ public class ControllerVoceLibroGiornale {
 					@FXML private Text textDare; @FXML private TextField textFieldDare;
 					
 				    @FXML private Text textAvere; @FXML private TextField textFieldAvere;
+				    
+				    public static Alert dialogo;
 	
     @FXML
 	protected void initialize () {
@@ -91,6 +92,7 @@ public class ControllerVoceLibroGiornale {
 		if(data.equals("")) {
 			Messaggi.erroreData();
 			flag = false;
+			pulisciDati();
 		}
 		
 		//DESCRIZIONE
@@ -98,6 +100,7 @@ public class ControllerVoceLibroGiornale {
 		if(descrizione.equals("")) {
 			Messaggi.erroreDescrizioneVoceLibroGiornale();
 			flag = false;
+			pulisciDati();
 		}
 		
 		//REPARTO
@@ -105,6 +108,7 @@ public class ControllerVoceLibroGiornale {
 		if(reparto.equals("")) {
 			Messaggi.erroreRepartoGenerico();
 			flag = false;
+			pulisciDati();
 		}
 		
 		//IVA
@@ -112,6 +116,7 @@ public class ControllerVoceLibroGiornale {
 		if (iva == null) {
 			Messaggi.erroreIvaGenerico();
 			flag = false;
+			pulisciDati();
 		}
 
 		//DARE && AVERE
@@ -123,22 +128,42 @@ public class ControllerVoceLibroGiornale {
 			if(dare != 0.0 && avere != 0.0) {
 				Messaggi.erroreDareEAvere();
 				flag = false;
+				pulisciDati();
 			}
 			else if(dare == 0.0 && avere == 0.0) {
 				Messaggi.erroreAlmenoUnValoreDareEAvere();
 				flag = false;
+				pulisciDati();
 			}
 		}catch(NumberFormatException errore) {
 			Messaggi.erroreGenericoDareEAvere();
 			flag = false;
+			pulisciDati();
 		}
-		if(flag)
+		if(flag) {
 			Util.aggiungiVoceLibroGiornale(new VoceLibroGiornale(data, 0, descrizione, reparto, iva, dare, avere));
+			dialogo.close();
+		}
+		else {
+			pulisciDati();
+			flag = true;
+		}
     }
-
+    
+    void pulisciDati() {
+    	dataPicker.setValue(null);
+    	textFieldDescrizione.clear();
+    	scegliReparto.setValue(null);
+    	scegliReparto.setPromptText("Scegli");
+    	scegliIva.setValue(null);
+    	scegliIva.setPromptText("Scegli");
+    	textFieldDare.clear();
+    	textFieldAvere.clear();
+    }
 
     @FXML
     void annullaVoce(ActionEvent event) {
     	Messaggi.annullaVoce();
+		dialogo.close();
     }
 }

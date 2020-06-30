@@ -227,7 +227,22 @@ public class Messaggi {
 		alert.setHeaderText(null);
 		alert.setContentText("E' stato riscontrato un errore generale nella modifica della voce del libro giornale, è consigliato contattare l'assistenza.");
 		alert.showAndWait();
-		
+	}
+	
+	public static void erroreGenericoEliminaVoceLibroGiornale() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Errore generale");
+		alert.setHeaderText(null);
+		alert.setContentText("E' stato riscontrato un errore generale nell'eliminazione di una voce del libro giornale, assicurati di averne selezionata una.");
+		alert.showAndWait();
+	}
+	
+	public static void erroreGenericoEliminaProdotto() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Errore generale");
+		alert.setHeaderText(null);
+		alert.setContentText("E' stato riscontrato un errore generale nell'eliminazione di una voce dal catalogo/magazzino, assicurati di averne selezionata una.");
+		alert.showAndWait();
 	}
 
 	public static void erroreApriRepartiDiProduzione() {

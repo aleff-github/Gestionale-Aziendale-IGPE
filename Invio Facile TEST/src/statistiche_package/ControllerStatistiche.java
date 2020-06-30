@@ -1,14 +1,7 @@
 package statistiche_package;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,19 +12,18 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import util_package.GestisciInterfacce;
@@ -109,22 +101,40 @@ public class ControllerStatistiche {
 					    @FXML
 					    void contattaLAssistenza(ActionEvent event) { Util.inviaEmail(); }			
     
-		    @FXML
-		    private ScrollPane scrollBar;			
-			    @FXML
-			    private AnchorPane anchorPaneScrollPane;					
-				    @FXML
-				    private VBox vBoxScrollPane;
-					    @FXML
-					    private HBox hBoxScrollPane;
-						    @FXML
-						    private AnchorPane anchorPaneAziendale;
-							    @FXML
-							    private Text funzionalitaTextAziendale;
-							    @FXML
-							    private Button pulsanteLeggiCommentoAziendale;
-							    @FXML
-							    private TextArea areaDiTestoAdibitoAlCommentoAziendale;
+			@FXML
+			private SplitPane splitPaneSInistra;
+				@FXML
+				private AnchorPane anchorPaneDiSinistra;
+					@FXML 
+					private ScrollPane scrollPaneDiSinistra;
+						@FXML
+						private VBox vBoxMenuDiSinistra;
+							@FXML
+							private BorderPane borderPaneLeggiCommento;
+								@FXML
+								private Button pulsanteLeggiCommentoAziendale;
+								@FXML
+								private Separator separatorUno;
+							@FXML
+							private BorderPane borderPaneRicaricalcolaDati;
+								@FXML
+								private Button pulsanteRicalcolaDati;
+								@FXML
+								private Separator separatorDue;
+				@FXML
+				private AnchorPane anchorPaneScrollPane;
+					@FXML
+					private ScrollPane scrollPaneDiDestra;
+						@FXML
+						private BorderPane borderPaneFUnzionalitaDiDestra;
+							@FXML
+							private VBox vBoxFunzionalita;
+								@FXML
+								private BorderPane borderPanevBoxFunzionalita;
+									@FXML
+									private Text funzionalitaTextAziendale;
+									@FXML
+									private TextArea areaDiTestoAdibitoAlCommentoAziendale;
 						    @FXML
 						    private BarChart andamentoAziendale;					    
 							    @FXML
@@ -138,8 +148,6 @@ public class ControllerStatistiche {
     	categoryAxisAziendale.setCategories(FXCollections.<String>observableArrayList(Arrays.asList(
     			   "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER")));
     	categoryAxisAziendale.autosize();
-//    	categoryAxisAziendale.setTickLength(100);
-//    	categoryAxisAziendale.setTickLabelGap(100);
     	categoryAxisAziendale.setTickLabelRotation(500);
     	categoryAxisAziendale.setLabel("Reparto");
     	numberAxisAziendale.setLabel("Utile €");
@@ -153,6 +161,11 @@ public class ControllerStatistiche {
     @FXML
     void visualizzaCommentoAndamentoAziendale(ActionEvent event) {
     	areaDiTestoAdibitoAlCommentoAziendale.appendText(Util.generaCommentoAndamentoAziendale());
+    }
+    
+    @FXML
+    void ricalcolaDati(ActionEvent event) {
+    	initialize();
     }
     
 }
