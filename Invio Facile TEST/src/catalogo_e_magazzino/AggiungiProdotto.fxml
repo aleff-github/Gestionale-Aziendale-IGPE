@@ -11,70 +11,71 @@
    <children>
       <BorderPane fx:id="borderPaneAggiungiProdotto" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <HBox fx:id="hBoxGrigliaAggiungiProdotto" BorderPane.alignment="CENTER">
-               <children>
-                  <GridPane fx:id="griPaneAggiungiProdotto" prefHeight="600.0" prefWidth="1000.0">
+            <ScrollPane>
+              <content>
+                <AnchorPane>
                      <children>
-                        <Label fx:id="nomeLabel" alignment="CENTER" text="Nome" GridPane.halignment="CENTER">
-                           <font>
-                              <Font name="Baskerville Old Face" size="36.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="nomeField" alignment="CENTER" promptText="Nome del prodotto" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                           <GridPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <Label fx:id="repartoLabel" alignment="CENTER" text="Reparto" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="Baskerville Old Face" size="36.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="scegliReparto" prefWidth="150.0" promptText="Scegli" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                        <Label fx:id="prezzoLabel" alignment="CENTER" text="Prezzo" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                           <font>
-                              <Font name="Baskerville Old Face" size="36.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="prezzoField" alignment="CENTER" promptText="Prezzo del prodotto" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                           <GridPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <Label fx:id="ivaLabel" alignment="CENTER" text="Iva %" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="Baskerville Old Face" size="36.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="scegliIva" prefWidth="150.0" promptText="Scegli" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                        <Label fx:id="descrizioneLabel" alignment="CENTER" text="Descrizione" GridPane.halignment="CENTER" GridPane.rowIndex="4">
-                           <font>
-                              <Font name="Baskerville Old Face" size="36.0" />
-                           </font>
-                        </Label>
-                        <TextArea fx:id="descrizioneTextArea" prefHeight="200.0" prefWidth="200.0" promptText="Scrivi qua la descrizione del prodotto." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
-                           <GridPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </GridPane.margin>
-                        </TextArea>
+                        <GridPane fx:id="griPaneAggiungiProdotto" prefHeight="600.0" prefWidth="1000.0">
+                           <children>
+                              <Label fx:id="nomeLabel" alignment="CENTER" text="Nome" GridPane.halignment="CENTER">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="36.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="nomeField" alignment="CENTER" promptText="Nome del prodotto" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label fx:id="repartoLabel" alignment="CENTER" text="Reparto" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="36.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="scegliReparto" prefWidth="150.0" promptText="Scegli" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <Label fx:id="prezzoLabel" alignment="CENTER" text="Prezzo" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="36.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="prezzoField" alignment="CENTER" promptText="Prezzo del prodotto" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label fx:id="ivaLabel" alignment="CENTER" text="Iva %" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="36.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="scegliIva" prefWidth="150.0" promptText="Scegli" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <Label fx:id="descrizioneLabel" alignment="CENTER" text="Descrizione" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="36.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="descrizioneTextArea" prefHeight="200.0" prefWidth="200.0" promptText="Scrivi qua la descrizione del prodotto." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </GridPane.margin>
+                              </TextArea>
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
                      </children>
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </GridPane>
-               </children>
-            </HBox>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
          </center>
          <top>
             <HBox fx:id="hBoxMenuAggiungiProdotto" prefHeight="100.0" prefWidth="800.0" BorderPane.alignment="TOP_CENTER">

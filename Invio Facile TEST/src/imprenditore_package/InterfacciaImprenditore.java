@@ -52,7 +52,6 @@ private AnchorPane imprenditoreAnchorPane;
 						dialogo.showAndWait();
 						
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					
