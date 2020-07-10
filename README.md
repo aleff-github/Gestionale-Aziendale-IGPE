@@ -73,7 +73,3 @@ Riporta le seguenti vodi:
 - Aiuto: *Crediti* mostra i crediti del programma tramite un Alert e *Contatta l'assistenza* richiama il software per email predefinito inserendo nel destinatario la mia email.
 
 ***Work in progess for Eng version...***
-
-github: # [NoNameoN-A]
-patreon: NoNameoN_A
-custom: # ['paypal.me/alessandrogreco6', 'alessandrogrecoo.cloud']
