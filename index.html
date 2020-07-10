@@ -1,43 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
     <title>Gestionale-aziendale-igpe by NoNameoN-A</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
   </head>
+
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/NoNameoN-A/Gestionale-Aziendale-IGPE">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/NoNameoN-A/Gestionale-Aziendale-IGPE/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/NoNameoN-A/Gestionale-Aziendale-IGPE/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
 
-    <div class="wrapper">
+    <header>
+      <div class="container">
+        <h1>Gestionale-aziendale-igpe</h1>
+        <h2>Gestionale aziendale - IGPE Unical</h2>
 
-      <section>
-        <div id="title">
-          <h1>Gestionale-aziendale-igpe</h1>
-          <p>Gestionale aziendale - IGPE Unical</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/NoNameoN-A">NoNameoN-A</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+        <section id="downloads">
+          <a href="https://github.com/NoNameoN-A/Gestionale-Aziendale-IGPE/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/NoNameoN-A/Gestionale-Aziendale-IGPE/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/NoNameoN-A/Gestionale-Aziendale-IGPE" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
 
+    <div class="container">
+      <section id="main_content">
         <h1>
 <a id="gestionale-aziendale-igpe" class="anchor" href="#gestionale-aziendale-igpe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Gestionale Aziendale IGPE</h1>
 <p><strong>For eng version -&gt; go down.</strong></p>
@@ -61,34 +51,33 @@ Sono presenti 9 package:</p>
 <ul>
 <li>catalogo_e_magazzino: File grafici -&gt; 3 | File logici -&gt; 4</li>
 <li>imprenditore_package: File grafici -&gt; 1 | File logici -&gt; 5</li>
-<li>
-<ul>
 <li>imprenditore_package.Dati: File grafici -&gt; 4 | File logici -&gt; 0</li>
-</ul>
-</li>
 <li>libro_giornale: File grafici -&gt; 3 | File logici -&gt; 3</li>
 <li>login_package: File grafici -&gt; 1 | File logici -&gt; 1</li>
 <li>reparti_di_produzione: File grafici -&gt; 1 | File logici -&gt; 1</li>
-<li>
-<ul>
 <li>reparti_di_produzione.reparti: File grafici -&gt; 3 | File logici -&gt; 3</li>
-</ul>
-</li>
 <li>statistiche_package: File grafici -&gt; 1 | File logici -&gt; 1</li>
 <li>util_package: File grafici -&gt; 1 | File logici -&gt; 6</li>
 </ul>
 <h1>
 <a id="util---main-database-interfaccescene-messaggi-derrore-utiloperazioni" class="anchor" href="#util---main-database-interfaccescene-messaggi-derrore-utiloperazioni" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>UTIL -&gt; Main, DataBase, Interfacce(scene), Messaggi d'errore, Util(operazioni)</h1>
-<p><strong>- Main</strong>
-All'interno della classe main vado a richiamare tutti i file .fxml relativamente principali al fine di poterli passare al gestore delle interfacce che potrà catalogare ogni file con una determinata chiave in maniera tale da poterlo acquisire quando si vuole in qualunque parte del programma.
-<strong>- Database</strong>
-All'interno del database non ho implementato altro che un metodo statico che possa restituire la connessione che, come vedremo, verrà usata nella classe <em>Util</em> per svolgere le operazioni dove la richiede.
-<strong>- Interfacce</strong>
-Una banale classe che gestisce, tramite un HashMap, le varie finestre(file .fxml) in base a una stringa determinata dall'add(...).
-<strong>- Messaggi d'errore</strong>
-Una classe che banalmente gestisce tutti i messaggi d'errore.
-<strong>- Util</strong>
-Beh... signori... il cuore del programma... anzi... cuore, mente, corpo... un po' tutto... gestisce tutte le richieste particolari dei *Dati Aziendali - Reparti di produzione - Catalogo e magazzino - Libro giornale - Statistiche *... non voglio commentare tutto perché ci sarebbe davvero troppo da scrivere e mi secca...</p>
+<ul>
+<li>
+<strong>Main</strong>
+All'interno della classe main vado a richiamare tutti i file .fxml relativamente principali al fine di poterli passare al gestore delle interfacce che potrà catalogare ogni file con una determinata chiave in maniera tale da poterlo acquisire quando si vuole in qualunque parte del programma.</li>
+<li>
+<strong>Database</strong>
+All'interno del database non ho implementato altro che un metodo statico che possa restituire la connessione che, come vedremo, verrà usata nella classe <em>Util</em> per svolgere le operazioni dove la richiede.</li>
+<li>
+<strong>Interfacce</strong>
+Una banale classe che gestisce, tramite un HashMap, le varie finestre(file .fxml) in base a una stringa determinata dall'add(...).</li>
+<li>
+<strong>Messaggi d'errore</strong>
+Una classe che banalmente gestisce tutti i messaggi d'errore.</li>
+<li>
+<strong>Util</strong>
+Beh... signori... il cuore del programma... anzi... cuore, mente, corpo... un po' tutto... gestisce tutte le richieste particolari dei *Dati Aziendali - Reparti di produzione - Catalogo e magazzino - Libro giornale - Statistiche *... non voglio commentare tutto perché ci sarebbe davvero troppo da scrivere e mi secca...</li>
+</ul>
 <h1>
 <a id="login" class="anchor" href="#login" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Login</h1>
 <p>Il login viene gestito in un modo molto semplice, forse troppo... Non andando ad acquisire i dati opportunamente da un database si è mette a rischio l'intera funzionalità e validità del gestionale, ma, come citato a priori, questo non è un gestionale valido al 100% bensì è un progetto d'esame che è stato valutato parzialmente corretto.
@@ -127,9 +116,8 @@ Riporta le seguenti vodi:</p>
 </ul>
 <p><em><strong>Work in progess for Eng version...</strong></em></p>
       </section>
-
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
     
   </body>
 </html>
