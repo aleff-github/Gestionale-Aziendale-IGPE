@@ -27,15 +27,15 @@ Sono presenti 9 package:
 - util_package: File grafici -> 1 | File logici -> 6
 
 # UTIL -> Main, DataBase, Interfacce(scene), Messaggi d'errore, Util(operazioni)
-**- Main**
+-**Main**
 All'interno della classe main vado a richiamare tutti i file .fxml relativamente principali al fine di poterli passare al gestore delle interfacce che potrà catalogare ogni file con una determinata chiave in maniera tale da poterlo acquisire quando si vuole in qualunque parte del programma.
-**- Database**
+-**Database**
 All'interno del database non ho implementato altro che un metodo statico che possa restituire la connessione che, come vedremo, verrà usata nella classe *Util* per svolgere le operazioni dove la richiede.
-**- Interfacce**
+-**Interfacce**
 Una banale classe che gestisce, tramite un HashMap, le varie finestre(file .fxml) in base a una stringa determinata dall'add(...).
-**- Messaggi d'errore**
+-**Messaggi d'errore**
 Una classe che banalmente gestisce tutti i messaggi d'errore.
-**- Util**
+-**Util**
 Beh... signori... il cuore del programma... anzi... cuore, mente, corpo... un po' tutto... gestisce tutte le richieste particolari dei *Dati Aziendali - Reparti di produzione - Catalogo e magazzino - Libro giornale - Statistiche *... non voglio commentare tutto perché ci sarebbe davvero troppo da scrivere e mi secca...
 
 # Login
