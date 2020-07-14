@@ -42,7 +42,7 @@ Beh... signori... il cuore del programma... anzi... cuore, mente, corpo... un po
 Il login viene gestito in un modo molto semplice, forse troppo... Non andando ad acquisire i dati opportunamente da un database si è mette a rischio l'intera funzionalità e validità del gestionale, ma, come citato a priori, questo non è un gestionale valido al 100% bensì è un progetto d'esame che è stato valutato parzialmente corretto.
 Tramite il metodo *initialize* vado a settare l'immagine background del login.
 Viene usata un HashMap per il controllo del login tramite il metodo *login()*.
-![Prova](https://photos.app.goo.gl/zLRNLDTcMpr1k1Lb7)
+![Prova](https://photos.google.com/share/AF1QipN0jCOdVut4mM66lloLY7yOb8ruAfRC4bWsaDe-ksBKBTT_lY-Gxb7cNsNZzLsJYA/photo/AF1QipNStZly5p748F9YW6FrRkZzM447giVL7ImloECl?key=NlBQeWppbEtWX3Rzd0lFWjJUdWxWWm5rZTdLOGlR)
 
 # Home page
 L'home page è stata creata in maniera tale da dare all'utente la possibilità di decidere quale pagina aprire avendo la possibilità di scegliere tra libro giornale, reparti di produzione, catalogo e magazzino e statistiche.
