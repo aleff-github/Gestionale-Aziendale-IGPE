@@ -6,12 +6,13 @@ Ho deciso di pubblicare questo codice in seguito al completamento con successo d
 Il progetto non ha potuto conseguire il massimo punteggio per via di alcuni errori di programmazione e gestione dei dati, uno tra i quali, il login, ma, nonostante ciò, ho deciso comunque di pubblicare la sorgente in total per dare, a chi vorrà, la possibilità di contribuire allo sviluppo del progetto nel caso in cui lo ritenesse opportuno.
 
 # Materiale usato per lo sviluppo
-- Crediti immagini: https://www.flaticon.com/authors/monkik - Free
-- JavaFX - Free
-- JavaSE-1.8 - Free
-- SceneBuilder - Free
-- sqlite-jdbc-3.30.1 - Free
-- Eclipse - Free
+
+- Crediti immagini: Link -> https://www.flaticon.com/authors/monkik | Costo -> Free
+- JavaFX: Link -> /// | Costo -> Free
+- JavaSE-1.8: Link -> /// | Costo -> Free
+- SceneBuilder: Link -> /// | Costo -> Free
+- sqlite-jdbc-3.30.1: Link -> /// | Costo -> Free
+- Eclipse: Link -> /// | Costo -> Free
 
 # Struttura del progetto
 Il progetto non è stato strutturato in model, view e controller unico bensì ogni scena ha la propria parte grafica e la propria parte logica.
