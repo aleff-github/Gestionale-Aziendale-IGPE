@@ -3,6 +3,8 @@
 
 <a href="https://www.buymeacoffee.com/NoNameoNA" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
 
+# WebSite Version -> https://nonameon-a.github.io/Gestionale-Aziendale-IGPE/
+
 Gestionale aziendale
 Ho deciso di pubblicare questo codice in seguito al completamento con successo dell'esame IGPE (Interfacce Grafice e Programmazione ad Eventi) all'Unical Università della Calabria.
 Il progetto non ha potuto conseguire il massimo punteggio per via di alcuni errori di programmazione e gestione dei dati, uno tra i quali, il login, ma, nonostante ciò, ho deciso comunque di pubblicare la sorgente in total per dare, a chi vorrà, la possibilità di contribuire allo sviluppo del progetto nel caso in cui lo ritenesse opportuno.
