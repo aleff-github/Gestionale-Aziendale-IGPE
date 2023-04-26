@@ -1,9 +1,8 @@
 # Gestionale Aziendale IGPE
+
+![](https://github.com/aleff-github/Gestionale-Aziendale-IGPE/blob/master/unsupported.png?raw=true)
+
 **For eng version -> go down.**
-
-<a href="https://www.buymeacoffee.com/NoNameoNA" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
-
-# WebSite Version -> https://nonameon-a.github.io/Gestionale-Aziendale-IGPE/
 
 Gestionale aziendale
 Ho deciso di pubblicare questo codice in seguito al completamento con successo dell'esame IGPE (Interfacce Grafice e Programmazione ad Eventi) all'Unical Università della Calabria.
